@@ -43,6 +43,7 @@ namespace WarGames
             //this.picBoxFront.Size = this.picBoxFront.Image.Size;
 
 
+
             ////Bitmap bmpB = (Bitmap)picBoxBack.Image;
             //Bitmap bmp1 = (Bitmap)picBoxFront.Image;
             //Graphics g = Graphics.FromImage(bmpB);
@@ -50,7 +51,7 @@ namespace WarGames
             //g.Dispose();
             //picBoxBack.Image = bmp0;
 
-           // HelperClass.BlendPictures(this.picBoxBack, this.picBoxFront);
+            // HelperClass.BlendPictures(this.picBoxBack, this.picBoxFront);
             //var src = new Bitmap(Properties.Resources.Logo) ;
             //var src = new Bitmap(@"WarGames\assets.Logo.png");
             //var bmp = new Bitmap(100, 100, PixelFormat.Format32bppPArgb);
@@ -62,15 +63,17 @@ namespace WarGames
 
             //}
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void tbxStart_KeyDown(object sender, KeyEventArgs e)
         {
-
-        }
-
-        private void tbxStart_TextChanged(object sender, EventArgs e)
-        {
-
+            if (e.KeyCode == Keys.Y)
+            {
+                picY.Visible = true;
+                tbxStart.Visible = false;
+            }
+            else if (e.KeyCode == Keys.N)
+                picN.Visible = true;
+            tbxStart.Visible = false;
+            Application.Exit();
         }
     }
 }
