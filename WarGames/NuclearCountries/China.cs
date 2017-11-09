@@ -8,5 +8,10 @@ namespace WarGames.NuclearCountries
 {
     class China : Countries
     {
+        public China()
+            : base("China")
+        {
+
+        }
     }
 }

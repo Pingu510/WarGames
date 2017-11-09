@@ -9,6 +9,7 @@ namespace WarGames.NuclearCountries
     class UnitedStates : Countries
     {
         public UnitedStates()
+            :base("United States")
         {
 
         }
