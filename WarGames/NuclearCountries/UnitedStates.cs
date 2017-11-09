@@ -6,9 +6,21 @@ using System.Threading.Tasks;
 
 namespace WarGames.NuclearCountries
 {
-    class UnitedStates : Countries
+
+
+    public class UnitedStates : Countries
     {
-        public UnitedStates()
+        private void Attack()
+        {
+
+        }
+
+        private void Hit()
+        {
+
+        }
+
+        public UnitedStates(string CountryName, int CountryEndurence) : base(CountryName, CountryEndurence)
         {
 
         }

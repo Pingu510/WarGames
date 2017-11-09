@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WarGames.NuclearCountries
 {
-    class India : Countries
+    class Sweden : Countries
     {
         private void Attack()
         {
@@ -18,7 +18,7 @@ namespace WarGames.NuclearCountries
 
         }
 
-        public India(string CountryName, int CountryEndurence) : base(CountryName, CountryEndurence)
+        public Sweden(string CountryName, int CountryEndurence) : base(CountryName, CountryEndurence)
         {
 
         }

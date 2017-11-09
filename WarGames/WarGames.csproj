@@ -52,6 +52,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="HelperClass.cs" />
     <Compile Include="NuclearCountries\China.cs" />
     <Compile Include="NuclearCountries\France.cs" />
     <Compile Include="NuclearCountries\India.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="NuclearCountries\NorthKorea.cs" />
     <Compile Include="NuclearCountries\Pakistan.cs" />
     <Compile Include="NuclearCountries\Russia.cs" />
+    <Compile Include="NuclearCountries\Sweden.cs" />
     <Compile Include="NuclearCountries\UnitedKingdom.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,8 +83,13 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <None Include="Resources\test.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -93,6 +100,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\MapNight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Y.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Y.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\N.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gameText.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,5 +8,19 @@ namespace WarGames.NuclearCountries
 {
     class Pakistan : Countries
     {
+        private void Attack()
+        {
+
+        }
+
+        private void Hit()
+        {
+
+        }
+
+        public Pakistan(string CountryName, int CountryEndurence) : base(CountryName, CountryEndurence)
+        {
+
+        }
     }
 }
