@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.hitTime = new System.Windows.Forms.Timer(this.components);
             this.tbxStart = new System.Windows.Forms.TextBox();
             this.picY = new System.Windows.Forms.PictureBox();
@@ -57,7 +56,9 @@
             // picY
             // 
             this.picY.BackColor = System.Drawing.Color.Transparent;
-            this.picY.Image = ((System.Drawing.Image)(resources.GetObject("picY.Image")));
+            this.picY.ErrorImage = null;
+            this.picY.Image = global::WarGames.Properties.Resources.Y;
+            this.picY.InitialImage = null;
             this.picY.Location = new System.Drawing.Point(697, 273);
             this.picY.Name = "picY";
             this.picY.Size = new System.Drawing.Size(23, 36);

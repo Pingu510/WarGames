@@ -15,7 +15,8 @@ namespace WarGames
 {
     public partial class Form1 : Form
     {
-        private static List<Countries> ListOfCountries = new List<Countries>();
+        CountryHandler countryHandler = new CountryHandler();
+        
         HelperClass h = new HelperClass();
         public Form1()
         {
@@ -23,18 +24,9 @@ namespace WarGames
 
             System.Timers.Timer hitTime;
             InitializeComponent();
-
-            Countries c;
-            c = new UnitedStates("China", 3);
-            c = new UnitedStates("France", 3);
-            c = new UnitedStates("India", 3);
-            c = new UnitedStates("Israel", 3);
-            c = new UnitedStates("NorthKorea", 3);
-            c = new UnitedStates("Pakistan", 3);
-            c = new UnitedStates("Russia", 3);
-            c = new UnitedStates("UnitedKingdom", 3);
-            c = new UnitedStates("USA", 3);
-            c = new UnitedStates("Sweden", 3);
+            // use countryHandler to acces the list and bombing events etc
+            
+            
 
 
             //this.picBoxBack.Image = Properties.Resources.MapNight;
@@ -68,12 +60,14 @@ namespace WarGames
             if (e.KeyCode == Keys.Y)
             {
                 picY.Visible = true;
-                tbxStart.Visible = false;
             }
             else if (e.KeyCode == Keys.N)
                 picN.Visible = true;
+
             tbxStart.Visible = false;
+            System.Threading.Thread.Sleep(5000);
             Application.Exit();
+
         }
     }
 }

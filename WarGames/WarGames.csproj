@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Countries.cs" />
+    <Compile Include="CountryHandler.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +113,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\gameText.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wargames.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
