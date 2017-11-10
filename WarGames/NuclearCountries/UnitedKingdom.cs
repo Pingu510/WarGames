@@ -8,17 +8,8 @@ namespace WarGames.NuclearCountries
 {
     class UnitedKingdom : Countries
     {
-        private void Attack()
-        {
-
-        }
-
-        private void Hit()
-        {
-
-        }
-
-        public UnitedKingdom(string CountryName, int CountryEndurence) : base(CountryName, CountryEndurence)
+        public UnitedKingdom()
+            :base("United Kingdom")
         {
 
         }

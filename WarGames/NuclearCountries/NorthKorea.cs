@@ -8,17 +8,8 @@ namespace WarGames.NuclearCountries
 {
     class NorthKorea : Countries
     {
-        private void Attack()
-        {
-
-        }
-
-        private void Hit()
-        {
-
-        }
-
-        public NorthKorea(string CountryName, int CountryEndurence) : base(CountryName, CountryEndurence)
+        public NorthKorea()
+            :base("North Korea")
         {
 
         }
