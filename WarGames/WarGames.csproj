@@ -100,9 +100,6 @@
     <None Include="Resources\MapNight.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Y.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Y.gif" />
   </ItemGroup>
   <ItemGroup>

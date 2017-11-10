@@ -37,6 +37,8 @@ namespace WarGames
         {
             if (ContryEndurance == 0)
             MessageBox.Show($" {Country} Lost");
+
+
         }
 
 

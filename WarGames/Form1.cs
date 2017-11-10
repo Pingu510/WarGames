@@ -15,7 +15,7 @@ namespace WarGames
 {
     public partial class Form1 : Form
     {
-        CountryHandler countryHandler = new CountryHandler();
+        CountryHandler countryHandle = new CountryHandler();
         
         HelperClass h = new HelperClass();
         public Form1()
@@ -65,8 +65,8 @@ namespace WarGames
                 picN.Visible = true;
 
             tbxStart.Visible = false;
-            System.Threading.Thread.Sleep(5000);
-            Application.Exit();
+            //Thread.Sleep(5000);
+            //Application.Exit();
 
         }
     }
