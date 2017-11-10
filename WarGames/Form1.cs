@@ -16,7 +16,7 @@ namespace WarGames
     public partial class Form1 : Form
     {
         CountryHandler countryHandler = new CountryHandler();
-        
+
         HelperClass h = new HelperClass();
         public Form1()
         {
@@ -25,8 +25,8 @@ namespace WarGames
             System.Timers.Timer hitTime;
             InitializeComponent();
             // use countryHandler to acces the list and bombing events etc
-            
-            
+
+
 
 
             //this.picBoxBack.Image = Properties.Resources.MapNight;
@@ -57,17 +57,47 @@ namespace WarGames
         }
         private void tbxStart_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Y)
+            //if (e.KeyCode == Keys.Y || e.KeyCode == Keys.N)
+            //{
+            //    if (e.KeyCode == Keys.Y)
+            //    {
+            //        tbxStart.Visible = false;
+            //        picY.Visible = true;
+            //        System.Threading.Thread.Sleep(500);
+            //    }
+            //    else if (e.KeyCode == Keys.N)
+            //    {
+            //        picN.Visible = true;
+            //        tbxStart.Visible = false;
+            //    }
+            //}
+            //else
+            //    return;
+            //System.Threading.Thread.Sleep(5000);
+            //Application.Exit();
+
+        }
+
+        private void tbxStart_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            tbxStart.Text.ToUpper();
+            e.Handled = !(char.IsLetter(e.KeyChar)
+            || e.KeyChar == (char)Keys.Y
+            || e.KeyChar == (char)Keys.N);
+
+            if (e.KeyChar == (char)Keys.Y)
             {
+                tbxStart.Visible = false;
                 picY.Visible = true;
+                System.Threading.Thread.Sleep(500);
             }
-            else if (e.KeyCode == Keys.N)
+            else if (e.KeyChar == (char)Keys.N)
+            {
                 picN.Visible = true;
-
-            tbxStart.Visible = false;
-            System.Threading.Thread.Sleep(5000);
-            Application.Exit();
-
+                tbxStart.Visible = false;
+            }
+            else return; // Need some code here to handle what happends on all other keys Or rather prevent using the wrong keys AKA not Y/N
         }
     }
 }
+

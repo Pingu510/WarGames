@@ -52,6 +52,7 @@
             this.tbxStart.Size = new System.Drawing.Size(14, 22);
             this.tbxStart.TabIndex = 4;
             this.tbxStart.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxStart_KeyDown);
+            this.tbxStart.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxStart_KeyPress);
             // 
             // picY
             // 
