@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows;
 using System.Timers;
 using System.Threading;
 using WarGames.NuclearCountries;
@@ -107,64 +108,71 @@ namespace WarGames
 
 
         }
-        protected override void OnMouseMove(MouseEventArgs e)
-        {
-            //lblX.Text = "X =" + e.X + "; Y =  " + e.Y;
-            //int x = 0, y = 0;
-            //base.OnMouseMove(e);
-            //Graphics g = CreateGraphics();
-            //Pen p = new Pen(Color.Red);
-            //Pen erase = new Pen(Color.White);
-            //g.DrawLine(erase, 0, 0, x, y);
-            //x = e.X; y = e.Y;
-            //g.DrawLine(p, 0, 0, x, y);
-            //lblX.Location = new Point(x - lblX.Width, y);
-            //lblY.Location = new Point(x, y - lblY.Height);
-            //lblX.Text = x.ToString(); lblY.Text = y.ToString();
-
-        }
 
         private void panel1_MouseClick(object sender, MouseEventArgs e)
         {
-            lblXNY.Text = "X =" + e.X + "; Y =  " + e.Y;
-
+            // Get mouse location in panel1
+            lblXNY.Text = e.Location.X + ":" + e.Location.Y;
             
-            int mouseClicksCounter = 0;
+            //int.TryParse(e.X.ToString(), out X);
+            //int.TryParse(e.Y.ToString(), out Y);
 
-            MouseClick += Form1_MouseClick;
+            //cords = new coordinates(X, Y);
 
+            //coordinatessList.Add(cords);
 
-            int.TryParse(e.X.ToString(), out X);
-            int.TryParse(e.Y.ToString(), out Y);
-
-            cords = new coordinates(X, Y);
-
-            coordinatessList.Add(cords);
-
-        }
-
-        private void Form1_MouseClick(object sender, MouseEventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         public void panel1_Paint(object sender, PaintEventArgs e)
         {
+            
+            int xfrom = 300;
+            int yfrom = 180;
+            int xto = 210;
+            int yto = 190;
+            float xcurve = (xfrom+xto)/2;
+            float ycurve = (yfrom-yto)+50;
 
-            Pen p = new Pen(Color.Red,3);
+            // ifsatser för curve point.
+            if (((yfrom + yto) > 100) && (xfrom + xto) < 100) //nivåskillnad + kort avstånd
+            {
 
-            //e.Graphics.DrawLine(p , 765, 251, 572, 186);
-            Rectangle rect = new Rectangle(0, 0, 2000, 200);
+            }            
+            else if ((yfrom + yto) > 100) // nivåskillnad
+            {
 
-            float startAngle = 45F;
-            float sweepAngle = 45F;
+            }
+            else if ((xfrom + xto) < 100) // kort avstånd
+            {
 
-            e.Graphics.DrawArc(p, rect, startAngle, sweepAngle);
-           // e.Graphics.DrawArc(0, -180f);
-          //e.Graphics.DrawArc(Pens.Red, 765, 251, 572, 186, 0, -180);
+            }
+            else if ((xfrom + xto) > 400) //långt avstånd
+            {
+
+            }
+            else // standard
+            {
+
+            }
+
+
+            // Create points that define curve.
+            Point point1 = new Point(xfrom, yfrom);
+            Point point2 = new Point((int)xcurve, (int)ycurve);
+            Point point3 = new Point(xto, yto);
+            Point[] curvePoints = { point1, point2, point3 };
+            
+
+            // Draw curve to screen.
+            //e.Graphics.DrawCurve(redPen, curvePoints);
+
+            // Draw dashed curve.
+            float[] dashValues = { 4, 1 };
+            Pen dashPen = new Pen(Color.Red, 3);
+            dashPen.DashPattern = dashValues;
+            e.Graphics.DrawCurve(dashPen, curvePoints);
             
         }
     }
-
-
+    
 }

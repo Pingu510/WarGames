@@ -36,8 +36,6 @@
             this.picN = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblXNY = new System.Windows.Forms.Label();
-            this.lblY = new System.Windows.Forms.Label();
-            this.lblX = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxFront)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picN)).BeginInit();
@@ -98,13 +96,11 @@
             this.panel1.BackgroundImage = global::WarGames.Properties.Resources.MapNight;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Controls.Add(this.lblXNY);
-            this.panel1.Controls.Add(this.lblY);
-            this.panel1.Controls.Add(this.lblX);
             this.panel1.Controls.Add(this.picY);
             this.panel1.Controls.Add(this.tbxStart);
             this.panel1.Controls.Add(this.picN);
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel1.Location = new System.Drawing.Point(3, 2);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1129, 577);
             this.panel1.TabIndex = 7;
@@ -121,26 +117,6 @@
             this.lblXNY.Size = new System.Drawing.Size(70, 31);
             this.lblXNY.TabIndex = 9;
             this.lblXNY.Text = "///////";
-            // 
-            // lblY
-            // 
-            this.lblY.AutoSize = true;
-            this.lblY.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblY.Location = new System.Drawing.Point(0, 0);
-            this.lblY.Name = "lblY";
-            this.lblY.Size = new System.Drawing.Size(18, 20);
-            this.lblY.TabIndex = 8;
-            this.lblY.Text = "0";
-            // 
-            // lblX
-            // 
-            this.lblX.AutoSize = true;
-            this.lblX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblX.Location = new System.Drawing.Point(0, 0);
-            this.lblX.Name = "lblX";
-            this.lblX.Size = new System.Drawing.Size(18, 20);
-            this.lblX.TabIndex = 7;
-            this.lblX.Text = "0";
             // 
             // Form1
             // 
@@ -173,8 +149,6 @@
         private System.Windows.Forms.PictureBox picY;
         private System.Windows.Forms.PictureBox picN;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lblY;
-        private System.Windows.Forms.Label lblX;
         private System.Windows.Forms.Label lblXNY;
     }
 }

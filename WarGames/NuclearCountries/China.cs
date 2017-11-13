@@ -11,7 +11,8 @@ namespace WarGames.NuclearCountries
         public China()
             : base("China")
         {
-
+            //X_Cordinate = ??;
+            //Y_Cordinate = ??;
         }
     }
 }

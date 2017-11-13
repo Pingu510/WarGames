@@ -14,8 +14,10 @@ namespace WarGames
         public int CountryEndurance { get; set; }
         public int Kills { get; set; }
         public int Assists { get; set; }
+        public int X_Cordinate { get; set; }
+        public int Y_Cordinate { get; set; }
 
-        
+
 
         public Countries(string newCountryName)
         {
