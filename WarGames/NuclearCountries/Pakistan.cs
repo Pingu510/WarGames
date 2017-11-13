@@ -8,10 +8,8 @@ namespace WarGames.NuclearCountries
 {
     class Pakistan : Countries
     {
-        public Pakistan()
-            :base("Pakistan")
-        {
-
-        }
+        public Pakistan(int xCordinate, int yCordinate)
+            :base("Pakistan", xCordinate, yCordinate)
+        { }
     }
 }

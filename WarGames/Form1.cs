@@ -125,7 +125,7 @@ namespace WarGames
 
         public void panel1_Paint(object sender, PaintEventArgs e)
         {
-            
+            //int xfrom = countryHandler.CountryList[0].CordinateX;
             int xfrom = 300;
             int yfrom = 180;
             int xto = 210;

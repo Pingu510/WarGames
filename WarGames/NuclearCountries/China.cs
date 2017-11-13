@@ -8,11 +8,8 @@ namespace WarGames.NuclearCountries
 {
     class China : Countries
     {
-        public China()
-            : base("China")
-        {
-            //X_Cordinate = ??;
-            //Y_Cordinate = ??;
-        }
+        public China(int xCordinate, int yCordinate)
+            : base("China", xCordinate, yCordinate)
+        { }
     }
 }

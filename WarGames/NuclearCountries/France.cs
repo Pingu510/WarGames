@@ -8,11 +8,9 @@ namespace WarGames.NuclearCountries
 {
     class France : Countries
     {
-        int x; int y;
-        public France(int x, int y)
-            :base("France")
-        {
-
-        }
+        
+        public France(int xCordinate, int yCordinate)
+            :base("France", xCordinate, yCordinate)
+        { }
     }
 }

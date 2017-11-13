@@ -9,19 +9,20 @@ namespace WarGames
 {
     public abstract class Countries
     {
-        
-        public string CountryName { get;  private set; }
+        // Theese count as read only and can only be set when initialised or in the ctor
+        public string CountryName { get; }
+        public int CordinateX { get; }
+        public int CordinateY { get; }
+
         public int CountryEndurance { get; set; }
         public int Kills { get; set; }
         public int Assists { get; set; }
-        public int X_Cordinate { get; set; }
-        public int Y_Cordinate { get; set; }
-
-
-
-        public Countries(string newCountryName)
+        
+        public Countries(string newCountryName, int xCordinate, int yCordinate)
         {
             CountryName = newCountryName;
+            CordinateX = xCordinate;
+            CordinateY = yCordinate;
             CountryEndurance = 3;
             Kills = 0;
             Assists = 0;            

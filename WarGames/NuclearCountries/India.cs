@@ -8,14 +8,9 @@ namespace WarGames.NuclearCountries
 {
     class India : Countries
     {
-        int x; int y;
-
-        public India(int x, int y) : base("India")
-        {
-            //x = 765; 
-            //y = 251;
-
-        }
+        public India(int xCordinate, int yCordinate) 
+            : base("India", xCordinate, yCordinate)
+        { }
 
     }
 }
