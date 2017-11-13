@@ -126,33 +126,40 @@ namespace WarGames
         public void panel1_Paint(object sender, PaintEventArgs e)
         {
             //int xfrom = countryHandler.CountryList[0].CordinateX;
-            int xfrom = 300;
-            int yfrom = 180;
-            int xto = 210;
-            int yto = 190;
-            float xcurve = (xfrom+xto)/2;
-            float ycurve = (yfrom-yto)+50;
+            int xfrom = 65;
+            int yfrom = 170;
+            int xto = 620;
+            int yto = 68;
+            float xcurve = 0;
+            float ycurve = 0;
 
             // ifsatser för curve point.
-            if (((yfrom + yto) > 100) && (xfrom + xto) < 100) //nivåskillnad + kort avstånd
+            if (((yfrom + yto)/2 > 200) && (xfrom - xto) < 100) //nivåskillnad + kort avstånd
             {
-
+                xcurve = (xfrom + xto)/2; 
+                ycurve = Math.Abs(xfrom - xto)*2; // Math.Abs ger absoluta värdet dvs positivt tal
             }            
-            else if ((yfrom + yto) > 100) // nivåskillnad
-            {
+            //else if ((yfrom + yto)/2 > 100) // nivåskillnad
+            //{
 
-            }
-            else if ((xfrom + xto) < 100) // kort avstånd
-            {
+            //}
+            //else if ((xfrom + xto) < 100) // kort avstånd
+            //{
 
-            }
-            else if ((xfrom + xto) > 400) //långt avstånd
-            {
+            //}
+            //else if ((xfrom - xto) > 400) //långt avstånd
+            //{
 
-            }
+            //}
             else // standard
             {
-
+                //http://mathforum.org/dr.math/gifs/darcy10.18.03c.gif
+                //https://math.stackexchange.com/questions/96168/how-to-find-mid-point-of-an-arc
+                //https://math.stackexchange.com/questions/1337344/get-third-point-from-an-arc-constructed-by-start-point-end-point-and-bulge
+                xcurve = (xfrom + xto) / 2;
+                ycurve = xcurve*((yfrom + yto)/((Math.Abs(xfrom - xto))/2f));
+                //xcurve = (xfrom + xto) / 2;
+                //ycurve = (yfrom - yto);
             }
 
 
