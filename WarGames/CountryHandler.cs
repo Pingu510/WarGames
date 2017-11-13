@@ -9,6 +9,8 @@ namespace WarGames
 {
     class CountryHandler
     {
+
+
         public List<Countries> CountryList = new List<Countries>();
         Random random = new Random();
 
@@ -22,6 +24,21 @@ namespace WarGames
             StartWar();
             //FIXA - Spelet är klart här, visa Endscreen eller starta om
         }
+
+
+
+        /// <summary>
+        ///  Seeting for changeing attack frequence
+        /// </summary>
+        
+        //public AttackTime(int secondinterval = 1000)
+        //{
+        //    timer = new Timer();
+        //    timer.Interval = secondinterval;
+        //    timer.Elapsed += Timer_Elapsed;
+
+
+        //}
 
         /// <summary>
         /// Runs untill all countries are dead.
@@ -89,8 +106,8 @@ namespace WarGames
         {
             CountryList.Clear();
             CountryList.Add(new China());
-            CountryList.Add(new France());
-            CountryList.Add(new India());
+            CountryList.Add(new France(572,186));
+            CountryList.Add(new India(765,251));
             CountryList.Add(new Israel());
             CountryList.Add(new NorthKorea());
             CountryList.Add(new Pakistan());
