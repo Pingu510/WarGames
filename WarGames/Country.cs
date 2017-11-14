@@ -7,7 +7,7 @@ using WarGames.NuclearCountries;
 
 namespace WarGames
 {
-    public abstract class Countries
+    public abstract class Country
     {
         // Theese count as read only and can only be set when initialised or in the ctor
         public string CountryName { get; }
@@ -18,7 +18,7 @@ namespace WarGames
         public int Kills { get; set; }
         public int Assists { get; set; }
         
-        public Countries(string newCountryName, int xCordinate, int yCordinate)
+        public Country(string newCountryName, int xCordinate, int yCordinate)
         {
             CountryName = newCountryName;
             CordinateX = xCordinate;

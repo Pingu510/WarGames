@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cordinates.cs" />
-    <Compile Include="Countries.cs" />
+    <Compile Include="Country.cs" />
     <Compile Include="CountryHandler.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WarGames.NuclearCountries
 {
-    class Pakistan : Countries
+    class Pakistan : Country
     {
         const int xCordinate = 790;
         const int yCordinate = 200;

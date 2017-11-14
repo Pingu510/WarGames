@@ -16,11 +16,11 @@ namespace WarGames
 {
     public partial class Form1 : Form
     {
-        int X;
-        int Y;
-        coordinates cords;
+        //int X;
+        //int Y;
+        //coordinates cords;
 
-        public List<coordinates> coordinatessList = new List<coordinates>();
+        //public List<coordinates> coordinatessList = new List<coordinates>();
         
         CountryHandler countryHandler = new CountryHandler();
 
@@ -125,49 +125,14 @@ namespace WarGames
 
         public void panel1_Paint(object sender, PaintEventArgs e)
         {
+
+            //get coords from countryhandler
+            List<Point> points = h.DrawCurve(new Point (200,0), new Point (400,0));
             //int xfrom = countryHandler.CountryList[0].CordinateX;
-            int xfrom = 65;
-            int yfrom = 170;
-            int xto = 620;
-            int yto = 68;
-            float xcurve = 0;
-            float ycurve = 0;
-
-            // ifsatser för curve point.
-            if (((yfrom + yto)/2 > 200) && (xfrom - xto) < 100) //nivåskillnad + kort avstånd
-            {
-                xcurve = (xfrom + xto)/2; 
-                ycurve = Math.Abs(xfrom - xto)*2; // Math.Abs ger absoluta värdet dvs positivt tal
-            }            
-            //else if ((yfrom + yto)/2 > 100) // nivåskillnad
-            //{
-
-            //}
-            //else if ((xfrom + xto) < 100) // kort avstånd
-            //{
-
-            //}
-            //else if ((xfrom - xto) > 400) //långt avstånd
-            //{
-
-            //}
-            else // standard
-            {
-                //http://mathforum.org/dr.math/gifs/darcy10.18.03c.gif
-                //https://math.stackexchange.com/questions/96168/how-to-find-mid-point-of-an-arc
-                //https://math.stackexchange.com/questions/1337344/get-third-point-from-an-arc-constructed-by-start-point-end-point-and-bulge
-                xcurve = (xfrom + xto) / 2;
-                ycurve = xcurve*((yfrom + yto)/((Math.Abs(xfrom - xto))/2f));
-                //xcurve = (xfrom + xto) / 2;
-                //ycurve = (yfrom - yto);
-            }
 
 
             // Create points that define curve.
-            Point point1 = new Point(xfrom, yfrom);
-            Point point2 = new Point((int)xcurve, (int)ycurve);
-            Point point3 = new Point(xto, yto);
-            Point[] curvePoints = { point1, point2, point3 };
+            Point[] curvePoints = { points[0], points[1], points[2] };
             
 
             // Draw curve to screen.

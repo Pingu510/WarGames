@@ -8,14 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WarGames.NuclearCountries;
+using System.Drawing;
 
 namespace WarGames
 {
     class CountryHandler
     {
-
+        public Country c;
         //buildItem.SetMetadata("CopyToOutputDirectory", "Always");
-        public List<Countries> CountryList = new List<Countries>();
+        public List<Country> CountryList = new List<Country>();
         Random random = new Random();
 
         
@@ -90,7 +91,7 @@ namespace WarGames
         /// <summary>
         /// Deletes country from list
         /// </summary>
-        private void DeleteCountry(Countries c)
+        private void DeleteCountry(Country c)
         {
             CountryList.Remove(c);
         }
@@ -108,31 +109,36 @@ namespace WarGames
         /// </summary>
         private void CreateAllCountriesAnew()
         {
+            
             CountryList.Clear();
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"NuclearCountries/");
                 //Path.GetDirectoryName(Application.ExecutablePath);//Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"NuclearCountries/");
             
             //string[] files = File.ReadAllLines(path);
             string[] fileEntries = Directory.GetFiles(path);
-            foreach (string fileName in fileEntries)
+            foreach (var fileName in fileEntries)
             {
                 Debug.WriteLine(fileName);
                 string[] words = fileName.Split('.');
+
+                
+
                 string country = words[0];
                 var t = country.GetType();
-                //CountryList.Add(new country)
+                //CountryList.Add ();
+                
             }
 
-            CountryList.Add(new China());
-            CountryList.Add(new France());
-            CountryList.Add(new India());
-            CountryList.Add(new Israel());
-            CountryList.Add(new NorthKorea());
-            CountryList.Add(new Pakistan());
-            CountryList.Add(new Russia());
-            CountryList.Add(new Sweden());
-            CountryList.Add(new UnitedKingdom());
-            CountryList.Add(new UnitedStates());
+            //CountryList.Add(new China());
+            //CountryList.Add(new France());
+            //CountryList.Add(new India());
+            //CountryList.Add(new Israel());
+            //CountryList.Add(new NorthKorea());
+            //CountryList.Add(new Pakistan());
+            //CountryList.Add(new Russia());
+            //CountryList.Add(new Sweden());
+            //CountryList.Add(new UnitedKingdom());
+            //CountryList.Add(new UnitedStates());
         }
     }
 }
