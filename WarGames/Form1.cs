@@ -11,6 +11,7 @@ using System.Windows;
 using System.Timers;
 using System.Threading;
 using WarGames.NuclearCountries;
+using System.Diagnostics;
 
 namespace WarGames
 {
@@ -27,7 +28,8 @@ namespace WarGames
         HelperClass h = new HelperClass();
         public Form1()
         {
-            System.Timers.Timer hitTime;
+            countryHandler.CountryNuked += Repaint;
+
             InitializeComponent();
             // use countryHandler to acces the list and bombing events etc
             countryHandler.StartGame();
@@ -123,17 +125,17 @@ namespace WarGames
 
         }
 
-        public void panel1_Paint(object sender, PaintEventArgs e)
+        public void Repaint(object source, EventArgs e)
         {
-
+            
             //get coords from countryhandler
-            List<Point> points = h.DrawCurve(new Point (200,0), new Point (400,0));
+            List<Point> points = h.DrawCurve(new Point(200, 0), new Point(400, 0));
             //int xfrom = countryHandler.CountryList[0].CordinateX;
 
 
             // Create points that define curve.
             Point[] curvePoints = { points[0], points[1], points[2] };
-            
+
 
             // Draw curve to screen.
             //e.Graphics.DrawCurve(redPen, curvePoints);
@@ -142,7 +144,34 @@ namespace WarGames
             float[] dashValues = { 4, 1 };
             Pen dashPen = new Pen(Color.Red, 3);
             dashPen.DashPattern = dashValues;
-            e.Graphics.DrawCurve(dashPen, curvePoints);
+            var e2= e as System.Windows.Forms.PaintEventArgs;
+            //var e1 = System.Windows.Forms.PaintEventArgs.Empty;
+            Debug.WriteLine(countryHandler.CountryList[countryHandler.CurrentAttkCountry] + " Attacks " + countryHandler.CountryList[countryHandler.CurrentDeffCountry]);
+            //e2.Graphics.DrawCurve(dashPen, curvePoints);
+            //panel1_Paint(this, e2);
+        }
+
+       
+
+        public void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            ////get coords from countryhandler
+            //List<Point> points = h.DrawCurve(new Point (200,0), new Point (400,0));
+            ////int xfrom = countryHandler.CountryList[0].CordinateX;
+
+
+            //// Create points that define curve.
+            //Point[] curvePoints = { points[0], points[1], points[2] };
+            
+
+            //// Draw curve to screen.
+            ////e.Graphics.DrawCurve(redPen, curvePoints);
+
+            //// Draw dashed curve.
+            //float[] dashValues = { 4, 1 };
+            //Pen dashPen = new Pen(Color.Red, 3);
+            //dashPen.DashPattern = dashValues;
+            //e.Graphics.DrawCurve(dashPen, curvePoints);
             
         }
     }

@@ -14,8 +14,15 @@ namespace WarGames
 {
     class CountryHandler
     {
-        public Country c;
-        //buildItem.SetMetadata("CopyToOutputDirectory", "Always");
+        public delegate void NukeCountryEventHandler(object source, EventArgs args);
+
+        public event NukeCountryEventHandler CountryNuked;
+
+        
+        public int CurrentAttkCountry;
+        public int CurrentDeffCountry;
+
+
         public List<Country> CountryList = new List<Country>();
         Random random = new Random();
 
@@ -48,20 +55,21 @@ namespace WarGames
         /// <summary>
         /// Runs untill all countries are dead.
         /// </summary>
-        private void StartWar()
+        public void StartWar()
         {
             // While there are countries still alive in the list
             while (CountryList.Count > 0)
             {
-                //FIXA - Någon sorts timer här 
 
                 //FIXA - Ska turordningen vara random eller ej?
                 int AttackingCountry = GetRandomNr();
                 int DefendingCountry = GetRandomNr();
-
+                CurrentAttkCountry = AttackingCountry;
+                CurrentDeffCountry = DefendingCountry;
 
                 NukeCountry(DefendingCountry);
-                // FIXA - Event som triggar attack animation
+                OnNukeCountry(); // FIXA - Event som triggar attack animation
+
 
                 // Checks if the defending Country died.
                 if (CountryList[DefendingCountry].CheckIfCountryIsAlive() == false)
@@ -76,6 +84,10 @@ namespace WarGames
                 {
                     CountryList[AttackingCountry].Assists += 1;
                 }
+
+                //FIXA - Någon sorts timer här 
+                System.Threading.Thread.Sleep(500);
+
             }
         }
 
@@ -85,8 +97,16 @@ namespace WarGames
         private void NukeCountry(int DefendingCountry)
         {
             CountryList[DefendingCountry].CountryEndurance -= 1;
+
         }
 
+        protected virtual void OnNukeCountry()
+        {
+            if (CountryNuked != null)
+                CountryNuked(this, EventArgs.Empty);
+        }
+
+      
 
         /// <summary>
         /// Deletes country from list
@@ -109,36 +129,18 @@ namespace WarGames
         /// </summary>
         private void CreateAllCountriesAnew()
         {
-            
             CountryList.Clear();
-            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"NuclearCountries/");
-                //Path.GetDirectoryName(Application.ExecutablePath);//Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"NuclearCountries/");
-            
-            //string[] files = File.ReadAllLines(path);
-            string[] fileEntries = Directory.GetFiles(path);
-            foreach (var fileName in fileEntries)
-            {
-                Debug.WriteLine(fileName);
-                string[] words = fileName.Split('.');
-
-                
-
-                string country = words[0];
-                var t = country.GetType();
-                //CountryList.Add ();
-                
-            }
-
-            //CountryList.Add(new China());
-            //CountryList.Add(new France());
-            //CountryList.Add(new India());
-            //CountryList.Add(new Israel());
-            //CountryList.Add(new NorthKorea());
-            //CountryList.Add(new Pakistan());
-            //CountryList.Add(new Russia());
-            //CountryList.Add(new Sweden());
-            //CountryList.Add(new UnitedKingdom());
-            //CountryList.Add(new UnitedStates());
+           
+            CountryList.Add(new China());
+            CountryList.Add(new France());
+            CountryList.Add(new India());
+            CountryList.Add(new Israel());
+            CountryList.Add(new NorthKorea());
+            CountryList.Add(new Pakistan());
+            CountryList.Add(new Russia());
+            CountryList.Add(new Sweden());
+            CountryList.Add(new UnitedKingdom());
+            CountryList.Add(new UnitedStates());
         }
     }
 }
