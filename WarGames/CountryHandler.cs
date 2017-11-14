@@ -14,6 +14,7 @@ namespace WarGames
 {
     class CountryHandler
     {
+        HelperClass h = new HelperClass();
         public delegate void NukeCountryEventHandler(object source, EventArgs args);
 
         public event NukeCountryEventHandler CountryNuked;
@@ -70,6 +71,7 @@ namespace WarGames
                     DeleteCountry(CountryList[DefendingCountry]);
                     //FIXA - Event som visar att landet dog?
 
+                   
                     // Gives a kill point to the last attcking country
                     CountryList[AttackingCountry].Kills += 1;
                 }

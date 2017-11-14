@@ -35,11 +35,23 @@
             this.picBoxFront = new System.Windows.Forms.PictureBox();
             this.picN = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.grpBoxStats = new System.Windows.Forms.GroupBox();
+            this.lblUnitedStates = new System.Windows.Forms.Label();
+            this.lblUnitedKingdom = new System.Windows.Forms.Label();
+            this.lblSweden = new System.Windows.Forms.Label();
+            this.lblRussia = new System.Windows.Forms.Label();
+            this.lblPakistan = new System.Windows.Forms.Label();
+            this.lblNorthKorea = new System.Windows.Forms.Label();
+            this.lblIsrael = new System.Windows.Forms.Label();
+            this.lblIndia = new System.Windows.Forms.Label();
+            this.lblFrance = new System.Windows.Forms.Label();
+            this.lblChina = new System.Windows.Forms.Label();
             this.lblXNY = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxFront)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picN)).BeginInit();
             this.panel1.SuspendLayout();
+            this.grpBoxStats.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbxStart
@@ -95,6 +107,7 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.BackgroundImage = global::WarGames.Properties.Resources.MapNight;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Controls.Add(this.grpBoxStats);
             this.panel1.Controls.Add(this.lblXNY);
             this.panel1.Controls.Add(this.picY);
             this.panel1.Controls.Add(this.tbxStart);
@@ -106,6 +119,116 @@
             this.panel1.TabIndex = 7;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             this.panel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseClick);
+            // 
+            // grpBoxStats
+            // 
+            this.grpBoxStats.Controls.Add(this.lblUnitedStates);
+            this.grpBoxStats.Controls.Add(this.lblUnitedKingdom);
+            this.grpBoxStats.Controls.Add(this.lblSweden);
+            this.grpBoxStats.Controls.Add(this.lblRussia);
+            this.grpBoxStats.Controls.Add(this.lblPakistan);
+            this.grpBoxStats.Controls.Add(this.lblNorthKorea);
+            this.grpBoxStats.Controls.Add(this.lblIsrael);
+            this.grpBoxStats.Controls.Add(this.lblIndia);
+            this.grpBoxStats.Controls.Add(this.lblFrance);
+            this.grpBoxStats.Controls.Add(this.lblChina);
+            this.grpBoxStats.ForeColor = System.Drawing.Color.White;
+            this.grpBoxStats.Location = new System.Drawing.Point(13, 259);
+            this.grpBoxStats.Name = "grpBoxStats";
+            this.grpBoxStats.Size = new System.Drawing.Size(200, 315);
+            this.grpBoxStats.TabIndex = 10;
+            this.grpBoxStats.TabStop = false;
+            this.grpBoxStats.Text = "Stats";
+            // 
+            // lblUnitedStates
+            // 
+            this.lblUnitedStates.AutoSize = true;
+            this.lblUnitedStates.Location = new System.Drawing.Point(7, 280);
+            this.lblUnitedStates.Name = "lblUnitedStates";
+            this.lblUnitedStates.Size = new System.Drawing.Size(111, 20);
+            this.lblUnitedStates.TabIndex = 9;
+            this.lblUnitedStates.Text = "UnitedStates :";
+            // 
+            // lblUnitedKingdom
+            // 
+            this.lblUnitedKingdom.AutoSize = true;
+            this.lblUnitedKingdom.Location = new System.Drawing.Point(7, 252);
+            this.lblUnitedKingdom.Name = "lblUnitedKingdom";
+            this.lblUnitedKingdom.Size = new System.Drawing.Size(126, 20);
+            this.lblUnitedKingdom.TabIndex = 8;
+            this.lblUnitedKingdom.Text = "UnitedKingdom :";
+            // 
+            // lblSweden
+            // 
+            this.lblSweden.AutoSize = true;
+            this.lblSweden.Location = new System.Drawing.Point(7, 224);
+            this.lblSweden.Name = "lblSweden";
+            this.lblSweden.Size = new System.Drawing.Size(75, 20);
+            this.lblSweden.TabIndex = 7;
+            this.lblSweden.Text = "Sweden :";
+            // 
+            // lblRussia
+            // 
+            this.lblRussia.AutoSize = true;
+            this.lblRussia.Location = new System.Drawing.Point(7, 196);
+            this.lblRussia.Name = "lblRussia";
+            this.lblRussia.Size = new System.Drawing.Size(66, 20);
+            this.lblRussia.TabIndex = 6;
+            this.lblRussia.Text = "Russia :";
+            // 
+            // lblPakistan
+            // 
+            this.lblPakistan.AutoSize = true;
+            this.lblPakistan.Location = new System.Drawing.Point(7, 168);
+            this.lblPakistan.Name = "lblPakistan";
+            this.lblPakistan.Size = new System.Drawing.Size(78, 20);
+            this.lblPakistan.TabIndex = 5;
+            this.lblPakistan.Text = "Pakistan :";
+            // 
+            // lblNorthKorea
+            // 
+            this.lblNorthKorea.AutoSize = true;
+            this.lblNorthKorea.Location = new System.Drawing.Point(7, 140);
+            this.lblNorthKorea.Name = "lblNorthKorea";
+            this.lblNorthKorea.Size = new System.Drawing.Size(98, 20);
+            this.lblNorthKorea.TabIndex = 4;
+            this.lblNorthKorea.Text = "NorthKorea :";
+            // 
+            // lblIsrael
+            // 
+            this.lblIsrael.AutoSize = true;
+            this.lblIsrael.Location = new System.Drawing.Point(7, 112);
+            this.lblIsrael.Name = "lblIsrael";
+            this.lblIsrael.Size = new System.Drawing.Size(56, 20);
+            this.lblIsrael.TabIndex = 3;
+            this.lblIsrael.Text = "Israel :";
+            // 
+            // lblIndia
+            // 
+            this.lblIndia.AutoSize = true;
+            this.lblIndia.Location = new System.Drawing.Point(7, 84);
+            this.lblIndia.Name = "lblIndia";
+            this.lblIndia.Size = new System.Drawing.Size(52, 20);
+            this.lblIndia.TabIndex = 2;
+            this.lblIndia.Text = "India :";
+            // 
+            // lblFrance
+            // 
+            this.lblFrance.AutoSize = true;
+            this.lblFrance.Location = new System.Drawing.Point(7, 56);
+            this.lblFrance.Name = "lblFrance";
+            this.lblFrance.Size = new System.Drawing.Size(67, 20);
+            this.lblFrance.TabIndex = 1;
+            this.lblFrance.Text = "France :";
+            // 
+            // lblChina
+            // 
+            this.lblChina.AutoSize = true;
+            this.lblChina.Location = new System.Drawing.Point(7, 28);
+            this.lblChina.Name = "lblChina";
+            this.lblChina.Size = new System.Drawing.Size(58, 20);
+            this.lblChina.TabIndex = 0;
+            this.lblChina.Text = "China :";
             // 
             // lblXNY
             // 
@@ -138,6 +261,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.picN)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.grpBoxStats.ResumeLayout(false);
+            this.grpBoxStats.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -150,6 +275,17 @@
         private System.Windows.Forms.PictureBox picN;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblXNY;
+        private System.Windows.Forms.GroupBox grpBoxStats;
+        private System.Windows.Forms.Label lblUnitedStates;
+        private System.Windows.Forms.Label lblUnitedKingdom;
+        private System.Windows.Forms.Label lblSweden;
+        private System.Windows.Forms.Label lblRussia;
+        private System.Windows.Forms.Label lblPakistan;
+        private System.Windows.Forms.Label lblNorthKorea;
+        private System.Windows.Forms.Label lblIsrael;
+        private System.Windows.Forms.Label lblIndia;
+        private System.Windows.Forms.Label lblFrance;
+        private System.Windows.Forms.Label lblChina;
     }
 }
 

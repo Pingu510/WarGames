@@ -26,6 +26,7 @@ namespace WarGames
         CountryHandler countryHandler = new CountryHandler();
 
         HelperClass h = new HelperClass();
+
         public Form1()
         {
             countryHandler.CountryNuked += Repaint;
