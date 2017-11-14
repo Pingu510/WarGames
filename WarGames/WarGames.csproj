@@ -55,18 +55,38 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="HelperClass.cs" />
-    <Compile Include="NuclearCountries\China.cs" />
-    <Compile Include="NuclearCountries\France.cs" />
-    <Compile Include="NuclearCountries\India.cs" />
-    <Compile Include="NuclearCountries\Israel.cs" />
-    <Compile Include="NuclearCountries\NorthKorea.cs" />
-    <Compile Include="NuclearCountries\Pakistan.cs" />
-    <Compile Include="NuclearCountries\Russia.cs" />
-    <Compile Include="NuclearCountries\Sweden.cs" />
-    <Compile Include="NuclearCountries\UnitedKingdom.cs" />
+    <Compile Include="NuclearCountries\China.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="NuclearCountries\France.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="NuclearCountries\India.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="NuclearCountries\Israel.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="NuclearCountries\NorthKorea.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="NuclearCountries\Pakistan.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="NuclearCountries\Russia.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="NuclearCountries\Sweden.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="NuclearCountries\UnitedKingdom.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="NuclearCountries\UnitedStates.cs" />
+    <Compile Include="NuclearCountries\UnitedStates.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -30,7 +30,7 @@ namespace WarGames
             System.Timers.Timer hitTime;
             InitializeComponent();
             // use countryHandler to acces the list and bombing events etc
-
+            countryHandler.StartGame();
 
 
 

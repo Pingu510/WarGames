@@ -8,7 +8,10 @@ namespace WarGames.NuclearCountries
 {
     class NorthKorea : Countries
     {
-        public NorthKorea(int xCordinate, int yCordinate)
+        const int xCordinate = 965;
+        const int yCordinate = 175;
+
+        public NorthKorea()
             :base("North Korea", xCordinate, yCordinate)
         { }
     }
