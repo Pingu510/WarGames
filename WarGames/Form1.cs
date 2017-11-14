@@ -146,7 +146,7 @@ namespace WarGames
             dashPen.DashPattern = dashValues;
             var e2= e as System.Windows.Forms.PaintEventArgs;
             //var e1 = System.Windows.Forms.PaintEventArgs.Empty;
-            Debug.WriteLine(countryHandler.CountryList[countryHandler.CurrentAttkCountry] + " Attacks " + countryHandler.CountryList[countryHandler.CurrentDeffCountry]);
+            Debug.WriteLine(countryHandler.CountryList[countryHandler.CurrentAttkCountry].CountryName + " Attacks " + countryHandler.CountryList[countryHandler.CurrentDeffCountry].CountryName);
             //e2.Graphics.DrawCurve(dashPen, curvePoints);
             //panel1_Paint(this, e2);
         }

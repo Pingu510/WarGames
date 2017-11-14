@@ -34,23 +34,10 @@ namespace WarGames
         {
             CreateAllCountriesAnew();
             StartWar();
+            Winner();
             //FIXA - Spelet är klart här, visa Endscreen eller starta om
         }
 
-
-
-        /// <summary>
-        ///  Seeting for changeing attack frequence
-        /// </summary>
-        
-        //public AttackTime(int secondinterval = 1000)
-        //{
-        //    timer = new Timer();
-        //    timer.Interval = secondinterval;
-        //    timer.Elapsed += Timer_Elapsed;
-
-
-        //}
 
         /// <summary>
         /// Runs untill all countries are dead.
@@ -64,6 +51,12 @@ namespace WarGames
                 //FIXA - Ska turordningen vara random eller ej?
                 int AttackingCountry = GetRandomNr();
                 int DefendingCountry = GetRandomNr();
+
+                while(AttackingCountry == DefendingCountry)
+                {
+                    DefendingCountry = GetRandomNr();
+                }
+
                 CurrentAttkCountry = AttackingCountry;
                 CurrentDeffCountry = DefendingCountry;
 
@@ -86,9 +79,15 @@ namespace WarGames
                 }
 
                 //FIXA - Någon sorts timer här 
-                System.Threading.Thread.Sleep(500);
+                AttackSleepTime();
 
             }
+        }
+
+        public string Winner()
+        {
+            //Debug.WriteLine(CountryList[0].CountryName + " Won The 'Game'");
+            return CountryList[0].CountryName;
         }
 
         /// <summary>
@@ -105,8 +104,7 @@ namespace WarGames
             if (CountryNuked != null)
                 CountryNuked(this, EventArgs.Empty);
         }
-
-      
+        
 
         /// <summary>
         /// Deletes country from list
@@ -122,6 +120,18 @@ namespace WarGames
         private int GetRandomNr()
         {
             return random.Next(0, CountryList.Count - 1);
+        }
+
+        /// <summary>
+        ///  Setting for changeing attack frequency
+        /// </summary>
+        public void AttackSleepTime(int miliseconds = 500)
+        {
+            System.Threading.Thread.Sleep(miliseconds);
+            //int secondinterval = 1000;
+            //Timer timer = new Timer();
+            //timer.Interval = secondinterval;
+            //timer.Elapsed += Timer_Elapsed;
         }
 
         /// <summary>
