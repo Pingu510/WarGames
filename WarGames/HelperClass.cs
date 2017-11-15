@@ -50,7 +50,7 @@ namespace WarGames
             // ifsatser för curve point.
             if (true) //nivåskillnad + kort avstånd
             {
-                Curve.X = 20;
+                Curve.X = 600;
                 Curve.Y = 20;
                 //xcurve = (xfrom + xto) / 2;
                 //ycurve = Math.Abs(xfrom - xto) * 2; // Math.Abs ger absoluta värdet dvs positivt tal

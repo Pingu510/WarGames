@@ -13,6 +13,7 @@ namespace WarGames
         public string CountryName { get; }
         public int CordinateX { get; }
         public int CordinateY { get; }
+        
 
         public int CountryEndurance { get; set; }
         public int Kills { get; set; }
@@ -27,6 +28,7 @@ namespace WarGames
             Kills = 0;
             Assists = 0;            
         }
+        
         
 
         /// <summary>

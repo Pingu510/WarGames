@@ -25,8 +25,9 @@ namespace WarGames
 
 
         public List<Country> CountryList = new List<Country>();
+        //public List<Label> CountryLabelScore = new List<Label>();
         Random random = new Random();
-
+        
         
         /// <summary>
         /// Starts the game, creates the list and starts the war.
@@ -35,7 +36,7 @@ namespace WarGames
         {
             CreateAllCountriesAnew();
             StartWar();
-            Winner();
+            //Winner();
             //FIXA - Spelet är klart här, visa Endscreen eller starta om
         }
 
@@ -46,7 +47,7 @@ namespace WarGames
         public void StartWar()
         {
             // While there are countries still alive in the list
-            while (CountryList.Count > 0)
+            while (CountryList.Count > 1)
             {
 
                 //FIXA - Ska turordningen vara random eller ej?
@@ -55,11 +56,17 @@ namespace WarGames
 
                 while(AttackingCountry == DefendingCountry)
                 {
-                    DefendingCountry = GetRandomNr();
+                    if (CountryList.Count != 2)
+                        DefendingCountry = GetRandomNr();
+                    else if (AttackingCountry == 0)
+                        DefendingCountry = 1;
+                    else
+                        DefendingCountry = 0;
                 }
 
                 CurrentAttkCountry = AttackingCountry;
                 CurrentDeffCountry = DefendingCountry;
+                CurrentAttkCountry.ToString();
 
                 NukeCountry(DefendingCountry);
                 OnNukeCountry(); // FIXA - Event som triggar attack animation
@@ -70,10 +77,11 @@ namespace WarGames
                 {
                     DeleteCountry(CountryList[DefendingCountry]);
                     //FIXA - Event som visar att landet dog?
-
+                     
                    
                     // Gives a kill point to the last attcking country
                     CountryList[AttackingCountry].Kills += 1;
+
                 }
                 else
                 {
@@ -98,6 +106,9 @@ namespace WarGames
         private void NukeCountry(int DefendingCountry)
         {
             CountryList[DefendingCountry].CountryEndurance -= 1;
+            
+
+
 
         }
 
@@ -142,8 +153,9 @@ namespace WarGames
         private void CreateAllCountriesAnew()
         {
             CountryList.Clear();
+            
            
-            CountryList.Add(new China());
+            CountryList.Add(new China());           
             CountryList.Add(new France());
             CountryList.Add(new India());
             CountryList.Add(new Israel());
@@ -153,6 +165,7 @@ namespace WarGames
             CountryList.Add(new Sweden());
             CountryList.Add(new UnitedKingdom());
             CountryList.Add(new UnitedStates());
+
         }
     }
 }
