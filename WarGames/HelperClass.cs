@@ -42,16 +42,16 @@ namespace WarGames
         /// <summary>
         /// Math for curve
         /// </summary>
-        public List<Point> DrawCurve(Point from, Point to)
+        public Point DrawCurve(Point from, Point to)
         {
-            List<Point> Coordinates = new List<Point>();
+            
             Point Curve = new Point(0,0) ;
             
             // ifsatser för curve point.
             if (true) //nivåskillnad + kort avstånd
             {
-                Curve.X = 600;
-                Curve.Y = 20;
+                Curve.X = 400;
+                Curve.Y = 30;
                 //xcurve = (xfrom + xto) / 2;
                 //ycurve = Math.Abs(xfrom - xto) * 2; // Math.Abs ger absoluta värdet dvs positivt tal
             }
@@ -77,13 +77,9 @@ namespace WarGames
                 //xcurve = (xfrom + xto) / 2;
                 //ycurve = (yfrom - yto);
             }
-
-            Coordinates.Add(from);
-            Coordinates.Add(Curve);
-            Coordinates.Add(to);
-            return Coordinates;
-
-
+            
+            return Curve;
+            
         }
     }
 }

@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WarGames.NuclearCountries;
-using System.Drawing;
 
 namespace WarGames
 {
@@ -22,12 +21,14 @@ namespace WarGames
         
         public int CurrentAttkCountry;
         public int CurrentDeffCountry;
-
+        Random random;
 
         public List<Country> CountryList = new List<Country>();
-        //public List<Label> CountryLabelScore = new List<Label>();
-        Random random = new Random();
         
+        public CountryHandler()
+        {
+            random = new Random(DateTime.Now.Millisecond);
+        }
         
         /// <summary>
         /// Starts the game, creates the list and starts the war.
@@ -47,21 +48,21 @@ namespace WarGames
         public void StartWar()
         {
             // While there are countries still alive in the list
-            while (CountryList.Count > 1)
-            {
 
+            if (CountryList.Count > 1)
+            {
                 //FIXA - Ska turordningen vara random eller ej?
                 int AttackingCountry = GetRandomNr();
                 int DefendingCountry = GetRandomNr();
 
                 while(AttackingCountry == DefendingCountry)
                 {
-                    if (CountryList.Count != 2)
+                    if (CountryList.Count > 2)
                         DefendingCountry = GetRandomNr();
-                    else if (AttackingCountry == 0)
-                        DefendingCountry = 1;
-                    else
+                    else if (AttackingCountry == 1)
                         DefendingCountry = 0;
+                    else
+                        DefendingCountry = 1;
                 }
 
                 CurrentAttkCountry = AttackingCountry;
@@ -69,11 +70,11 @@ namespace WarGames
                 CurrentAttkCountry.ToString();
 
                 NukeCountry(DefendingCountry);
-                OnNukeCountry(); // FIXA - Event som triggar attack animation
+                 // FIXA - Event som triggar attack animation
 
 
                 // Checks if the defending Country died.
-                if (CountryList[DefendingCountry].CheckIfCountryIsAlive() == false)
+                if (CountryList[DefendingCountry].CheckIfCountryIsAlive() == false )//&& CountryList[AttackingCountry].CheckIfCountryIsAlive == true)
                 {
                     DeleteCountry(CountryList[DefendingCountry]);
                     //FIXA - Event som visar att landet dog?
@@ -90,8 +91,13 @@ namespace WarGames
 
                 //FIXA - Någon sorts timer här 
                 AttackSleepTime();
-
+                OnNukeCountry();
             }
+        }
+
+        public void Attack()
+        {
+
         }
 
         public string Winner()
@@ -107,9 +113,6 @@ namespace WarGames
         {
             CountryList[DefendingCountry].CountryEndurance -= 1;
             
-
-
-
         }
 
         protected virtual void OnNukeCountry()
@@ -132,13 +135,13 @@ namespace WarGames
         /// </summary>
         private int GetRandomNr()
         {
-            return random.Next(0, CountryList.Count - 1);
+            return random.Next(0, CountryList.Count);
         }
 
         /// <summary>
         ///  Setting for changeing attack frequency
         /// </summary>
-        public void AttackSleepTime(int miliseconds = 500)
+        public void AttackSleepTime(int miliseconds = 1000)
         {
             System.Threading.Thread.Sleep(miliseconds);
             //int secondinterval = 1000;

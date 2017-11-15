@@ -36,6 +36,16 @@
             this.picN = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.grpBoxStats = new System.Windows.Forms.GroupBox();
+            this.lblUnitedStatesScore = new System.Windows.Forms.Label();
+            this.lblUnitedKingdomScore = new System.Windows.Forms.Label();
+            this.lblSwedenScore = new System.Windows.Forms.Label();
+            this.lblRussiaScore = new System.Windows.Forms.Label();
+            this.lblPakistanScore = new System.Windows.Forms.Label();
+            this.lblNorthKoreaScore = new System.Windows.Forms.Label();
+            this.lblIsraelScore = new System.Windows.Forms.Label();
+            this.lblIndiaScore = new System.Windows.Forms.Label();
+            this.lblFranceScore = new System.Windows.Forms.Label();
+            this.lblChinaScore = new System.Windows.Forms.Label();
             this.lblUnitedStates = new System.Windows.Forms.Label();
             this.lblUnitedKingdom = new System.Windows.Forms.Label();
             this.lblSweden = new System.Windows.Forms.Label();
@@ -47,16 +57,6 @@
             this.lblFrance = new System.Windows.Forms.Label();
             this.lblChina = new System.Windows.Forms.Label();
             this.lblXNY = new System.Windows.Forms.Label();
-            this.lblChinaScore = new System.Windows.Forms.Label();
-            this.lblFranceScore = new System.Windows.Forms.Label();
-            this.lblIndiaScore = new System.Windows.Forms.Label();
-            this.lblIsraelScore = new System.Windows.Forms.Label();
-            this.lblNorthKoreaScore = new System.Windows.Forms.Label();
-            this.lblPakistanScore = new System.Windows.Forms.Label();
-            this.lblRussiaScore = new System.Windows.Forms.Label();
-            this.lblSwedenScore = new System.Windows.Forms.Label();
-            this.lblUnitedKingdomScore = new System.Windows.Forms.Label();
-            this.lblUnitedStatesScore = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxFront)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picN)).BeginInit();
@@ -127,7 +127,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1129, 577);
             this.panel1.TabIndex = 7;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             this.panel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseClick);
             // 
             // grpBoxStats
@@ -159,6 +158,96 @@
             this.grpBoxStats.TabIndex = 10;
             this.grpBoxStats.TabStop = false;
             this.grpBoxStats.Text = "Stats";
+            // 
+            // lblUnitedStatesScore
+            // 
+            this.lblUnitedStatesScore.AutoSize = true;
+            this.lblUnitedStatesScore.Location = new System.Drawing.Point(161, 280);
+            this.lblUnitedStatesScore.Name = "lblUnitedStatesScore";
+            this.lblUnitedStatesScore.Size = new System.Drawing.Size(18, 20);
+            this.lblUnitedStatesScore.TabIndex = 19;
+            this.lblUnitedStatesScore.Text = "0";
+            // 
+            // lblUnitedKingdomScore
+            // 
+            this.lblUnitedKingdomScore.AutoSize = true;
+            this.lblUnitedKingdomScore.Location = new System.Drawing.Point(161, 252);
+            this.lblUnitedKingdomScore.Name = "lblUnitedKingdomScore";
+            this.lblUnitedKingdomScore.Size = new System.Drawing.Size(18, 20);
+            this.lblUnitedKingdomScore.TabIndex = 18;
+            this.lblUnitedKingdomScore.Text = "0";
+            // 
+            // lblSwedenScore
+            // 
+            this.lblSwedenScore.AutoSize = true;
+            this.lblSwedenScore.Location = new System.Drawing.Point(161, 224);
+            this.lblSwedenScore.Name = "lblSwedenScore";
+            this.lblSwedenScore.Size = new System.Drawing.Size(18, 20);
+            this.lblSwedenScore.TabIndex = 17;
+            this.lblSwedenScore.Text = "0";
+            // 
+            // lblRussiaScore
+            // 
+            this.lblRussiaScore.AutoSize = true;
+            this.lblRussiaScore.Location = new System.Drawing.Point(161, 196);
+            this.lblRussiaScore.Name = "lblRussiaScore";
+            this.lblRussiaScore.Size = new System.Drawing.Size(18, 20);
+            this.lblRussiaScore.TabIndex = 16;
+            this.lblRussiaScore.Text = "0";
+            // 
+            // lblPakistanScore
+            // 
+            this.lblPakistanScore.AutoSize = true;
+            this.lblPakistanScore.Location = new System.Drawing.Point(161, 168);
+            this.lblPakistanScore.Name = "lblPakistanScore";
+            this.lblPakistanScore.Size = new System.Drawing.Size(18, 20);
+            this.lblPakistanScore.TabIndex = 15;
+            this.lblPakistanScore.Text = "0";
+            // 
+            // lblNorthKoreaScore
+            // 
+            this.lblNorthKoreaScore.AutoSize = true;
+            this.lblNorthKoreaScore.Location = new System.Drawing.Point(161, 140);
+            this.lblNorthKoreaScore.Name = "lblNorthKoreaScore";
+            this.lblNorthKoreaScore.Size = new System.Drawing.Size(18, 20);
+            this.lblNorthKoreaScore.TabIndex = 14;
+            this.lblNorthKoreaScore.Text = "0";
+            // 
+            // lblIsraelScore
+            // 
+            this.lblIsraelScore.AutoSize = true;
+            this.lblIsraelScore.Location = new System.Drawing.Point(161, 112);
+            this.lblIsraelScore.Name = "lblIsraelScore";
+            this.lblIsraelScore.Size = new System.Drawing.Size(18, 20);
+            this.lblIsraelScore.TabIndex = 13;
+            this.lblIsraelScore.Text = "0";
+            // 
+            // lblIndiaScore
+            // 
+            this.lblIndiaScore.AutoSize = true;
+            this.lblIndiaScore.Location = new System.Drawing.Point(161, 84);
+            this.lblIndiaScore.Name = "lblIndiaScore";
+            this.lblIndiaScore.Size = new System.Drawing.Size(18, 20);
+            this.lblIndiaScore.TabIndex = 12;
+            this.lblIndiaScore.Text = "0";
+            // 
+            // lblFranceScore
+            // 
+            this.lblFranceScore.AutoSize = true;
+            this.lblFranceScore.Location = new System.Drawing.Point(161, 56);
+            this.lblFranceScore.Name = "lblFranceScore";
+            this.lblFranceScore.Size = new System.Drawing.Size(18, 20);
+            this.lblFranceScore.TabIndex = 11;
+            this.lblFranceScore.Text = "0";
+            // 
+            // lblChinaScore
+            // 
+            this.lblChinaScore.AutoSize = true;
+            this.lblChinaScore.Location = new System.Drawing.Point(161, 31);
+            this.lblChinaScore.Name = "lblChinaScore";
+            this.lblChinaScore.Size = new System.Drawing.Size(18, 20);
+            this.lblChinaScore.TabIndex = 10;
+            this.lblChinaScore.Text = "0";
             // 
             // lblUnitedStates
             // 
@@ -260,96 +349,6 @@
             this.lblXNY.Size = new System.Drawing.Size(70, 31);
             this.lblXNY.TabIndex = 9;
             this.lblXNY.Text = "///////";
-            // 
-            // lblChinaScore
-            // 
-            this.lblChinaScore.AutoSize = true;
-            this.lblChinaScore.Location = new System.Drawing.Point(161, 31);
-            this.lblChinaScore.Name = "lblChinaScore";
-            this.lblChinaScore.Size = new System.Drawing.Size(18, 20);
-            this.lblChinaScore.TabIndex = 10;
-            this.lblChinaScore.Text = "0";
-            // 
-            // lblFranceScore
-            // 
-            this.lblFranceScore.AutoSize = true;
-            this.lblFranceScore.Location = new System.Drawing.Point(161, 56);
-            this.lblFranceScore.Name = "lblFranceScore";
-            this.lblFranceScore.Size = new System.Drawing.Size(18, 20);
-            this.lblFranceScore.TabIndex = 11;
-            this.lblFranceScore.Text = "0";
-            // 
-            // lblIndiaScore
-            // 
-            this.lblIndiaScore.AutoSize = true;
-            this.lblIndiaScore.Location = new System.Drawing.Point(161, 84);
-            this.lblIndiaScore.Name = "lblIndiaScore";
-            this.lblIndiaScore.Size = new System.Drawing.Size(18, 20);
-            this.lblIndiaScore.TabIndex = 12;
-            this.lblIndiaScore.Text = "0";
-            // 
-            // lblIsraelScore
-            // 
-            this.lblIsraelScore.AutoSize = true;
-            this.lblIsraelScore.Location = new System.Drawing.Point(161, 112);
-            this.lblIsraelScore.Name = "lblIsraelScore";
-            this.lblIsraelScore.Size = new System.Drawing.Size(18, 20);
-            this.lblIsraelScore.TabIndex = 13;
-            this.lblIsraelScore.Text = "0";
-            // 
-            // lblNorthKoreaScore
-            // 
-            this.lblNorthKoreaScore.AutoSize = true;
-            this.lblNorthKoreaScore.Location = new System.Drawing.Point(161, 140);
-            this.lblNorthKoreaScore.Name = "lblNorthKoreaScore";
-            this.lblNorthKoreaScore.Size = new System.Drawing.Size(18, 20);
-            this.lblNorthKoreaScore.TabIndex = 14;
-            this.lblNorthKoreaScore.Text = "0";
-            // 
-            // lblPakistanScore
-            // 
-            this.lblPakistanScore.AutoSize = true;
-            this.lblPakistanScore.Location = new System.Drawing.Point(161, 168);
-            this.lblPakistanScore.Name = "lblPakistanScore";
-            this.lblPakistanScore.Size = new System.Drawing.Size(18, 20);
-            this.lblPakistanScore.TabIndex = 15;
-            this.lblPakistanScore.Text = "0";
-            // 
-            // lblRussiaScore
-            // 
-            this.lblRussiaScore.AutoSize = true;
-            this.lblRussiaScore.Location = new System.Drawing.Point(161, 196);
-            this.lblRussiaScore.Name = "lblRussiaScore";
-            this.lblRussiaScore.Size = new System.Drawing.Size(18, 20);
-            this.lblRussiaScore.TabIndex = 16;
-            this.lblRussiaScore.Text = "0";
-            // 
-            // lblSwedenScore
-            // 
-            this.lblSwedenScore.AutoSize = true;
-            this.lblSwedenScore.Location = new System.Drawing.Point(161, 224);
-            this.lblSwedenScore.Name = "lblSwedenScore";
-            this.lblSwedenScore.Size = new System.Drawing.Size(18, 20);
-            this.lblSwedenScore.TabIndex = 17;
-            this.lblSwedenScore.Text = "0";
-            // 
-            // lblUnitedKingdomScore
-            // 
-            this.lblUnitedKingdomScore.AutoSize = true;
-            this.lblUnitedKingdomScore.Location = new System.Drawing.Point(161, 252);
-            this.lblUnitedKingdomScore.Name = "lblUnitedKingdomScore";
-            this.lblUnitedKingdomScore.Size = new System.Drawing.Size(18, 20);
-            this.lblUnitedKingdomScore.TabIndex = 18;
-            this.lblUnitedKingdomScore.Text = "0";
-            // 
-            // lblUnitedStatesScore
-            // 
-            this.lblUnitedStatesScore.AutoSize = true;
-            this.lblUnitedStatesScore.Location = new System.Drawing.Point(161, 280);
-            this.lblUnitedStatesScore.Name = "lblUnitedStatesScore";
-            this.lblUnitedStatesScore.Size = new System.Drawing.Size(18, 20);
-            this.lblUnitedStatesScore.TabIndex = 19;
-            this.lblUnitedStatesScore.Text = "0";
             // 
             // Form1
             // 

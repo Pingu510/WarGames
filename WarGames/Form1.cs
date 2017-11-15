@@ -15,6 +15,7 @@ using System.Diagnostics;
 
 namespace WarGames
 {
+    
     public partial class Form1 : Form
     {
         //int X;
@@ -22,21 +23,26 @@ namespace WarGames
         //coordinates cords;
 
         //public List<coordinates> coordinatessList = new List<coordinates>();
-        
-        CountryHandler countryHandler = new CountryHandler();
-        public List<Label> CountryLabelScore = new List<Label>();
 
+        CountryHandler countryHandler = new CountryHandler();
+        List<Label> CountryLabelScore = new List<Label>();
+        
 
         HelperClass h = new HelperClass();
 
         public Form1()
         {
+            // use countryHandler to acces the list and bombing events etc
+            countryHandler.CountryNuked += UpdateLabels;
+            countryHandler.CountryNuked += Repaint;
+            //panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
 
             InitializeComponent();
-            // use countryHandler to acces the list and bombing events etc
-            //countryHandler.CountryNuked += Repaint;
             
-
+            
+        }
+        private void AddLabelsToList()
+        {
             CountryLabelScore.Add(lblChinaScore);
             CountryLabelScore.Add(lblFranceScore);
             CountryLabelScore.Add(lblIndiaScore);
@@ -47,58 +53,38 @@ namespace WarGames
             CountryLabelScore.Add(lblSwedenScore);
             CountryLabelScore.Add(lblUnitedKingdomScore);
             CountryLabelScore.Add(lblUnitedStatesScore);
-
-            //this.picBoxBack.Image = Properties.Resources.MapNight;
-            ////this.pnl.BackgroundImage = Properties.Resources.MapNight;
-            //this.picBoxFront.Image = Properties.Resources.Logo;
-            //this.picBoxFront.Size = this.picBoxFront.Image.Size;
-
-
-
-            ////Bitmap bmpB = (Bitmap)picBoxBack.Image;
-            //Bitmap bmp1 = (Bitmap)picBoxFront.Image;
-            //Graphics g = Graphics.FromImage(bmpB);
-            //g.DrawImage(bmpB, 0, 0, bmp1.Size.Width, bmp1.Size.Height);
-            //g.Dispose();
-            //picBoxBack.Image = bmp0;
-
-            // HelperClass.BlendPictures(this.picBoxBack, this.picBoxFront);
-            //var src = new Bitmap(Properties.Resources.Logo) ;
-            //var src = new Bitmap(@"WarGames\assets.Logo.png");
-            //var bmp = new Bitmap(100, 100, PixelFormat.Format32bppPArgb);
-            //var gr = Graphics.FromImage(bmp);
-            //{
-            //    gr.Clear(Color.Blue);
-            //    gr.DrawImage(src, new Rectangle(0, 0, bmp.Width, bmp.Height));
-            //    bmp.Save("c:/temp/result.png", ImageFormat.Png);
-
-            //}
         }
-
 
         private void tbxStart_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Y || e.KeyCode == Keys.N)
-            {
-                if (e.KeyCode == Keys.Y)
-                {
-                    tbxStart.Visible = false;
-                    picY.Visible = true;
-                    //System.Threading.Thread.Sleep(500);
-                    countryHandler.StartGame();
+            //if (e.KeyCode == Keys.Y || e.KeyCode == Keys.N)
+            //{
+            //    if (e.KeyCode == Keys.Y)
+            //    {
+            //        tbxStart.Visible = false;
+            //        picY.Visible = true;
                     
-                }
-                else if (e.KeyCode == Keys.N)
-                {
-                    picN.Visible = true;
-                    tbxStart.Visible = false;
-                }
-            }
-            else
-                return;
-            //System.Threading.Thread.Sleep(5000);
-            //Application.Exit();
 
+            //        AddLabelsToList();
+            //        countryHandler.StartGame();
+            //        tbxStart.Text = null;
+                    
+            //    }
+            //    else if (e.KeyCode == Keys.N)
+            //    {
+            //        picN.Visible = true;
+            //        tbxStart.Visible = false;
+            //    }
+            //}
+            //else if (e.KeyCode == Keys.Back)
+            //{
+            //    return;
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Only Y or N! Press backspace to retry");
+            //    return;
+            //}
         }
 
         private void tbxStart_KeyPress(object sender, KeyPressEventArgs e)
@@ -126,149 +112,74 @@ namespace WarGames
 
         private void panel1_MouseClick(object sender, MouseEventArgs e)
         {
+            AddLabelsToList();
+            countryHandler.StartGame();
             // Get mouse location in panel1
-            lblXNY.Text = e.Location.X + ":" + e.Location.Y;
-            
-            //int.TryParse(e.X.ToString(), out X);
-            //int.TryParse(e.Y.ToString(), out Y);
-
-            //cords = new coordinates(X, Y);
-
-            //coordinatessList.Add(cords);
+            //lblXNY.Text = e.Location.X + ":" + e.Location.Y;
 
         }
 
-        public void UpdateLabels ()
+        public void UpdateLabelsHandler(object source, EventArgs e)
+        {
+            //CountryLabelScore.Clear();
+            //int i = 0;
+            //AddLabelsToList();
+            //foreach (var item in countryHandler.CountryList)
+            //{
+            //    Label lbl = new Label();
+            //    lbl.Text = countryHandler.CountryList[i].CountryEndurance.ToString();
+            //    CountryLabelScore.Add(lbl); 
+            //    i++;
+            //}
+            //this.BeginInvoke(new Action(UpdateLabels));
+            
+            
+        }
+        public void UpdateLabels(object source, EventArgs e)
         {
             int i = countryHandler.CurrentDeffCountry;
+            if (countryHandler.CountryList[i].CountryEndurance == 0)
+            {
 
-            CountryLabelScore[i].Text = countryHandler.CountryList[i].CountryName +
-                            " " + countryHandler.CountryList[i].CountryEndurance.ToString();
-            //switch (countryHandler.CurrentDeffCountry)
-            //{
-            //    case 0:
-            //        {
-            //            CountryLabelScore[0].Text = countryHandler.CountryList[0].CountryName +
-            //                " " + countryHandler.CountryList[0].CountryEndurance.ToString();
-            //        }
-            //        break;
-            //    case 1:
-            //        {
-            //            CountryLabelScore[1].Text = countryHandler.CountryList[1].CountryName +
-            //                " " + countryHandler.CountryList[1].CountryEndurance.ToString();
-            //        }
-            //        break;
-            //    case 2:
-            //        {
-            //            CountryLabelScore[2].Text = countryHandler.CountryList[2].CountryName +
-            //                " " + countryHandler.CountryList[2].CountryEndurance.ToString();
-            //        }
-            //        break;
-            //    case 3:
-            //        {
-            //            CountryLabelScore[3].Text = countryHandler.CountryList[3].CountryName +
-            //                " " + countryHandler.CountryList[3].CountryEndurance.ToString();
-            //        }
-            //        break;
-            //    case 4:
-            //        {
-            //            CountryLabelScore[4].Text = countryHandler.CountryList[4].CountryName +
-            //                " " + countryHandler.CountryList[4].CountryEndurance.ToString();
-            //        }
-            //        break;
-            //    case 5:
-            //        {
-            //            CountryLabelScore[5].Text = countryHandler.CountryList[5].CountryName +
-            //                " " + countryHandler.CountryList[5].CountryEndurance.ToString();
-            //        }
-            //        break;
-            //    case 6:
-            //        {
-            //            CountryLabelScore[6].Text = countryHandler.CountryList[6].CountryName +
-            //                " " + countryHandler.CountryList[6].CountryEndurance.ToString();
-            //        }
-            //        break;
-            //    case 7:
-            //        {
-            //            CountryLabelScore[7].Text = countryHandler.CountryList[7].CountryName +
-            //                " " + countryHandler.CountryList[7].CountryEndurance.ToString();
-            //        }
-            //        break;
-            //    case 8:
-            //        {
-            //            CountryLabelScore[8].Text = countryHandler.CountryList[8].CountryName +
-            //                " " + countryHandler.CountryList[8].CountryEndurance.ToString();
-            //        }
-            //        break;
-            //    case 9:
-            //        {
-            //            CountryLabelScore[9].Text = countryHandler.CountryList[9].CountryName +
-            //                " " + countryHandler.CountryList[9].CountryEndurance.ToString();
-            //        }
-            //        break;
-            //    case 10:
-            //        {
-            //            CountryLabelScore[10].Text = countryHandler.CountryList[10].CountryName +
-            //                " " + countryHandler.CountryList[10].CountryEndurance.ToString();
-            //        }
-            //        break;
-            //}
+                CountryLabelScore[i].Text = "Ded";
+                CountryLabelScore.RemoveAt(i);
+            }
+            else
+                CountryLabelScore[i].Text = countryHandler.CountryList[i].CountryEndurance.ToString();
+
         }
 
         public void Repaint(object source, EventArgs e)
         {
+            var Attkcountry = countryHandler.CountryList[countryHandler.CurrentAttkCountry];
+            var Deffcountry = countryHandler.CountryList[countryHandler.CurrentDeffCountry];
             //get coords from countryhandler
-            List<Point> points = h.DrawCurve(new Point(910,210), new Point(200,256));
-            //int xfrom = countryHandler.CountryList[0].CordinateX;
+            Point attackingCountryCoordinates = new Point(Attkcountry.CordinateX, Attkcountry.CordinateY);
+            Point defendingCountryCoordinates = new Point(Deffcountry.CordinateX, Deffcountry.CordinateY);
+
+            // Gets the curvepoint from helperclass.
+            Point curvepoint = h.DrawCurve(attackingCountryCoordinates, defendingCountryCoordinates);
 
 
-            // Create points that define curve.
-            Point[] curvePoints = { points[0], points[1], points[2] };
+            // Create points that defines the curve.
+            Point[] curvePoints = { attackingCountryCoordinates, curvepoint, defendingCountryCoordinates };
 
-
-            // Draw curve to screen.
-            //e.Graphics.DrawCurve(redPen, curvePoints);
-           
-            // Draw dashed curve.
+            // Create pen tool
             float[] dashValues = { 4, 1 };
             Pen dashPen = new Pen(Color.Red, 3);
+
             dashPen.DashPattern = dashValues;
-            var e2= e as System.Windows.Forms.PaintEventArgs;
-            var e1 = System.Windows.Forms.PaintEventArgs.Empty;
+            Graphics g = panel1.CreateGraphics();
+            
+            // Draw dashed curve.
+            g.DrawCurve(dashPen, curvePoints);
+
             Debug.WriteLine(countryHandler.CountryList[countryHandler.CurrentAttkCountry].CountryName +
             "Attacks" + countryHandler.CountryList[countryHandler.CurrentDeffCountry].CountryName);
-            UpdateLabels();
-            //countryHandler.CountryList[countryHandler.CountryLabelScore == countryHandler.CurrentDeffCountry;
-            //CountryLabelScore[1].Text = countryHandler.CountryList[countryHandler.CurrentAttkCountry].CountryName;
-            //CountryLabelScore[2].Text = countryHandler.CountryList[countryHandler.CurrentDeffCountry].CountryName;
+            countryHandler.StartWar();
 
-            //e2.Graphics.DrawCurve(dashPen, curvePoints);
-            //panel1_Paint(this, e2);
         }
 
-       
-
-        public void panel1_Paint(object sender, PaintEventArgs e)
-        {
-            //get coords from countryhandler
-            List<Point> points = h.DrawCurve(new Point(200, 0), new Point(400, 0));
-            //int xfrom = countryHandler.CountryList[0].CordinateX;
-
-
-            // Create points that define curve.
-            Point[] curvePoints = { points[0], points[1], points[2] };
-
-
-            // Draw curve to screen.
-            //e.Graphics.DrawCurve(redPen, curvePoints);
-
-            // Draw dashed curve.
-            float[] dashValues = { 4, 1 };
-            Pen dashPen = new Pen(Color.Red, 3);
-            dashPen.DashPattern = dashValues;
-            e.Graphics.DrawCurve(dashPen, curvePoints);
-        }
-        
     }
     
 }
