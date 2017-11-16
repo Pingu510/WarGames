@@ -51,7 +51,13 @@ namespace WarGames
         public void StartWar()
         {
             // While there are countries still alive in the list
-
+            //foreach (Country c in CountryList)
+            //{
+            //    if (c.CountryEndurance == 0)
+            //    {
+            //        DeleteCountry(c);
+            //    }
+            //}
             if (CountryList.Count > 1)
             {
                 //FIXA - Ska turordningen vara random eller ej?
@@ -79,10 +85,6 @@ namespace WarGames
                 // Checks if the defending Country died.
                 if (CountryList[DefendingCountry].CheckIfCountryIsAlive() == false )//&& CountryList[AttackingCountry].CheckIfCountryIsAlive == true)
                 {
-                    OnDeadCountry();
-                    DeleteCountry(CountryList[DefendingCountry]);
-                     
-                   
                     // Gives a kill point to the last attacking country
                     CountryList[AttackingCountry].Kills += 1;
 
@@ -91,14 +93,9 @@ namespace WarGames
                 {
                     CountryList[AttackingCountry].Assists += 1;
                 }
-                
                 OnNukeCountry();
+                OnDeadCountry();
             }
-        }
-
-        public void Attack()
-        {
-
         }
 
         public string Winner()
@@ -134,9 +131,9 @@ namespace WarGames
         /// <summary>
         /// Deletes country from list
         /// </summary>
-        private void DeleteCountry(Country c)
+        public void DeleteCountry(int i)//Country c)
         {
-            CountryList.Remove(c);
+            CountryList.RemoveAt(i);
         }
 
         /// <summary>
@@ -165,8 +162,7 @@ namespace WarGames
         private void CreateAllCountriesAnew()
         {
             CountryList.Clear();
-            
-           
+                       
             CountryList.Add(new China());           
             CountryList.Add(new France());
             CountryList.Add(new India());

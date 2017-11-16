@@ -34,7 +34,7 @@ namespace WarGames
         {
             // use countryHandler to acces the list and bombing events etc
             countryHandler.DeadCountry += CountryDiedUpdateLabel;
-            countryHandler.CountryNuked += UpdateLabels;
+            //countryHandler.CountryNuked += UpdateLabels;
             countryHandler.CountryNuked += Repaint;
             
             //panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
@@ -115,27 +115,42 @@ namespace WarGames
         /// <summary>
         /// 
         /// </summary>
-        public void UpdateLabels(object source, EventArgs e)
-        {
-            for (int i = 0; i < countryHandler.CountryList.Count; i++)
-            {                
-                if (countryHandler.CountryList.Count == 1)
-                {
-                    CountryLabelEnduranceList[0].Text = "Winner";
-                }
-                else
-                {
-                    CountryLabelEnduranceList[i].Text = countryHandler.CountryList[i].CountryEndurance.ToString();
-                }
-            }
-        }
+        //public void UpdateLabels(object source, EventArgs e)
+        //{
+        //    for (int i = 0; i < countryHandler.CountryList.Count; i++)
+        //    {                
+        //        if (countryHandler.CountryList.Count == 1)
+        //        {
+        //            CountryLabelEnduranceList[0].Text = "Winner";
+        //        }
+        //        else
+        //        {
+        //            CountryLabelEnduranceList[i].Text = countryHandler.CountryList[i].CountryEndurance.ToString();
+        //        }
+        //    }
+        //}
+
         public void CountryDiedUpdateLabel(object source, IntEventArgs e)
         {
-            if (countryHandler.CountryList[e.CountryID].CountryEndurance == 0)
+            if (countryHandler.CountryList[e.CountryID].CountryEndurance != 0)
             {
-
+                for (int i = 0; i < countryHandler.CountryList.Count -1; i++)
+                {
+                    if (countryHandler.CountryList.Count == 1)
+                    {
+                        CountryLabelEnduranceList[0].Text = "Winner";
+                    }
+                    else
+                    {
+                        CountryLabelEnduranceList[i].Text = countryHandler.CountryList[i].CountryEndurance.ToString();
+                    }
+                }
+            }
+            else
+            {                
                 CountryLabelEnduranceList[e.CountryID].Text = "Ded";
                 CountryLabelEnduranceList.RemoveAt(e.CountryID);
+                countryHandler.DeleteCountry(e.CountryID);
             }
         }
 
