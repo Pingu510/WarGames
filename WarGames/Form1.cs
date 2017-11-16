@@ -59,16 +59,10 @@ namespace WarGames
 
         private void SetLabelsStartUpText()
         {
-            lblChinaEndurance.Text = countryHandler.CurrentEndurance.ToString();
-            lblFranceEndurance.Text = countryHandler.CurrentEndurance.ToString();
-            lblIndiaEndurance.Text = countryHandler.CurrentEndurance.ToString();
-            lblIsraelEndurance.Text = countryHandler.CurrentEndurance.ToString();
-            lblNorthKoreaEndurance.Text = countryHandler.CurrentEndurance.ToString();
-            lblPakistanEndurance.Text = countryHandler.CurrentEndurance.ToString();
-            lblRussiaEndurance.Text = countryHandler.CurrentEndurance.ToString();
-            lblSwedenEndurance.Text = countryHandler.CurrentEndurance.ToString();
-            lblUnitedKingdomEndurance.Text = countryHandler.CurrentEndurance.ToString();
-            lblUnitedStatesEndurance.Text = countryHandler.CurrentEndurance.ToString();
+            foreach (var i in CountryLabelEnduranceList)
+            {
+                i.Text = countryHandler.CurrentEndurance.ToString();
+            }
         }
 
         private void tbxStart_KeyDown(object sender, KeyEventArgs e)
@@ -82,6 +76,7 @@ namespace WarGames
                     new ManualResetEvent(false).WaitOne(1500);
                     
                     AddLabelsToList();
+                    AttackTimer.Enabled = true;
                     countryHandler.StartNewGame();
                     tbxStart.Text = null;
 
@@ -122,7 +117,6 @@ namespace WarGames
         /// </summary>
         public void UpdateLabels(object source, EventArgs e)
         {
-            //int i = countryHandler.CurrentDeffCountry;
             for (int i = 0; i < countryHandler.CountryList.Count; i++)
             {                
                 if (countryHandler.CountryList.Count == 1)
@@ -174,7 +168,6 @@ namespace WarGames
 
             Debug.WriteLine(countryHandler.CountryList[countryHandler.CurrentAttkCountry].CountryName +
             "Attacks" + countryHandler.CountryList[countryHandler.CurrentDeffCountry].CountryName);
-            //countryHandler.StartWar();
 
         }
 
