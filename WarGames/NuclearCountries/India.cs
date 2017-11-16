@@ -8,8 +8,8 @@ namespace WarGames.NuclearCountries
 {
     class India : Country
     {
-        const int xCordinate = 765;
-        const int yCordinate = 251;
+        const int xCordinate = 810;
+        const int yCordinate = 230;
 
         public India() 
             : base("India", xCordinate, yCordinate)

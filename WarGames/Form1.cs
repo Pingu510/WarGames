@@ -15,7 +15,7 @@ using System.Diagnostics;
 
 namespace WarGames
 {
-    
+
     public partial class Form1 : Form
     {
         //int X;
@@ -26,7 +26,7 @@ namespace WarGames
 
         CountryHandler countryHandler = new CountryHandler();
         List<Label> CountryLabelEnduranceList = new List<Label>();
-        
+
 
         HelperClass h = new HelperClass();
 
@@ -36,12 +36,12 @@ namespace WarGames
             countryHandler.DeadCountry += CountryDiedUpdateLabel;
             //countryHandler.CountryNuked += UpdateLabels;
             countryHandler.CountryNuked += Repaint;
-            
+
             //panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
 
             InitializeComponent();
-            
-            
+
+
         }
         private void AddLabelsToList()
         {
@@ -74,7 +74,7 @@ namespace WarGames
                     tbxStart.Visible = false;
                     picY.Visible = true;
                     new ManualResetEvent(false).WaitOne(1500);
-                    
+
                     AddLabelsToList();
                     AttackTimer.Enabled = true;
                     picBoxFront.Visible = false;
@@ -102,7 +102,7 @@ namespace WarGames
                 return;
             }
         }
-        
+
         private void panel1_MouseClick(object sender, MouseEventArgs e)
         {
             // Get mouse location in panel1
@@ -131,7 +131,7 @@ namespace WarGames
         {
             if (countryHandler.CountryList[e.CountryID].CountryEndurance != 0)
             {
-                for (int i = 0; i < countryHandler.CountryList.Count -1; i++)
+                for (int i = 0; i < countryHandler.CountryList.Count; i++)
                 {
                     if (countryHandler.CountryList.Count == 1)
                     {
@@ -144,11 +144,33 @@ namespace WarGames
                 }
             }
             else
-            {                
+            {
+
+                
                 CountryLabelEnduranceList[e.CountryID].Text = "Ded";
+                
                 CountryLabelEnduranceList.RemoveAt(e.CountryID);
+                ShowDeath(e.CountryID);
                 countryHandler.DeleteCountry(e.CountryID);
+                
+                
+                
+
+                if (countryHandler.CountryList.Count == 1)
+                {
+                    MessageBox.Show($"{countryHandler.CountryList[0].CountryName} Won the war!!");
+                }
+
             }
+        }
+
+        public void ShowDeath(int i)
+        {
+            Point poo = new Point( countryHandler.CountryList[i].CordinateX, countryHandler.CountryList[i].CordinateY );
+            //picBoxFront p = new picBoxFront();
+
+            picBoxFront.Location = poo;
+            picBoxFront.Visible = true;
         }
 
         public void Repaint(object source, EventArgs e)
@@ -157,6 +179,8 @@ namespace WarGames
             int labelL = CountryLabelEnduranceList.Count;
             var Attkcountry = countryHandler.CountryList[countryHandler.CurrentAttkCountry];
             var Deffcountry = countryHandler.CountryList[countryHandler.CurrentDeffCountry];
+
+
             //get coords from countryhandler
             Point attackingCountryCoordinates = new Point(Attkcountry.CordinateX, Attkcountry.CordinateY);
             Point defendingCountryCoordinates = new Point(Deffcountry.CordinateX, Deffcountry.CordinateY);
@@ -174,7 +198,7 @@ namespace WarGames
 
             dashPen.DashPattern = dashValues;
             Graphics g = panel1.CreateGraphics();
-            
+
             // Draw dashed curve.
             g.DrawCurve(dashPen, curvePoints);
 
@@ -187,6 +211,8 @@ namespace WarGames
         {
             countryHandler.StartWar();
         }
+
+
     }
-    
+
 }

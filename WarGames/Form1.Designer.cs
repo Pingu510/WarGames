@@ -66,7 +66,7 @@
             // 
             // AttackTimer
             // 
-            this.AttackTimer.Interval = 1000;
+            this.AttackTimer.Interval = 500;
             this.AttackTimer.Tick += new System.EventHandler(this.AtackTimer_Tick);
             // 
             // tbxStart

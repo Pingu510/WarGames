@@ -10,6 +10,7 @@ namespace WarGames
     public abstract class Country
     {
         // Theese count as read only and can only be set when initialised or in the ctor
+        
         public string CountryName { get; }
         public int CordinateX { get; }
         public int CordinateY { get; }

@@ -98,10 +98,10 @@ namespace WarGames
             }
         }
 
-        public string Winner()
+        public void Winner()
         {
             //Debug.WriteLine(CountryList[0].CountryName + " Won The 'Game'");
-            return CountryList[0].CountryName;
+            //return CountryList[0].CountryName;
         }
 
         /// <summary>
@@ -134,6 +134,8 @@ namespace WarGames
         public void DeleteCountry(int i)//Country c)
         {
             CountryList.RemoveAt(i);
+            
+
         }
 
         /// <summary>
@@ -147,14 +149,14 @@ namespace WarGames
         /// <summary>
         ///  Setting for changeing attack frequency
         /// </summary>
-        public void AttackSleepTime(int miliseconds = 1000)
-        {
-            System.Threading.Thread.Sleep(miliseconds);
-            //int secondinterval = 1000;
-            //Timer timer = new Timer();
-            //timer.Interval = secondinterval;
-            //timer.Elapsed += Timer_Elapsed;
-        }
+        //public void AttackSleepTime(int miliseconds = 500)
+        //{
+        //    System.Threading.Thread.Sleep(miliseconds);
+        //    //int secondinterval = 1000;
+        //    //Timer timer = new Timer();
+        //    //timer.Interval = secondinterval;
+        //    //timer.Elapsed += Timer_Elapsed;
+        //}
 
         /// <summary>
         /// Creates a new list with all the countries.
