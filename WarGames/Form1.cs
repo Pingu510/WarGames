@@ -77,6 +77,8 @@ namespace WarGames
                     
                     AddLabelsToList();
                     AttackTimer.Enabled = true;
+                    picBoxFront.Visible = false;
+                    picY.Visible = false;
                     countryHandler.StartNewGame();
                     tbxStart.Text = null;
 
@@ -103,13 +105,8 @@ namespace WarGames
         
         private void panel1_MouseClick(object sender, MouseEventArgs e)
         {
-            SetLabelsStartUpText();
-            AddLabelsToList();
-            AttackTimer.Enabled = true;
-            countryHandler.StartNewGame();
             // Get mouse location in panel1
-            //lblXNY.Text = e.Location.X + ":" + e.Location.Y;
-
+            lblXNY.Text = e.Location.X + ":" + e.Location.Y;
         }
 
         /// <summary>
