@@ -23,46 +23,23 @@ namespace WarGames
         {
             Point Curve = new Point(0, 0);
 
+            double distance;
+
             if (from.X >= to.X)
             {
-                Curve.X = ((from.X - to.X) / 2) + from.X;
+                distance = from.X - to.X;
+                Curve.X = (int)((from.X - to.X)/2.0 + to.X);
             }
             else
             {
-                Curve.X = ((to.X - from.X) / 2) + to.X;
+                distance = to.X - from.X;
+                Curve.X = (int)((to.X - from.X)/2.0 + from.X);
             }
-            //Point Curve = new Point(0,0);
 
-            //// ifsatser för curve point.
-            //if (true) //nivåskillnad + kort avstånd
-            //{
-            //    Curve.X = 400;
-            //    Curve.Y = 30;
-            //    //xcurve = (xfrom + xto) / 2;
-            //    //ycurve = Math.Abs(xfrom - xto) * 2; // Math.Abs ger absoluta värdet dvs positivt tal
-            //}
-            //else if (true) // nivåskillnad
-            //{
-
-            //}
-            //else if (true) // kort avstånd
-            //{
-
-            //}
-            //else if (true) //långt avstånd
-            //{
-
-            //}
-            //else // standard
-            //{
-            //    //http://mathforum.org/dr.math/gifs/darcy10.18.03c.gif
-            //    //https://math.stackexchange.com/questions/96168/how-to-find-mid-point-of-an-arc
-            //    //https://math.stackexchange.com/questions/1337344/get-third-point-from-an-arc-constructed-by-start-point-end-point-and-bulge
-            //    //xcurve = (xfrom + xto) / 2;
-            //    //ycurve = xcurve * ((yfrom + yto) / ((Math.Abs(xfrom - xto)) / 2f));
-            //    //xcurve = (xfrom + xto) / 2;
-            //    //ycurve = (yfrom - yto);
-            //}
+            double Angle1_degrees = (45d * (Math.PI / 180));
+            double Angle2_degrees = (90d * (Math.PI / 180));
+            double calcylatedY = ((distance * Math.Sin(Angle1_degrees)) / Math.Sin(Angle2_degrees));
+            Curve.Y = (int)Math.Round(calcylatedY, 0);
 
             return Curve;
             
