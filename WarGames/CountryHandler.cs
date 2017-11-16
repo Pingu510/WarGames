@@ -40,8 +40,6 @@ namespace WarGames
         {
             CreateAllCountriesAnew();
             StartWar();
-            //Winner();
-            //FIXA - Spelet är klart här, visa Endscreen eller starta om
         }
 
 
@@ -49,15 +47,7 @@ namespace WarGames
         /// Runs untill all countries are dead.
         /// </summary>
         public void StartWar()
-        {
-            // While there are countries still alive in the list
-            //foreach (Country c in CountryList)
-            //{
-            //    if (c.CountryEndurance == 0)
-            //    {
-            //        DeleteCountry(c);
-            //    }
-            //}
+        {            
             if (CountryList.Count > 1)
             {
                 //FIXA - Ska turordningen vara random eller ej?
@@ -145,18 +135,7 @@ namespace WarGames
         {
             return random.Next(0, CountryList.Count);
         }
-
-        /// <summary>
-        ///  Setting for changeing attack frequency
-        /// </summary>
-        //public void AttackSleepTime(int miliseconds = 500)
-        //{
-        //    System.Threading.Thread.Sleep(miliseconds);
-        //    //int secondinterval = 1000;
-        //    //Timer timer = new Timer();
-        //    //timer.Interval = secondinterval;
-        //    //timer.Elapsed += Timer_Elapsed;
-        //}
+        
 
         /// <summary>
         /// Creates a new list with all the countries.
