@@ -12,6 +12,8 @@ using System.Timers;
 using System.Threading;
 using WarGames.NuclearCountries;
 using System.Diagnostics;
+using System.IO;
+using System.Media;
 
 namespace WarGames
 {
@@ -28,6 +30,7 @@ namespace WarGames
         List<Label> CountryLabelEnduranceList = new List<Label>();
 
 
+        SoundPlayer SoundEffects;
         HelperClass h = new HelperClass();
 
         public Form1()
@@ -75,6 +78,7 @@ namespace WarGames
                     picY.Visible = true;
                     new ManualResetEvent(false).WaitOne(1500);
 
+                    AmbientSound();
                     AddLabelsToList();
                     AttackTimer.Enabled = true;
                     picBoxFront.Visible = false;
@@ -109,23 +113,13 @@ namespace WarGames
             lblXNY.Text = e.Location.X + ":" + e.Location.Y;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        //public void UpdateLabels(object source, EventArgs e)
-        //{
-        //    for (int i = 0; i < countryHandler.CountryList.Count; i++)
-        //    {                
-        //        if (countryHandler.CountryList.Count == 1)
-        //        {
-        //            CountryLabelEnduranceList[0].Text = "Winner";
-        //        }
-        //        else
-        //        {
-        //            CountryLabelEnduranceList[i].Text = countryHandler.CountryList[i].CountryEndurance.ToString();
-        //        }
-        //    }
-        //}
+
+        public void AmbientSound()
+        {
+            string dirpath = Directory.GetCurrentDirectory().ToString() + "\\";
+            SoundEffects = new SoundPlayer(dirpath + "War.wav");
+            SoundEffects.Play();
+        }
 
         public void CountryDiedUpdateLabel(object source, IntEventArgs e)
         {
@@ -133,14 +127,7 @@ namespace WarGames
             {
                 for (int i = 0; i < countryHandler.CountryList.Count; i++)
                 {
-                    if (countryHandler.CountryList.Count == 1)
-                    {
-                        CountryLabelEnduranceList[0].Text = "Winner";
-                    }
-                    else
-                    {
-                        CountryLabelEnduranceList[i].Text = countryHandler.CountryList[i].CountryEndurance.ToString();
-                    }
+                    CountryLabelEnduranceList[i].Text = countryHandler.CountryList[i].CountryEndurance.ToString();                    
                 }
             }
             else
@@ -153,11 +140,9 @@ namespace WarGames
                 ShowDeath(e.CountryID);
                 countryHandler.DeleteCountry(e.CountryID);
                 
-                
-                
-
                 if (countryHandler.CountryList.Count == 1)
                 {
+                    SoundEffects.Stop();
                     MessageBox.Show($"{countryHandler.CountryList[0].CountryName} Won the war!!");
                 }
 
@@ -199,11 +184,7 @@ namespace WarGames
             this.Controls.Add(p);
 
         }
-
-
-
-
-
+        
 
         public void Repaint(object source, EventArgs e)
         {
