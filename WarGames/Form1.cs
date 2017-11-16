@@ -25,7 +25,7 @@ namespace WarGames
         //public List<coordinates> coordinatessList = new List<coordinates>();
 
         CountryHandler countryHandler = new CountryHandler();
-        List<Label> CountryLabelScore = new List<Label>();
+        List<Label> CountryLabelEnduranceList = new List<Label>();
         
 
         HelperClass h = new HelperClass();
@@ -33,8 +33,10 @@ namespace WarGames
         public Form1()
         {
             // use countryHandler to acces the list and bombing events etc
+            countryHandler.DeadCountry += CountryDiedUpdateLabel;
             countryHandler.CountryNuked += UpdateLabels;
             countryHandler.CountryNuked += Repaint;
+            
             //panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
 
             InitializeComponent();
@@ -43,114 +45,110 @@ namespace WarGames
         }
         private void AddLabelsToList()
         {
-            CountryLabelScore.Add(lblChinaScore);
-            CountryLabelScore.Add(lblFranceScore);
-            CountryLabelScore.Add(lblIndiaScore);
-            CountryLabelScore.Add(lblIsraelScore);
-            CountryLabelScore.Add(lblNorthKoreaScore);
-            CountryLabelScore.Add(lblPakistanScore);
-            CountryLabelScore.Add(lblRussiaScore);
-            CountryLabelScore.Add(lblSwedenScore);
-            CountryLabelScore.Add(lblUnitedKingdomScore);
-            CountryLabelScore.Add(lblUnitedStatesScore);
+            CountryLabelEnduranceList.Add(lblChinaEndurance);
+            CountryLabelEnduranceList.Add(lblFranceEndurance);
+            CountryLabelEnduranceList.Add(lblIndiaEndurance);
+            CountryLabelEnduranceList.Add(lblIsraelEndurance);
+            CountryLabelEnduranceList.Add(lblNorthKoreaEndurance);
+            CountryLabelEnduranceList.Add(lblPakistanEndurance);
+            CountryLabelEnduranceList.Add(lblRussiaEndurance);
+            CountryLabelEnduranceList.Add(lblSwedenEndurance);
+            CountryLabelEnduranceList.Add(lblUnitedKingdomEndurance);
+            CountryLabelEnduranceList.Add(lblUnitedStatesEndurance);
+        }
+
+        private void SetLabelsStartUpText()
+        {
+            lblChinaEndurance.Text = countryHandler.CurrentEndurance.ToString();
+            lblFranceEndurance.Text = countryHandler.CurrentEndurance.ToString();
+            lblIndiaEndurance.Text = countryHandler.CurrentEndurance.ToString();
+            lblIsraelEndurance.Text = countryHandler.CurrentEndurance.ToString();
+            lblNorthKoreaEndurance.Text = countryHandler.CurrentEndurance.ToString();
+            lblPakistanEndurance.Text = countryHandler.CurrentEndurance.ToString();
+            lblRussiaEndurance.Text = countryHandler.CurrentEndurance.ToString();
+            lblSwedenEndurance.Text = countryHandler.CurrentEndurance.ToString();
+            lblUnitedKingdomEndurance.Text = countryHandler.CurrentEndurance.ToString();
+            lblUnitedStatesEndurance.Text = countryHandler.CurrentEndurance.ToString();
         }
 
         private void tbxStart_KeyDown(object sender, KeyEventArgs e)
         {
-            //if (e.KeyCode == Keys.Y || e.KeyCode == Keys.N)
-            //{
-            //    if (e.KeyCode == Keys.Y)
-            //    {
-            //        tbxStart.Visible = false;
-            //        picY.Visible = true;
+            if (e.KeyCode == Keys.Y || e.KeyCode == Keys.N)
+            {
+                if (e.KeyCode == Keys.Y)
+                {
+                    tbxStart.Visible = false;
+                    picY.Visible = true;
+                    new ManualResetEvent(false).WaitOne(1500);
                     
+                    AddLabelsToList();
+                    countryHandler.StartNewGame();
+                    tbxStart.Text = null;
 
-            //        AddLabelsToList();
-            //        countryHandler.StartGame();
-            //        tbxStart.Text = null;
-                    
-            //    }
-            //    else if (e.KeyCode == Keys.N)
-            //    {
-            //        picN.Visible = true;
-            //        tbxStart.Visible = false;
-            //    }
-            //}
-            //else if (e.KeyCode == Keys.Back)
-            //{
-            //    return;
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Only Y or N! Press backspace to retry");
-            //    return;
-            //}
+                }
+                else if (e.KeyCode == Keys.N)
+                {
+                    picN.Visible = true;
+                    tbxStart.Visible = false;
+                    new ManualResetEvent(false).WaitOne(1500);
+                    Application.Exit();
+                }
+            }
+            else if (e.KeyCode == Keys.Back)
+            {
+                tbxStart.Clear();
+                return;
+            }
+            else
+            {
+                MessageBox.Show("Only Y or N! Press backspace to retry");
+                return;
+            }
         }
-
-        private void tbxStart_KeyPress(object sender, KeyPressEventArgs e)
-        {
-        //    tbxStart.Text.ToUpper();
-        //    e.Handled = !(char.IsLetter(e.KeyChar)
-        //    || e.KeyChar == (char)Keys.Y
-        //    || e.KeyChar == (char)Keys.N);
-
-        //    if (e.KeyChar == (char)Keys.Y)
-        //    {
-        //        tbxStart.Visible = false;
-        //        picY.Visible = true;
-        //        System.Threading.Thread.Sleep(500);
-        //        countryHandler.StartGame();
-        //    }
-        //    else if (e.KeyChar == (char)Keys.N)
-        //    {
-        //        picN.Visible = true;
-        //        tbxStart.Visible = false;
-        //    }
-        //    else return; // Need some code here to handle what happends on all other keys Or rather prevent using the wrong keys AKA not Y/N
-
-        }
-
+        
         private void panel1_MouseClick(object sender, MouseEventArgs e)
         {
+            SetLabelsStartUpText();
             AddLabelsToList();
-            countryHandler.StartGame();
+            AttackTimer.Enabled = true;
+            countryHandler.StartNewGame();
             // Get mouse location in panel1
             //lblXNY.Text = e.Location.X + ":" + e.Location.Y;
 
         }
 
-        public void UpdateLabelsHandler(object source, EventArgs e)
-        {
-            //CountryLabelScore.Clear();
-            //int i = 0;
-            //AddLabelsToList();
-            //foreach (var item in countryHandler.CountryList)
-            //{
-            //    Label lbl = new Label();
-            //    lbl.Text = countryHandler.CountryList[i].CountryEndurance.ToString();
-            //    CountryLabelScore.Add(lbl); 
-            //    i++;
-            //}
-            //this.BeginInvoke(new Action(UpdateLabels));
-            
-            
-        }
+        /// <summary>
+        /// 
+        /// </summary>
         public void UpdateLabels(object source, EventArgs e)
         {
-            int i = countryHandler.CurrentDeffCountry;
-            if (countryHandler.CountryList[i].CountryEndurance == 0)
+            //int i = countryHandler.CurrentDeffCountry;
+            for (int i = 0; i < countryHandler.CountryList.Count; i++)
+            {                
+                if (countryHandler.CountryList.Count == 1)
+                {
+                    CountryLabelEnduranceList[0].Text = "Winner";
+                }
+                else
+                {
+                    CountryLabelEnduranceList[i].Text = countryHandler.CountryList[i].CountryEndurance.ToString();
+                }
+            }
+        }
+        public void CountryDiedUpdateLabel(object source, IntEventArgs e)
+        {
+            if (countryHandler.CountryList[e.CountryID].CountryEndurance == 0)
             {
 
-                CountryLabelScore[i].Text = "Ded";
-                CountryLabelScore.RemoveAt(i);
+                CountryLabelEnduranceList[e.CountryID].Text = "Ded";
+                CountryLabelEnduranceList.RemoveAt(e.CountryID);
             }
-            else
-                CountryLabelScore[i].Text = countryHandler.CountryList[i].CountryEndurance.ToString();
-
         }
 
         public void Repaint(object source, EventArgs e)
         {
+            int i = countryHandler.CountryList.Count;
+            int labelL = CountryLabelEnduranceList.Count;
             var Attkcountry = countryHandler.CountryList[countryHandler.CurrentAttkCountry];
             var Deffcountry = countryHandler.CountryList[countryHandler.CurrentDeffCountry];
             //get coords from countryhandler
@@ -176,10 +174,14 @@ namespace WarGames
 
             Debug.WriteLine(countryHandler.CountryList[countryHandler.CurrentAttkCountry].CountryName +
             "Attacks" + countryHandler.CountryList[countryHandler.CurrentDeffCountry].CountryName);
-            countryHandler.StartWar();
+            //countryHandler.StartWar();
 
         }
 
+        private void AtackTimer_Tick(object sender, EventArgs e)
+        {
+            countryHandler.StartWar();
+        }
     }
     
 }

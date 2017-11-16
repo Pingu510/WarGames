@@ -15,12 +15,15 @@ namespace WarGames
     {
         HelperClass h = new HelperClass();
         public delegate void NukeCountryEventHandler(object source, EventArgs args);
+        public delegate void DeadCountryEventHandler(object source, IntEventArgs args);
 
         public event NukeCountryEventHandler CountryNuked;
+        public event DeadCountryEventHandler DeadCountry;
 
         
         public int CurrentAttkCountry;
         public int CurrentDeffCountry;
+        public int CurrentEndurance;
         Random random;
 
         public List<Country> CountryList = new List<Country>();
@@ -33,7 +36,7 @@ namespace WarGames
         /// <summary>
         /// Starts the game, creates the list and starts the war.
         /// </summary>
-        public void StartGame()
+        public void StartNewGame()
         {
             CreateAllCountriesAnew();
             StartWar();
@@ -70,17 +73,17 @@ namespace WarGames
                 CurrentAttkCountry.ToString();
 
                 NukeCountry(DefendingCountry);
-                 // FIXA - Event som triggar attack animation
 
+                CurrentEndurance = CountryList[DefendingCountry].CountryEndurance;
 
                 // Checks if the defending Country died.
                 if (CountryList[DefendingCountry].CheckIfCountryIsAlive() == false )//&& CountryList[AttackingCountry].CheckIfCountryIsAlive == true)
                 {
+                    OnDeadCountry();
                     DeleteCountry(CountryList[DefendingCountry]);
-                    //FIXA - Event som visar att landet dog?
                      
                    
-                    // Gives a kill point to the last attcking country
+                    // Gives a kill point to the last attacking country
                     CountryList[AttackingCountry].Kills += 1;
 
                 }
@@ -88,9 +91,7 @@ namespace WarGames
                 {
                     CountryList[AttackingCountry].Assists += 1;
                 }
-
-                //FIXA - Någon sorts timer här 
-                AttackSleepTime();
+                
                 OnNukeCountry();
             }
         }
@@ -119,6 +120,14 @@ namespace WarGames
         {
             if (CountryNuked != null)
                 CountryNuked(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnDeadCountry()
+        {
+            if (DeadCountry != null)
+            {
+                DeadCountry(this, new IntEventArgs() {CountryID = CurrentDeffCountry });
+            }
         }
         
 
