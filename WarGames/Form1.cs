@@ -166,12 +166,44 @@ namespace WarGames
 
         public void ShowDeath(int i)
         {
-            Point poo = new Point( countryHandler.CountryList[i].CordinateX, countryHandler.CountryList[i].CordinateY );
+            Point nukedPoint = new Point( countryHandler.CountryList[i].CordinateX, countryHandler.CountryList[i].CordinateY );
             //picBoxFront p = new picBoxFront();
-
-            picBoxFront.Location = poo;
-            picBoxFront.Visible = true;
+            
+            Image deathimage = Properties.Resources.Skull_smaller;
+            Graphics g = panel1.CreateGraphics();
+            g.DrawImage(deathimage, nukedPoint);
+            //InitializePictureBox();
+            //picBoxFront.Location = poo;
+            //picBoxFront.Visible = true;
         }
+
+        private void InitializePictureBox()
+        {
+            PictureBox p;
+            p = new PictureBox();
+
+            // Set the location and size of the PictureBox control.
+            p.Location = new System.Drawing.Point(70, 120);
+            p.Size = new System.Drawing.Size(140, 140);
+            p.TabStop = false;
+
+            // Set the SizeMode property to the StretchImage value.  This
+            // will shrink or enlarge the image as needed to fit into
+            // the PictureBox.
+            p.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            // Set the border style to a three-dimensional border.
+            p.BorderStyle = BorderStyle.Fixed3D;
+
+            // Add the PictureBox to the form.
+            this.Controls.Add(p);
+
+        }
+
+
+
+
+
 
         public void Repaint(object source, EventArgs e)
         {
