@@ -25,9 +25,8 @@ namespace WarGames
         //coordinates cords;
 
         //public List<coordinates> coordinatessList = new List<coordinates>();
-        
-        
-        //firstThread.Start();
+
+       
 
 
         CountryHandler countryHandler = new CountryHandler();
@@ -48,9 +47,21 @@ namespace WarGames
             //panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
 
             InitializeComponent();
+            ThreadStart playerThread = new ThreadStart(MissileSound);
+            Thread PlayMissileSound = new Thread(playerThread);
+            PlayMissileSound.Start();
+
+
+
+
             //dirpath = Directory.GetCurrentDirectory().ToString();
             //SoundEffects = new SoundPlayer(dirpath + "\\War.wav");
             //SoundEffects.SoundLocation = "War.wav";
+
+
+
+
+
 
         }
 
@@ -91,6 +102,7 @@ namespace WarGames
 
         void MissileSound()
         {
+            
             //new Thread(() => {
             //    axWindowsMediaPlayer1.URL = dirpath + "\\Missle_Launch.wav";
             //    axWindowsMediaPlayer1.Ctlcontrols.play();
@@ -230,16 +242,22 @@ namespace WarGames
                 {
                     lblWinner.Text = ($"{countryHandler.CountryList[0].CountryName} Won the war!!");
 
+                    
+
+
+
+
+
+
 
                     lblWinner.Left = (this.ClientSize.Width - lblWinner.Width) / 2;
-                    lblWinner.Top = (this.ClientSize.Height - lblWinner.Height) / 2;
-
-                    //lblWinner.Location = new Point (325, 288);
-                    // MessageBox.Show($"{countryHandler.CountryList[0].CountryName} Won the war!!");
+                    lblWinner.Top = (this.ClientSize.Height - lblWinner.Height - 160 ) ;
+                   
                     Image warImage = Properties.Resources.warImage;
                     Graphics g = panel1.CreateGraphics();
-                    g.DrawImage(warImage, 425,120);
+                    g.DrawImage(warImage, 425,150);
 
+                    
                     axWindowsMediaPlayer1.Ctlcontrols.stop();
 
 
@@ -267,6 +285,21 @@ namespace WarGames
             //InitializePictureBox();
             //picBoxFront.Location = poo;
             //picBoxFront.Visible = true;
+        }
+
+        public void HitAnimation(int i)
+        {
+            
+            Point HitPoint;
+            HitPoint = new Point(countryHandler.CountryList[i].CordinateX - 45, countryHandler.CountryList[i].CordinateY - 25);
+            PictureBox picboxHit = new PictureBox();
+
+            picboxHit.Width = 100;
+            picboxHit.Height = 100;
+            Image HitImage = Properties.Resources.explosion;
+            //Image Hitimage = Properties.Resources.explosion;
+            Graphics g = picboxHit.CreateGraphics();
+            g.DrawImage(HitImage, HitPoint);
         }
 
         //private void InitializePictureBox()
@@ -304,7 +337,6 @@ namespace WarGames
             //get coords from countryhandler
             Point attackingCountryCoordinates = new Point(Attkcountry.CordinateX, Attkcountry.CordinateY);
             Point defendingCountryCoordinates = new Point(Deffcountry.CordinateX, Deffcountry.CordinateY);
-
             // Gets the curvepoint from helperclass.
             Point curvepoint = h.DrawCurve(attackingCountryCoordinates, defendingCountryCoordinates);
 
@@ -322,7 +354,7 @@ namespace WarGames
             // Draw dashed curve.
             MissileSound();
             g.DrawCurve(dashPen, curvePoints);
-
+            
             Debug.WriteLine(countryHandler.CountryList[countryHandler.CurrentAttkCountry].CountryName +
             "Attacks" + countryHandler.CountryList[countryHandler.CurrentDeffCountry].CountryName);
 
