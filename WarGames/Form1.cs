@@ -50,19 +50,7 @@ namespace WarGames
             ThreadStart playerThread = new ThreadStart(MissileSound);
             Thread PlayMissileSound = new Thread(playerThread);
             PlayMissileSound.Start();
-
-
-
-
-            //dirpath = Directory.GetCurrentDirectory().ToString();
-            //SoundEffects = new SoundPlayer(dirpath + "\\War.wav");
-            //SoundEffects.SoundLocation = "War.wav";
-
-
-
-
-
-
+                        
         }
 
         //public void DeathSound()
@@ -196,23 +184,7 @@ namespace WarGames
             // Get mouse location in panel1
             lblXNY.Text = e.Location.X + ":" + e.Location.Y;
         }
-
-        
-        //public void UpdateLabels(object source, EventArgs e)
-        //{
-        //    for (int i = 0; i < countryHandler.CountryList.Count; i++)
-        //    {                
-        //        if (countryHandler.CountryList.Count == 1)
-        //        {
-        //            CountryLabelEnduranceList[0].Text = "Winner";
-        //        }
-        //        else
-        //        {
-        //            CountryLabelEnduranceList[i].Text = countryHandler.CountryList[i].CountryEndurance.ToString();
-        //        }
-        //    }
-        //}
-
+                
         public void CountryDiedUpdateLabel(object source, IntEventArgs e)
         {
             if (countryHandler.CountryList[e.CountryID].CountryEndurance != 0)
@@ -234,7 +206,10 @@ namespace WarGames
                 CountryLabelEnduranceList[e.CountryID].Text = "Ded";
                 
                 CountryLabelEnduranceList.RemoveAt(e.CountryID);
+                HitAnimation(e.CountryID);
                 ShowDeath(e.CountryID);
+
+                MissileSound();
                 //DeathSound();
                 countryHandler.DeleteCountry(e.CountryID);
 
@@ -243,12 +218,6 @@ namespace WarGames
                     lblWinner.Text = ($"{countryHandler.CountryList[0].CountryName} Won the war!!");
 
                     
-
-
-
-
-
-
 
                     lblWinner.Left = (this.ClientSize.Width - lblWinner.Width) / 2;
                     lblWinner.Top = (this.ClientSize.Height - lblWinner.Height - 160 ) ;
@@ -272,19 +241,11 @@ namespace WarGames
         public void ShowDeath(int i)
         {
             Point nukedPoint;
-            //deathLabel = countryHandler.CountryList.CountryName.ToString();
-          //  nukedPoint = new Point( countryHandler.CountryList[i].CordinateX, countryHandler.CountryList[i].CordinateY );
             nukedPoint = new Point(countryHandler.CountryList[i].CordinateX - 45, countryHandler.CountryList[i].CordinateY - 25);
-            //picBoxFront p = new picBoxFront();
 
             Image deathimage = Properties.Resources.Skull_smaller;
             Graphics g = panel1.CreateGraphics();
             g.DrawImage(deathimage, nukedPoint);
-
-            
-            //InitializePictureBox();
-            //picBoxFront.Location = poo;
-            //picBoxFront.Visible = true;
         }
 
         public void HitAnimation(int i)
@@ -292,13 +253,17 @@ namespace WarGames
             
             Point HitPoint;
             HitPoint = new Point(countryHandler.CountryList[i].CordinateX - 45, countryHandler.CountryList[i].CordinateY - 25);
-            PictureBox picboxHit = new PictureBox();
 
-            picboxHit.Width = 100;
-            picboxHit.Height = 100;
+            PictureBox picboxHit = new PictureBox();
+            //picboxHit.Visible = true;
+            //picboxHit.BringToFront();
+            //picboxHit.Location = HitPoint;
+            //picboxHit.Width = 30;
+            //picboxHit.Height = 30;
+
             Image HitImage = Properties.Resources.explosion;
-            //Image Hitimage = Properties.Resources.explosion;
-            Graphics g = picboxHit.CreateGraphics();
+
+            Graphics g = panel1.CreateGraphics();
             g.DrawImage(HitImage, HitPoint);
         }
 
@@ -352,7 +317,7 @@ namespace WarGames
             Graphics g = panel1.CreateGraphics();
 
             // Draw dashed curve.
-            MissileSound();
+            //MissileSound();
             g.DrawCurve(dashPen, curvePoints);
             
             Debug.WriteLine(countryHandler.CountryList[countryHandler.CurrentAttkCountry].CountryName +

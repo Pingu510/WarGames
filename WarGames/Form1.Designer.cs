@@ -36,6 +36,7 @@
             this.picBoxFront = new System.Windows.Forms.PictureBox();
             this.picN = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.picboxHit = new System.Windows.Forms.PictureBox();
             this.lblWinner = new System.Windows.Forms.Label();
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.grpBoxStats = new System.Windows.Forms.GroupBox();
@@ -60,18 +61,18 @@
             this.lblFrance = new System.Windows.Forms.Label();
             this.lblChina = new System.Windows.Forms.Label();
             this.lblXNY = new System.Windows.Forms.Label();
-            this.picboxHit = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxFront)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picN)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picboxHit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.grpBoxStats.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picboxHit)).BeginInit();
             this.SuspendLayout();
             // 
             // AttackTimer
             // 
+            this.AttackTimer.Interval = 800;
             this.AttackTimer.Tick += new System.EventHandler(this.AtackTimer_Tick);
             // 
             // tbxStart
@@ -141,6 +142,16 @@
             this.panel1.Size = new System.Drawing.Size(1130, 576);
             this.panel1.TabIndex = 7;
             this.panel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseClick);
+            // 
+            // picboxHit
+            // 
+            this.picboxHit.Image = global::WarGames.Properties.Resources.explosion;
+            this.picboxHit.Location = new System.Drawing.Point(525, 399);
+            this.picboxHit.Name = "picboxHit";
+            this.picboxHit.Size = new System.Drawing.Size(76, 67);
+            this.picboxHit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picboxHit.TabIndex = 12;
+            this.picboxHit.TabStop = false;
             // 
             // lblWinner
             // 
@@ -382,16 +393,6 @@
             this.lblXNY.TabIndex = 9;
             this.lblXNY.Text = "///////";
             // 
-            // picboxHit
-            // 
-            this.picboxHit.Image = global::WarGames.Properties.Resources.explosion;
-            this.picboxHit.Location = new System.Drawing.Point(525, 399);
-            this.picboxHit.Name = "picboxHit";
-            this.picboxHit.Size = new System.Drawing.Size(76, 67);
-            this.picboxHit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picboxHit.TabIndex = 12;
-            this.picboxHit.TabStop = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -415,10 +416,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.picN)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picboxHit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.grpBoxStats.ResumeLayout(false);
             this.grpBoxStats.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picboxHit)).EndInit();
             this.ResumeLayout(false);
 
         }
