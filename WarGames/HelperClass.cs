@@ -5,11 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Media;
+using System.IO;
+using System.Threading;
 
 namespace WarGames
 {
     public class HelperClass
     {
+        private string dirpath;
+       // private SoundPlayer Sound;
+
         /// <summary>
         /// Math for curve
         /// </summary>
@@ -61,5 +67,6 @@ namespace WarGames
             return Curve;
             
         }
+        
     }
 }

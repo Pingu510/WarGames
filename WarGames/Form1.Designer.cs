@@ -29,12 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.AttackTimer = new System.Windows.Forms.Timer(this.components);
             this.tbxStart = new System.Windows.Forms.TextBox();
             this.picY = new System.Windows.Forms.PictureBox();
             this.picBoxFront = new System.Windows.Forms.PictureBox();
             this.picN = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.grpBoxStats = new System.Windows.Forms.GroupBox();
             this.lblUnitedStatesEndurance = new System.Windows.Forms.Label();
             this.lblUnitedKingdomEndurance = new System.Windows.Forms.Label();
@@ -61,12 +63,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBoxFront)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picN)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.grpBoxStats.SuspendLayout();
             this.SuspendLayout();
             // 
             // AttackTimer
             // 
-            this.AttackTimer.Interval = 500;
+            this.AttackTimer.Interval = 1500;
             this.AttackTimer.Tick += new System.EventHandler(this.AtackTimer_Tick);
             // 
             // tbxStart
@@ -121,6 +124,7 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.BackgroundImage = global::WarGames.Properties.Resources.MapNight;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Controls.Add(this.axWindowsMediaPlayer1);
             this.panel1.Controls.Add(this.picY);
             this.panel1.Controls.Add(this.grpBoxStats);
             this.panel1.Controls.Add(this.lblXNY);
@@ -132,6 +136,15 @@
             this.panel1.Size = new System.Drawing.Size(1130, 576);
             this.panel1.TabIndex = 7;
             this.panel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseClick);
+            // 
+            // axWindowsMediaPlayer1
+            // 
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(909, 3);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(179, 115);
+            this.axWindowsMediaPlayer1.TabIndex = 8;
             // 
             // grpBoxStats
             // 
@@ -378,6 +391,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picN)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.grpBoxStats.ResumeLayout(false);
             this.grpBoxStats.PerformLayout();
             this.ResumeLayout(false);
@@ -413,6 +427,7 @@
         private System.Windows.Forms.Label lblIndiaEndurance;
         private System.Windows.Forms.Label lblFranceEndurance;
         private System.Windows.Forms.Label lblChinaEndurance;
+        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
     }
 }
 

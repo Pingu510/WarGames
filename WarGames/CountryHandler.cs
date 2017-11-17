@@ -24,6 +24,7 @@ namespace WarGames
         public int CurrentAttkCountry;
         public int CurrentDeffCountry;
         public int CurrentEndurance;
+
         Random random;
 
         public List<Country> CountryList = new List<Country>();
@@ -40,6 +41,7 @@ namespace WarGames
         {
             CreateAllCountriesAnew();
             StartWar();
+            
             //Winner();
             //FIXA - Spelet är klart här, visa Endscreen eller starta om
         }

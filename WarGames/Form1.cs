@@ -12,6 +12,8 @@ using System.Timers;
 using System.Threading;
 using WarGames.NuclearCountries;
 using System.Diagnostics;
+using System.Media;
+using System.IO;
 
 namespace WarGames
 {
@@ -23,10 +25,17 @@ namespace WarGames
         //coordinates cords;
 
         //public List<coordinates> coordinatessList = new List<coordinates>();
+        
+        
+        //firstThread.Start();
+
 
         CountryHandler countryHandler = new CountryHandler();
         List<Label> CountryLabelEnduranceList = new List<Label>();
+        SoundPlayer SoundEffects;
+        SoundPlayer SoundEffects2;
 
+        private string dirpath;
 
         HelperClass h = new HelperClass();
 
@@ -40,9 +49,77 @@ namespace WarGames
             //panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
 
             InitializeComponent();
-
+            //dirpath = Directory.GetCurrentDirectory().ToString();
+            //SoundEffects = new SoundPlayer(dirpath + "\\War.wav");
+            //SoundEffects.SoundLocation = "War.wav";
 
         }
+
+        //public void DeathSound()
+        //{
+        //    dirpath = Directory.GetCurrentDirectory().ToString();
+        //    Sound = new SoundPlayer(dirpath + "\\Snow_white.wav");
+        //}
+
+
+        //public  void PlayBGSound(string dirpath)
+        //{
+        //    axWindowsMediaPlayer1.URL = dirpath + "\\War.wav";
+        //    axWindowsMediaPlayer1.Ctlcontrols.play();
+        //    //axMediaPlay
+        //    //MediaPlayer myPlayer = new MediaPlayer();
+        //    //myPlayer.Open(this.dirpath + "\\War.wav");
+        //    //myPlayer.Play();
+        //}
+
+        //Play(Application.StartupPath + "\\Track1.wav");
+        //{
+        //}
+        //Play(Application.StartupPath + "\\Track2.wav");
+
+
+
+        public void AmbientSound()
+        {
+            //new Thread(() => {
+                axWindowsMediaPlayer1.URL = dirpath + "\\War.wav";
+                axWindowsMediaPlayer1.Ctlcontrols.play();
+
+                //dirpath = Directory.GetCurrentDirectory().ToString();
+                //SoundEffects = new SoundPlayer(dirpath + "\\War.wav");
+                //SoundEffects.PlayLooping();
+           // }).Start();
+        }
+
+        void MissileSound()
+        {
+            //new Thread(() => {
+            //    axWindowsMediaPlayer1.URL = dirpath + "\\Missle_Launch.wav";
+            //    axWindowsMediaPlayer1.Ctlcontrols.play();
+
+
+
+            dirpath = Directory.GetCurrentDirectory().ToString();
+            SoundEffects2 = new SoundPlayer(dirpath + "\\Missile Fire War.wav");
+            SoundEffects2.Play();
+        //}).Start();
+
+
+
+            //dirpath = Directory.GetCurrentDirectory().ToString();
+            //SoundEffects2 = new SoundPlayer(dirpath + "\\Missile Fire War.wav");
+            //SoundEffects2.Play();
+        }
+
+        //public void playpSoundEffects()
+        //{
+        //    ThreadPool.QueueUserWorkItem(o =>
+        //    {
+        //        SoundEffects.Play();
+        //        Thread.Sleep(10000);
+        //        SoundEffects.Stop();
+        //    });
+        //}
         private void AddLabelsToList()
         {
             CountryLabelEnduranceList.Add(lblChinaEndurance);
@@ -80,6 +157,9 @@ namespace WarGames
                     picBoxFront.Visible = false;
                     picY.Visible = false;
                     countryHandler.StartNewGame();
+                    //h.playSound();
+                    
+                    AmbientSound();
                     tbxStart.Text = null;
 
                 }
@@ -109,9 +189,7 @@ namespace WarGames
             lblXNY.Text = e.Location.X + ":" + e.Location.Y;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
+        
         //public void UpdateLabels(object source, EventArgs e)
         //{
         //    for (int i = 0; i < countryHandler.CountryList.Count; i++)
@@ -145,64 +223,63 @@ namespace WarGames
             }
             else
             {
-
-                
                 CountryLabelEnduranceList[e.CountryID].Text = "Ded";
                 
                 CountryLabelEnduranceList.RemoveAt(e.CountryID);
                 ShowDeath(e.CountryID);
+                //DeathSound();
                 countryHandler.DeleteCountry(e.CountryID);
-                
-                
-                
 
                 if (countryHandler.CountryList.Count == 1)
                 {
                     MessageBox.Show($"{countryHandler.CountryList[0].CountryName} Won the war!!");
                 }
-
             }
         }
 
         public void ShowDeath(int i)
         {
-            Point nukedPoint = new Point( countryHandler.CountryList[i].CordinateX, countryHandler.CountryList[i].CordinateY );
+            Point nukedPoint;
+            //deathLabel = countryHandler.CountryList.CountryName.ToString();
+            nukedPoint = new Point( countryHandler.CountryList[i].CordinateX, countryHandler.CountryList[i].CordinateY );
             //picBoxFront p = new picBoxFront();
             
             Image deathimage = Properties.Resources.Skull_smaller;
             Graphics g = panel1.CreateGraphics();
             g.DrawImage(deathimage, nukedPoint);
+
+            
             //InitializePictureBox();
             //picBoxFront.Location = poo;
             //picBoxFront.Visible = true;
         }
 
-        private void InitializePictureBox()
-        {
-            PictureBox p;
-            p = new PictureBox();
+        
 
-            // Set the location and size of the PictureBox control.
-            p.Location = new System.Drawing.Point(70, 120);
-            p.Size = new System.Drawing.Size(140, 140);
-            p.TabStop = false;
+        
 
-            // Set the SizeMode property to the StretchImage value.  This
-            // will shrink or enlarge the image as needed to fit into
-            // the PictureBox.
-            p.SizeMode = PictureBoxSizeMode.StretchImage;
+        //private void InitializePictureBox()
+        //{
+        //    PictureBox p;
+        //    p = new PictureBox();
 
-            // Set the border style to a three-dimensional border.
-            p.BorderStyle = BorderStyle.Fixed3D;
+        //    // Set the location and size of the PictureBox control.
+        //    p.Location = new System.Drawing.Point(70, 120);
+        //    p.Size = new System.Drawing.Size(140, 140);
+        //    p.TabStop = false;
 
-            // Add the PictureBox to the form.
-            this.Controls.Add(p);
+        //    // Set the SizeMode property to the StretchImage value.  This
+        //    // will shrink or enlarge the image as needed to fit into
+        //    // the PictureBox.
+        //    p.SizeMode = PictureBoxSizeMode.StretchImage;
 
-        }
+        //    // Set the border style to a three-dimensional border.
+        //    p.BorderStyle = BorderStyle.Fixed3D;
 
+        //    // Add the PictureBox to the form.
+        //    this.Controls.Add(p);
 
-
-
+        //}
 
 
         public void Repaint(object source, EventArgs e)
@@ -232,6 +309,7 @@ namespace WarGames
             Graphics g = panel1.CreateGraphics();
 
             // Draw dashed curve.
+            MissileSound();
             g.DrawCurve(dashPen, curvePoints);
 
             Debug.WriteLine(countryHandler.CountryList[countryHandler.CurrentAttkCountry].CountryName +
@@ -242,9 +320,9 @@ namespace WarGames
         private void AtackTimer_Tick(object sender, EventArgs e)
         {
             countryHandler.StartWar();
+          
         }
-
-
+        
     }
 
 }
