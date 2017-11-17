@@ -33,7 +33,6 @@ namespace WarGames
         CountryHandler countryHandler = new CountryHandler();
         List<Label> CountryLabelEnduranceList = new List<Label>();
         SoundPlayer SoundEffects;
-      
 
         private string dirpath;
 
@@ -77,8 +76,6 @@ namespace WarGames
         //}
         //Play(Application.StartupPath + "\\Track2.wav");
 
-
-
         public void AmbientSound()
         {
             //new Thread(() => {
@@ -96,8 +93,6 @@ namespace WarGames
             //new Thread(() => {
             //    axWindowsMediaPlayer1.URL = dirpath + "\\Missle_Launch.wav";
             //    axWindowsMediaPlayer1.Ctlcontrols.play();
-
-
 
             dirpath = Directory.GetCurrentDirectory().ToString();
             SoundEffects = new SoundPlayer(dirpath + "\\Missile Fire War.wav");
@@ -233,7 +228,11 @@ namespace WarGames
                 if (countryHandler.CountryList.Count == 1)
                 {
                     MessageBox.Show($"{countryHandler.CountryList[0].CountryName} Won the war!!");
+                    new ManualResetEvent(false).WaitOne(1000);
+                    EndOfGame();
                 }
+                
+
             }
         }
 
@@ -241,9 +240,10 @@ namespace WarGames
         {
             Point nukedPoint;
             //deathLabel = countryHandler.CountryList.CountryName.ToString();
-            nukedPoint = new Point( countryHandler.CountryList[i].CordinateX, countryHandler.CountryList[i].CordinateY );
+          //  nukedPoint = new Point( countryHandler.CountryList[i].CordinateX, countryHandler.CountryList[i].CordinateY );
+            nukedPoint = new Point(countryHandler.CountryList[i].CordinateX - 45, countryHandler.CountryList[i].CordinateY - 25);
             //picBoxFront p = new picBoxFront();
-            
+
             Image deathimage = Properties.Resources.Skull_smaller;
             Graphics g = panel1.CreateGraphics();
             g.DrawImage(deathimage, nukedPoint);
@@ -253,10 +253,6 @@ namespace WarGames
             //picBoxFront.Location = poo;
             //picBoxFront.Visible = true;
         }
-
-        
-
-        
 
         //private void InitializePictureBox()
         //{
@@ -321,6 +317,12 @@ namespace WarGames
         {
             countryHandler.StartWar();
           
+        }
+
+        private void EndOfGame() // När kriget är slut
+        {
+            // Här ska skrivas vad som händer efter landet som vann.
+            Application.Exit();
         }
         
     }
