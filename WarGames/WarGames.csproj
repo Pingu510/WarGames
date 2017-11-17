@@ -150,6 +150,7 @@
     <Content Include="Resources\War.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\warImage.gif" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="AxWMPLib">

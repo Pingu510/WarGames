@@ -86,6 +86,7 @@ namespace WarGames
                 //SoundEffects = new SoundPlayer(dirpath + "\\War.wav");
                 //SoundEffects.PlayLooping();
            // }).Start();
+
         }
 
         void MissileSound()
@@ -227,9 +228,23 @@ namespace WarGames
 
                 if (countryHandler.CountryList.Count == 1)
                 {
-                    MessageBox.Show($"{countryHandler.CountryList[0].CountryName} Won the war!!");
-                    new ManualResetEvent(false).WaitOne(1000);
-                    EndOfGame();
+                    lblWinner.Text = ($"{countryHandler.CountryList[0].CountryName} Won the war!!");
+
+
+                    lblWinner.Left = (this.ClientSize.Width - lblWinner.Width) / 2;
+                    lblWinner.Top = (this.ClientSize.Height - lblWinner.Height) / 2;
+
+                    //lblWinner.Location = new Point (325, 288);
+                    // MessageBox.Show($"{countryHandler.CountryList[0].CountryName} Won the war!!");
+                    Image warImage = Properties.Resources.warImage;
+                    Graphics g = panel1.CreateGraphics();
+                    g.DrawImage(warImage, 425,120);
+
+                    axWindowsMediaPlayer1.Ctlcontrols.stop();
+
+
+                    //new ManualResetEvent(false).WaitOne(1000);
+                    //EndOfGame();
                 }
                 
 

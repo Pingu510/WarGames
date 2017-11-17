@@ -59,6 +59,7 @@
             this.lblFrance = new System.Windows.Forms.Label();
             this.lblChina = new System.Windows.Forms.Label();
             this.lblXNY = new System.Windows.Forms.Label();
+            this.lblWinner = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxFront)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picN)).BeginInit();
@@ -69,7 +70,6 @@
             // 
             // AttackTimer
             // 
-            this.AttackTimer.Interval = 1500;
             this.AttackTimer.Tick += new System.EventHandler(this.AtackTimer_Tick);
             // 
             // tbxStart
@@ -78,9 +78,9 @@
             this.tbxStart.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbxStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxStart.ForeColor = System.Drawing.Color.Transparent;
-            this.tbxStart.Location = new System.Drawing.Point(697, 287);
+            this.tbxStart.Location = new System.Drawing.Point(781, 290);
             this.tbxStart.Name = "tbxStart";
-            this.tbxStart.Size = new System.Drawing.Size(14, 22);
+            this.tbxStart.Size = new System.Drawing.Size(32, 22);
             this.tbxStart.TabIndex = 4;
             this.tbxStart.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxStart_KeyDown);
             // 
@@ -90,9 +90,9 @@
             this.picY.ErrorImage = null;
             this.picY.Image = global::WarGames.Properties.Resources.Y;
             this.picY.InitialImage = null;
-            this.picY.Location = new System.Drawing.Point(697, 274);
+            this.picY.Location = new System.Drawing.Point(781, 274);
             this.picY.Name = "picY";
-            this.picY.Size = new System.Drawing.Size(22, 36);
+            this.picY.Size = new System.Drawing.Size(32, 36);
             this.picY.TabIndex = 5;
             this.picY.TabStop = false;
             this.picY.Visible = false;
@@ -101,7 +101,7 @@
             // 
             this.picBoxFront.BackColor = System.Drawing.Color.Transparent;
             this.picBoxFront.Image = global::WarGames.Properties.Resources.gameText;
-            this.picBoxFront.Location = new System.Drawing.Point(236, 259);
+            this.picBoxFront.Location = new System.Drawing.Point(308, 259);
             this.picBoxFront.Name = "picBoxFront";
             this.picBoxFront.Size = new System.Drawing.Size(458, 61);
             this.picBoxFront.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -112,9 +112,9 @@
             // 
             this.picN.BackColor = System.Drawing.Color.Transparent;
             this.picN.Image = global::WarGames.Properties.Resources.N;
-            this.picN.Location = new System.Drawing.Point(699, 273);
+            this.picN.Location = new System.Drawing.Point(781, 274);
             this.picN.Name = "picN";
-            this.picN.Size = new System.Drawing.Size(21, 36);
+            this.picN.Size = new System.Drawing.Size(32, 36);
             this.picN.TabIndex = 6;
             this.picN.TabStop = false;
             this.picN.Visible = false;
@@ -124,6 +124,8 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.BackgroundImage = global::WarGames.Properties.Resources.MapNight;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Controls.Add(this.picBoxFront);
+            this.panel1.Controls.Add(this.lblWinner);
             this.panel1.Controls.Add(this.axWindowsMediaPlayer1);
             this.panel1.Controls.Add(this.picY);
             this.panel1.Controls.Add(this.grpBoxStats);
@@ -367,6 +369,16 @@
             this.lblXNY.TabIndex = 9;
             this.lblXNY.Text = "///////";
             // 
+            // lblWinner
+            // 
+            this.lblWinner.AutoSize = true;
+            this.lblWinner.Font = new System.Drawing.Font("Stencil", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWinner.ForeColor = System.Drawing.Color.White;
+            this.lblWinner.Location = new System.Drawing.Point(300, 337);
+            this.lblWinner.Name = "lblWinner";
+            this.lblWinner.Size = new System.Drawing.Size(0, 38);
+            this.lblWinner.TabIndex = 11;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -375,7 +387,6 @@
             this.BackgroundImage = global::WarGames.Properties.Resources.MapNight;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1130, 576);
-            this.Controls.Add(this.picBoxFront);
             this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -428,6 +439,7 @@
         private System.Windows.Forms.Label lblFranceEndurance;
         private System.Windows.Forms.Label lblChinaEndurance;
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
+        private System.Windows.Forms.Label lblWinner;
     }
 }
 
