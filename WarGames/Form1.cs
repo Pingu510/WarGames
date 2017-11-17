@@ -33,7 +33,7 @@ namespace WarGames
         CountryHandler countryHandler = new CountryHandler();
         List<Label> CountryLabelEnduranceList = new List<Label>();
         SoundPlayer SoundEffects;
-        SoundPlayer SoundEffects2;
+      
 
         private string dirpath;
 
@@ -100,8 +100,8 @@ namespace WarGames
 
 
             dirpath = Directory.GetCurrentDirectory().ToString();
-            SoundEffects2 = new SoundPlayer(dirpath + "\\Missile Fire War.wav");
-            SoundEffects2.Play();
+            SoundEffects = new SoundPlayer(dirpath + "\\Missile Fire War.wav");
+            SoundEffects.Play();
         //}).Start();
 
 
