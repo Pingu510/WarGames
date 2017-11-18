@@ -145,6 +145,7 @@
             // 
             // picboxHit
             // 
+            this.picboxHit.BackgroundImage = global::WarGames.Properties.Resources.explosion;
             this.picboxHit.Image = global::WarGames.Properties.Resources.explosion;
             this.picboxHit.Location = new System.Drawing.Point(525, 399);
             this.picboxHit.Name = "picboxHit";

@@ -32,7 +32,7 @@ namespace WarGames
         CountryHandler countryHandler = new CountryHandler();
         List<Label> CountryLabelEnduranceList = new List<Label>();
         SoundPlayer SoundEffects;
-
+        SoundPlayer SoundEffects2;
         private string dirpath;
 
         HelperClass h = new HelperClass();
@@ -44,13 +44,21 @@ namespace WarGames
             //countryHandler.CountryNuked += UpdateLabels;
             countryHandler.CountryNuked += Repaint;
 
+            countryHandler.HitCountry += HitAnimation;
+
+
             //panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
 
             InitializeComponent();
             ThreadStart playerThread = new ThreadStart(MissileSound);
             Thread PlayMissileSound = new Thread(playerThread);
             PlayMissileSound.Start();
-                        
+
+
+            ThreadStart playerThread2 = new ThreadStart(AmbientSound);
+            Thread PlayAmbientSound = new Thread(playerThread2);
+            PlayAmbientSound.Start();
+
         }
 
         //public void DeathSound()
@@ -78,29 +86,26 @@ namespace WarGames
         public void AmbientSound()
         {
             //new Thread(() => {
-                axWindowsMediaPlayer1.URL = dirpath + "\\War.wav";
-                axWindowsMediaPlayer1.Ctlcontrols.play();
+            axWindowsMediaPlayer1.URL = dirpath + "\\War.wav";
+            axWindowsMediaPlayer1.Ctlcontrols.play();
 
-                //dirpath = Directory.GetCurrentDirectory().ToString();
-                //SoundEffects = new SoundPlayer(dirpath + "\\War.wav");
-                //SoundEffects.PlayLooping();
-           // }).Start();
+            //dirpath = Directory.GetCurrentDirectory().ToString();
+            //SoundEffects2 = new SoundPlayer(dirpath + "\\War.wav");
+            //SoundEffects2.PlayLooping();
+            // }).Start();
 
         }
 
         void MissileSound()
         {
-            
             //new Thread(() => {
-            //    axWindowsMediaPlayer1.URL = dirpath + "\\Missle_Launch.wav";
-            //    axWindowsMediaPlayer1.Ctlcontrols.play();
+            //axWindowsMediaPlayer2.URL = dirpath + "\\Missle_Launch.wav";
+            //axWindowsMediaPlayer2.Ctlcontrols.play();
 
             dirpath = Directory.GetCurrentDirectory().ToString();
             SoundEffects = new SoundPlayer(dirpath + "\\Missile Fire War.wav");
             SoundEffects.Play();
         //}).Start();
-
-
 
             //dirpath = Directory.GetCurrentDirectory().ToString();
             //SoundEffects2 = new SoundPlayer(dirpath + "\\Missile Fire War.wav");
@@ -206,7 +211,7 @@ namespace WarGames
                 CountryLabelEnduranceList[e.CountryID].Text = "Ded";
                 
                 CountryLabelEnduranceList.RemoveAt(e.CountryID);
-                HitAnimation(e.CountryID);
+                //HitAnimation(e.CountryID);
                 ShowDeath(e.CountryID);
 
                 MissileSound();
@@ -248,24 +253,25 @@ namespace WarGames
             g.DrawImage(deathimage, nukedPoint);
         }
 
-        public void HitAnimation(int i)
-        {
+        
+        //public void HitAnimation()
+        //{ 
+
             
-            Point HitPoint;
-            HitPoint = new Point(countryHandler.CountryList[i].CordinateX - 45, countryHandler.CountryList[i].CordinateY - 25);
+        //    //HitPoint = new Point(countryHandler.CountryList[i].CordinateX - 45, countryHandler.CountryList[i].CordinateY - 25);
 
-            PictureBox picboxHit = new PictureBox();
-            //picboxHit.Visible = true;
-            //picboxHit.BringToFront();
-            //picboxHit.Location = HitPoint;
-            //picboxHit.Width = 30;
-            //picboxHit.Height = 30;
+        //    PictureBox picboxHit = new PictureBox();
+        //    //picboxHit.Visible = true;
+        //    //picboxHit.BringToFront();
+        //    //picboxHit.Location = HitPoint;
+        //    //picboxHit.Width = 30;
+        //    //picboxHit.Height = 30;
 
-            Image HitImage = Properties.Resources.explosion;
+        //    Image HitImage = Properties.Resources.explosion;
 
-            Graphics g = panel1.CreateGraphics();
-            g.DrawImage(HitImage, HitPoint);
-        }
+        //    Graphics g = panel1.CreateGraphics();
+        //   // g.DrawImage(HitImage, HitPoint);
+        //}
 
         //private void InitializePictureBox()
         //{
@@ -322,8 +328,38 @@ namespace WarGames
             
             Debug.WriteLine(countryHandler.CountryList[countryHandler.CurrentAttkCountry].CountryName +
             "Attacks" + countryHandler.CountryList[countryHandler.CurrentDeffCountry].CountryName);
-
         }
+
+        public Bitmap MyImage; // test bild
+
+        public void HitAnimation(object source, PointEventArgs e)
+        {
+            
+            var Deffcountry = countryHandler.CountryList[countryHandler.CurrentDeffCountry];
+            Point HitPoint = new Point(Deffcountry.CordinateX, Deffcountry.CordinateY);
+
+            //countryHandler.AttackPoint.Add(HitPoint);
+
+            //PictureBox picboxHit = new PictureBox();
+            //picboxHit.Visible = true;
+            //picboxHit.BringToFront();
+            //picboxHit.Location = HitPoint;
+            //picboxHit.Width = 30;
+            //picboxHit.Height = 30;
+
+            Image HitImage = Properties.Resources.explosion;
+
+            Graphics g = panel1.CreateGraphics();
+            //MyImage = new Bitmap(Properties.Resources.explosion);
+            picboxHit.Image = (Image)MyImage;
+            g.DrawImage(HitImage, HitPoint);
+        }
+
+
+
+
+
+
 
         private void AtackTimer_Tick(object sender, EventArgs e)
         {

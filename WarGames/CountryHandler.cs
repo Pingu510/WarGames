@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -13,19 +14,25 @@ namespace WarGames
 {
     class CountryHandler
     {
+
         HelperClass h = new HelperClass();
         public delegate void NukeCountryEventHandler(object source, EventArgs args);
         public delegate void DeadCountryEventHandler(object source, IntEventArgs args);
+        public delegate void HitCountryEventHandler(object source, PointEventArgs args);
+
 
         public event NukeCountryEventHandler CountryNuked;
         public event DeadCountryEventHandler DeadCountry;
-
+        public event HitCountryEventHandler HitCountry;
         
         public int CurrentAttkCountry;
         public int CurrentDeffCountry;
+   
         public int CurrentEndurance;
         Random random;
 
+
+        public List<Point> AttackPoint = new List<Point>();
         public List<Country> CountryList = new List<Country>();
         
         public CountryHandler()
@@ -116,7 +123,19 @@ namespace WarGames
                 DeadCountry(this, new IntEventArgs() {CountryID = CurrentDeffCountry });
             }
         }
-        
+
+        // What to place here to actually use this?????
+        protected virtual void OnHitCountry()
+        {
+            if (HitCountry != null)
+            {
+                //countryHandler.CountryList[countryHandler.CurrentDeffCountry]
+                //HitCountry(this, new PointEventArgs() { HitPoint =   });// new Point(CountryList[DefendingCountry].CordinateX, CountryList[DefendingCountry].CordinateY) });
+                //HitCountry(this, new PointEventArgs() { HitPoint = new Point(DefendingCountry.CordinateX, DefendingCountry.CordinateY);
+
+            }
+        }
+
 
         /// <summary>
         /// Deletes country from list
