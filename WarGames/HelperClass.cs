@@ -13,9 +13,6 @@ namespace WarGames
 {
     public class HelperClass
     {
-        private string dirpath;
-       // private SoundPlayer Sound;
-
         /// <summary>
         /// Math for curve
         /// </summary>

@@ -44,7 +44,7 @@ namespace WarGames
             //countryHandler.CountryNuked += UpdateLabels;
             countryHandler.CountryNuked += Repaint;
 
-            countryHandler.HitCountry += HitAnimation;
+            //countryHandler.HitCountry += HitAnimation;
 
 
             //panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
@@ -117,7 +117,6 @@ namespace WarGames
         {
             axWindowsMediaPlayer2.URL = dirpath + "\\FF1XFanfare.wav";
             axWindowsMediaPlayer2.Ctlcontrols.play();
-
         }
 
         //public void playpSoundEffects()
@@ -207,12 +206,11 @@ namespace WarGames
                     if (countryHandler.CountryList.Count == 1)
                     {
                         CountryLabelEnduranceList[0].Text = "Winner";
-                        
                     }
                     else
                     {
                         CountryLabelEnduranceList[i].Text = countryHandler.CountryList[i].CountryEndurance.ToString();
-                        
+                        HitAnimation(e.CountryID);
                     }
                 }
             }
@@ -221,7 +219,7 @@ namespace WarGames
                 CountryLabelEnduranceList[e.CountryID].Text = "Ded";
                 
                 CountryLabelEnduranceList.RemoveAt(e.CountryID);
-                //HitAnimation(e.CountryID);
+                
                 ShowDeath(e.CountryID);
 
                 MissileSound();
@@ -257,48 +255,29 @@ namespace WarGames
             g.DrawImage(deathimage, nukedPoint);
         }
 
+        public void HitAnimation(int i)
+        {
+            Point HitPoint;
+            HitPoint = new Point(countryHandler.CountryList[i].CordinateX - 45, countryHandler.CountryList[i].CordinateY - 25);
+
+            picboxHit.Location = HitPoint;
+            picboxHit.Image = Image.FromFile(@" C:\Users\Eddie\Documents\GitHub\WarGames\WarGames\Resources\explosion.gif");
+            panel1.Controls.Add(picboxHit);
+            //Graphics g = panel1.CreateGraphics();
+
+            //Bitmap MyImage = new Bitmap(Properties.Resources.explosion);
+            //MyImage = new Bitmap(Properties.Resources.explosion);
+           
+            //Graphics g = Graphics.FromImage(MyImage);
+            //picboxHit.Image = MyImage;
+           
+            //g.DrawImage(MyImage, HitPoint);
+            //Graphics g = panel1.CreateGraphics();
+            //g.DrawImage(deathimage, HitPoint);
+        }
+
         
-        //public void HitAnimation()
-        //{ 
-
-            
-        //    //HitPoint = new Point(countryHandler.CountryList[i].CordinateX - 45, countryHandler.CountryList[i].CordinateY - 25);
-
-        //    PictureBox picboxHit = new PictureBox();
-        //    //picboxHit.Visible = true;
-        //    //picboxHit.BringToFront();
-        //    //picboxHit.Location = HitPoint;
-        //    //picboxHit.Width = 30;
-        //    //picboxHit.Height = 30;
-
-        //    Image HitImage = Properties.Resources.explosion;
-
-        //    Graphics g = panel1.CreateGraphics();
-        //   // g.DrawImage(HitImage, HitPoint);
-        //}
-
-        //private void InitializePictureBox()
-        //{
-        //    PictureBox p;
-        //    p = new PictureBox();
-
-        //    // Set the location and size of the PictureBox control.
-        //    p.Location = new System.Drawing.Point(70, 120);
-        //    p.Size = new System.Drawing.Size(140, 140);
-        //    p.TabStop = false;
-
-        //    // Set the SizeMode property to the StretchImage value.  This
-        //    // will shrink or enlarge the image as needed to fit into
-        //    // the PictureBox.
-        //    p.SizeMode = PictureBoxSizeMode.StretchImage;
-
-        //    // Set the border style to a three-dimensional border.
-        //    p.BorderStyle = BorderStyle.Fixed3D;
-
-        //    // Add the PictureBox to the form.
-        //    this.Controls.Add(p);
-
-        //}
+        
 
 
         public void Repaint(object source, EventArgs e)
@@ -342,28 +321,28 @@ namespace WarGames
 
         public Bitmap MyImage; // test bild
 
-        public void HitAnimation(object source, PointEventArgs e)
-        {
+        //public void HitAnimation(object source, PointEventArgs e)
+        //{
             
-            var Deffcountry = countryHandler.CountryList[countryHandler.CurrentDeffCountry];
-            Point HitPoint = new Point(Deffcountry.CordinateX, Deffcountry.CordinateY);
+        //    var Deffcountry = countryHandler.CountryList[countryHandler.CurrentDeffCountry];
+        //    Point HitPoint = new Point(Deffcountry.CordinateX, Deffcountry.CordinateY);
 
-            //countryHandler.AttackPoint.Add(HitPoint);
+        //    //countryHandler.AttackPoint.Add(HitPoint);
 
-            //PictureBox picboxHit = new PictureBox();
-            //picboxHit.Visible = true;
-            //picboxHit.BringToFront();
-            //picboxHit.Location = HitPoint;
-            //picboxHit.Width = 30;
-            //picboxHit.Height = 30;
+        //    //PictureBox picboxHit = new PictureBox();
+        //    //picboxHit.Visible = true;
+        //    //picboxHit.BringToFront();
+        //    //picboxHit.Location = HitPoint;
+        //    //picboxHit.Width = 30;
+        //    //picboxHit.Height = 30;
 
-            Image HitImage = Properties.Resources.explosion;
+        //    Image HitImage = Properties.Resources.explosion;
 
-            Graphics g = panel1.CreateGraphics();
-            //MyImage = new Bitmap(Properties.Resources.explosion);
-            picboxHit.Image = (Image)MyImage;
-            g.DrawImage(HitImage, HitPoint);
-        }
+        //    Graphics g = panel1.CreateGraphics();
+        //    //MyImage = new Bitmap(Properties.Resources.explosion);
+        //    picboxHit.Image = (Image)MyImage;
+        //    g.DrawImage(HitImage, HitPoint);
+        //}
 
 
 

@@ -18,19 +18,15 @@ namespace WarGames
         HelperClass h = new HelperClass();
         public delegate void NukeCountryEventHandler(object source, EventArgs args);
         public delegate void DeadCountryEventHandler(object source, IntEventArgs args);
-        public delegate void HitCountryEventHandler(object source, PointEventArgs args);
-
 
         public event NukeCountryEventHandler CountryNuked;
         public event DeadCountryEventHandler DeadCountry;
-        public event HitCountryEventHandler HitCountry;
         
         public int CurrentAttkCountry;
         public int CurrentDeffCountry;
    
         public int CurrentEndurance;
         Random random;
-
 
         public List<Point> AttackPoint = new List<Point>();
         public List<Country> CountryList = new List<Country>();
@@ -80,11 +76,10 @@ namespace WarGames
                 CurrentEndurance = CountryList[DefendingCountry].CountryEndurance;
 
                 // Checks if the defending Country died.
-                if (CountryList[DefendingCountry].CheckIfCountryIsAlive() == false )//&& CountryList[AttackingCountry].CheckIfCountryIsAlive == true)
+                if (CountryList[DefendingCountry].CheckIfCountryIsAlive() == false )
                 {
                     // Gives a kill point to the last attacking country
                     CountryList[AttackingCountry].Kills += 1;
-
                 }
                 else
                 {
@@ -123,28 +118,13 @@ namespace WarGames
                 DeadCountry(this, new IntEventArgs() {CountryID = CurrentDeffCountry });
             }
         }
-
-        // What to place here to actually use this?????
-        protected virtual void OnHitCountry()
-        {
-            if (HitCountry != null)
-            {
-                //countryHandler.CountryList[countryHandler.CurrentDeffCountry]
-                //HitCountry(this, new PointEventArgs() { HitPoint =   });// new Point(CountryList[DefendingCountry].CordinateX, CountryList[DefendingCountry].CordinateY) });
-                //HitCountry(this, new PointEventArgs() { HitPoint = new Point(DefendingCountry.CordinateX, DefendingCountry.CordinateY);
-
-            }
-        }
-
-
+        
         /// <summary>
         /// Deletes country from list
         /// </summary>
         public void DeleteCountry(int i)//Country c)
         {
             CountryList.RemoveAt(i);
-            
-
         }
 
         /// <summary>
@@ -154,8 +134,6 @@ namespace WarGames
         {
             return random.Next(0, CountryList.Count);
         }
-        
-
         /// <summary>
         /// Creates a new list with all the countries.
         /// </summary>

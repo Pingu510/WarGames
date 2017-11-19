@@ -82,7 +82,6 @@
     <Compile Include="NuclearCountries\UnitedKingdom.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="PointEventArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NuclearCountries\UnitedStates.cs">
