@@ -191,14 +191,8 @@ namespace WarGames
             {
                 for (int i = 0; i < countryHandler.CountryList.Count; i++)
                 {
-                    if (countryHandler.CountryList.Count == 1)
-                    {
-                        CountryLabelEnduranceList[0].Text = "Winner";
-                    }
-                    else
-                    {
-                        CountryLabelEnduranceList[i].Text = countryHandler.CountryList[i].CountryEndurance.ToString();
-                    }
+                    CountryLabelEnduranceList[i].Text = countryHandler.CountryList[i].CountryEndurance.ToString();
+                    
                 }
             }
             else
@@ -207,6 +201,7 @@ namespace WarGames
                 
                 CountryLabelEnduranceList.RemoveAt(e.CountryID);
                 HitAnimation(e.CountryID);
+                Thread.Sleep(500);
                 ShowDeath(e.CountryID);
 
                 MissileSound();
@@ -216,9 +211,7 @@ namespace WarGames
                 if (countryHandler.CountryList.Count == 1)
                 {
                     lblWinner.Text = ($"{countryHandler.CountryList[0].CountryName} Won the war!!");
-
-                    
-
+                                        
                     lblWinner.Left = (this.ClientSize.Width - lblWinner.Width) / 2;
                     lblWinner.Top = (this.ClientSize.Height - lblWinner.Height - 160 ) ;
                    
@@ -250,45 +243,17 @@ namespace WarGames
 
         public void HitAnimation(int i)
         {
-            
             Point HitPoint;
             HitPoint = new Point(countryHandler.CountryList[i].CordinateX - 45, countryHandler.CountryList[i].CordinateY - 25);
 
             PictureBox picboxHit = new PictureBox();
-            //picboxHit.Visible = true;
-            //picboxHit.BringToFront();
-            //picboxHit.Location = HitPoint;
-            //picboxHit.Width = 30;
-            //picboxHit.Height = 30;
 
-            Image HitImage = Properties.Resources.explosion;
+            Image HitImage = Properties.Resources.explosion_resized;
 
             Graphics g = panel1.CreateGraphics();
             g.DrawImage(HitImage, HitPoint);
         }
-
-        //private void InitializePictureBox()
-        //{
-        //    PictureBox p;
-        //    p = new PictureBox();
-
-        //    // Set the location and size of the PictureBox control.
-        //    p.Location = new System.Drawing.Point(70, 120);
-        //    p.Size = new System.Drawing.Size(140, 140);
-        //    p.TabStop = false;
-
-        //    // Set the SizeMode property to the StretchImage value.  This
-        //    // will shrink or enlarge the image as needed to fit into
-        //    // the PictureBox.
-        //    p.SizeMode = PictureBoxSizeMode.StretchImage;
-
-        //    // Set the border style to a three-dimensional border.
-        //    p.BorderStyle = BorderStyle.Fixed3D;
-
-        //    // Add the PictureBox to the form.
-        //    this.Controls.Add(p);
-
-        //}
+        
 
 
         public void Repaint(object source, EventArgs e)

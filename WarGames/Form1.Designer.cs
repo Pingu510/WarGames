@@ -152,6 +152,7 @@
             this.picboxHit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picboxHit.TabIndex = 12;
             this.picboxHit.TabStop = false;
+            this.picboxHit.Visible = false;
             // 
             // lblWinner
             // 
@@ -171,6 +172,7 @@
             this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
             this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(179, 115);
             this.axWindowsMediaPlayer1.TabIndex = 8;
+            this.axWindowsMediaPlayer1.Visible = false;
             // 
             // grpBoxStats
             // 
@@ -392,6 +394,7 @@
             this.lblXNY.Size = new System.Drawing.Size(70, 31);
             this.lblXNY.TabIndex = 9;
             this.lblXNY.Text = "///////";
+            this.lblXNY.Visible = false;
             // 
             // Form1
             // 
