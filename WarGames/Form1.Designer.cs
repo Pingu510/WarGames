@@ -38,7 +38,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.axWindowsMediaPlayer2 = new AxWMPLib.AxWindowsMediaPlayer();
             this.lblOngoingWarStatus = new System.Windows.Forms.Label();
-            this.picboxHit = new System.Windows.Forms.PictureBox();
             this.lblWinner = new System.Windows.Forms.Label();
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.grpBoxStats = new System.Windows.Forms.GroupBox();
@@ -68,7 +67,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.picN)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picboxHit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.grpBoxStats.SuspendLayout();
             this.SuspendLayout();
@@ -132,7 +130,6 @@
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Controls.Add(this.axWindowsMediaPlayer2);
             this.panel1.Controls.Add(this.lblOngoingWarStatus);
-            this.panel1.Controls.Add(this.picboxHit);
             this.panel1.Controls.Add(this.picBoxFront);
             this.panel1.Controls.Add(this.lblWinner);
             this.panel1.Controls.Add(this.axWindowsMediaPlayer1);
@@ -166,17 +163,6 @@
             this.lblOngoingWarStatus.Name = "lblOngoingWarStatus";
             this.lblOngoingWarStatus.Size = new System.Drawing.Size(0, 24);
             this.lblOngoingWarStatus.TabIndex = 13;
-            // 
-            // picboxHit
-            // 
-            this.picboxHit.BackgroundImage = global::WarGames.Properties.Resources.explosion;
-            this.picboxHit.Image = global::WarGames.Properties.Resources.explosion;
-            this.picboxHit.Location = new System.Drawing.Point(525, 399);
-            this.picboxHit.Name = "picboxHit";
-            this.picboxHit.Size = new System.Drawing.Size(47, 48);
-            this.picboxHit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picboxHit.TabIndex = 12;
-            this.picboxHit.TabStop = false;
             // 
             // lblWinner
             // 
@@ -442,7 +428,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picboxHit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.grpBoxStats.ResumeLayout(false);
             this.grpBoxStats.PerformLayout();
@@ -481,7 +466,6 @@
         private System.Windows.Forms.Label lblChinaEndurance;
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
         private System.Windows.Forms.Label lblWinner;
-        private System.Windows.Forms.PictureBox picboxHit;
         private System.Windows.Forms.Label lblOngoingWarStatus;
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer2;
     }

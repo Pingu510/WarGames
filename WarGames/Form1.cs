@@ -55,6 +55,10 @@ namespace WarGames
             PlayMissileSound.Start();
 
 
+            
+
+
+
             ThreadStart playerThread2 = new ThreadStart(AmbientSound);
             Thread PlayAmbientSound = new Thread(playerThread2);
             PlayAmbientSound.Start();
@@ -219,38 +223,41 @@ namespace WarGames
                 CountryLabelEnduranceList[e.CountryID].Text = "Ded";
                 
                 CountryLabelEnduranceList.RemoveAt(e.CountryID);
-                
                 ShowDeath(e.CountryID);
-
+                
                 MissileSound();
                 //DeathSound();
                 countryHandler.DeleteCountry(e.CountryID);
 
                 if (countryHandler.CountryList.Count == 1)
                 {
+                    ShowWarText();
                     lblWinner.Text = ($"{countryHandler.CountryList[0].CountryName} Won the war!!");
                     WinnerSound();
-
-
                     lblWinner.Left = (this.ClientSize.Width - lblWinner.Width) / 2;
                     lblWinner.Top = (this.ClientSize.Height - lblWinner.Height - 160 ) ;
-                   
-                    Image warImage = Properties.Resources.warImage;
-                    Graphics g = panel1.CreateGraphics();
-                    g.DrawImage(warImage, 425,150);
-
                     axWindowsMediaPlayer1.Ctlcontrols.stop();
                     //new ManualResetEvent(false).WaitOne(1000);
                     //EndOfGame();
                 }
             }
         }
+
+        public void ShowWarText()
+        {
+            Image warImage = Properties.Resources.warImage;
+            Graphics g = panel1.CreateGraphics();
+            g.DrawImage(warImage, 425, 150);
+        }
+
+
         public void ShowDeath(int i)
         {
             Point nukedPoint;
             nukedPoint = new Point(countryHandler.CountryList[i].CordinateX - 45, countryHandler.CountryList[i].CordinateY - 25);
 
             Image deathimage = Properties.Resources.Skull_smaller;
+            
             Graphics g = panel1.CreateGraphics();
             g.DrawImage(deathimage, nukedPoint);
         }
@@ -260,10 +267,25 @@ namespace WarGames
             Point HitPoint;
             HitPoint = new Point(countryHandler.CountryList[i].CordinateX - 45, countryHandler.CountryList[i].CordinateY - 25);
 
+            PictureBox picboxHit = new PictureBox();
             picboxHit.Location = HitPoint;
-            picboxHit.Image = Image.FromFile(@" C:\Users\Eddie\Documents\GitHub\WarGames\WarGames\Resources\explosion.gif");
-            panel1.Controls.Add(picboxHit);
-            //Graphics g = panel1.CreateGraphics();
+            picboxHit.Width =60; picboxHit.Height = 60;
+            
+            picboxHit.SizeMode = PictureBoxSizeMode.StretchImage;
+            picboxHit.SendToBack();
+
+            if (countryHandler.CountryList[i].CountryEndurance > 1)
+            {
+                picboxHit.Image = Image.FromFile(@" C:\Users\Eddie\Documents\GitHub\WarGames\WarGames\Resources\explosion.gif");
+                panel1.Controls.Add(picboxHit);
+
+            }
+            else if (countryHandler.CountryList[i].CountryEndurance == 0)
+            {
+                panel1.Controls.Remove(picboxHit);
+            } 
+
+                //Graphics g = panel1.CreateGraphics();
 
             //Bitmap MyImage = new Bitmap(Properties.Resources.explosion);
             //MyImage = new Bitmap(Properties.Resources.explosion);
