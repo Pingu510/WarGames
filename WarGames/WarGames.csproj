@@ -143,7 +143,9 @@
     <None Include="Resources\Skull_smaller.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\explosion.gif" />
+    <Content Include="Resources\explosion.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\FF1XFanfare.wav" />
     <Content Include="Resources\Missile Fire War.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

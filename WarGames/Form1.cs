@@ -25,10 +25,7 @@ namespace WarGames
         //coordinates cords;
 
         //public List<coordinates> coordinatessList = new List<coordinates>();
-
-       
-
-
+        
         CountryHandler countryHandler = new CountryHandler();
         List<Label> CountryLabelEnduranceList = new List<Label>();
         SoundPlayer SoundEffects;
@@ -233,12 +230,12 @@ namespace WarGames
                 {
                     ShowWarText();
                     lblWinner.Text = ($"{countryHandler.CountryList[0].CountryName} Won the war!!");
-                    WinnerSound();
                     lblWinner.Left = (this.ClientSize.Width - lblWinner.Width) / 2;
                     lblWinner.Top = (this.ClientSize.Height - lblWinner.Height - 160 ) ;
+                    WinnerSound();
                     axWindowsMediaPlayer1.Ctlcontrols.stop();
-                    //new ManualResetEvent(false).WaitOne(1000);
-                    //EndOfGame();
+                    new ManualResetEvent(false).WaitOne(5000);
+                    EndOfGame();
                 }
             }
         }
@@ -276,23 +273,24 @@ namespace WarGames
 
             if (countryHandler.CountryList[i].CountryEndurance > 1)
             {
-                picboxHit.Image = Image.FromFile(@" C:\Users\Eddie\Documents\GitHub\WarGames\WarGames\Resources\explosion.gif");
+
+                picboxHit.Image = Properties.Resources.explosion;
                 panel1.Controls.Add(picboxHit);
 
             }
             else if (countryHandler.CountryList[i].CountryEndurance == 0)
             {
                 panel1.Controls.Remove(picboxHit);
-            } 
+            }
 
-                //Graphics g = panel1.CreateGraphics();
+            //Graphics g = panel1.CreateGraphics();
 
             //Bitmap MyImage = new Bitmap(Properties.Resources.explosion);
             //MyImage = new Bitmap(Properties.Resources.explosion);
-           
+
             //Graphics g = Graphics.FromImage(MyImage);
             //picboxHit.Image = MyImage;
-           
+
             //g.DrawImage(MyImage, HitPoint);
             //Graphics g = panel1.CreateGraphics();
             //g.DrawImage(deathimage, HitPoint);

@@ -157,21 +157,21 @@
             // lblOngoingWarStatus
             // 
             this.lblOngoingWarStatus.AutoSize = true;
-            this.lblOngoingWarStatus.Font = new System.Drawing.Font("Stencil", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Document, ((byte)(0)));
+            this.lblOngoingWarStatus.Font = new System.Drawing.Font("Sakkal Majalla", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Document, ((byte)(0)));
             this.lblOngoingWarStatus.ForeColor = System.Drawing.Color.White;
             this.lblOngoingWarStatus.Location = new System.Drawing.Point(385, 24);
             this.lblOngoingWarStatus.Name = "lblOngoingWarStatus";
-            this.lblOngoingWarStatus.Size = new System.Drawing.Size(0, 24);
+            this.lblOngoingWarStatus.Size = new System.Drawing.Size(0, 25);
             this.lblOngoingWarStatus.TabIndex = 13;
             // 
             // lblWinner
             // 
             this.lblWinner.AutoSize = true;
-            this.lblWinner.Font = new System.Drawing.Font("Stencil", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWinner.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWinner.ForeColor = System.Drawing.Color.White;
             this.lblWinner.Location = new System.Drawing.Point(300, 337);
             this.lblWinner.Name = "lblWinner";
-            this.lblWinner.Size = new System.Drawing.Size(0, 64);
+            this.lblWinner.Size = new System.Drawing.Size(0, 63);
             this.lblWinner.TabIndex = 11;
             // 
             // axWindowsMediaPlayer1
