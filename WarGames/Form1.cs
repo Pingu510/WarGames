@@ -40,7 +40,7 @@ namespace WarGames
         public Form1()
         {
             // use countryHandler to acces the list and bombing events etc
-            countryHandler.DeadCountry += CountryDiedUpdateLabel;
+            countryHandler.DeadCountry += CountryUpdateLabel;
             //countryHandler.CountryNuked += UpdateLabels;
             countryHandler.CountryNuked += Repaint;
 
@@ -185,14 +185,14 @@ namespace WarGames
             lblXNY.Text = e.Location.X + ":" + e.Location.Y;
         }
                 
-        public void CountryDiedUpdateLabel(object source, IntEventArgs e)
+        public void CountryUpdateLabel(object source, IntEventArgs e)
         {
             if (countryHandler.CountryList[e.CountryID].CountryEndurance != 0)
             {
                 for (int i = 0; i < countryHandler.CountryList.Count; i++)
                 {
                     CountryLabelEnduranceList[i].Text = countryHandler.CountryList[i].CountryEndurance.ToString();
-                    
+                    HitAnimation(e.CountryID);
                 }
             }
             else
@@ -244,12 +244,12 @@ namespace WarGames
         public void HitAnimation(int i)
         {
             Point HitPoint;
-            HitPoint = new Point(countryHandler.CountryList[i].CordinateX - 45, countryHandler.CountryList[i].CordinateY - 25);
+            HitPoint = new Point(countryHandler.CountryList[i].CordinateX - 25, countryHandler.CountryList[i].CordinateY - 25);
 
             PictureBox picboxHit = new PictureBox();
-
+            picboxHit.Enabled = true;
             Image HitImage = Properties.Resources.explosion_resized;
-
+            
             Graphics g = panel1.CreateGraphics();
             g.DrawImage(HitImage, HitPoint);
         }
