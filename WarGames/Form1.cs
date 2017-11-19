@@ -32,7 +32,7 @@ namespace WarGames
         CountryHandler countryHandler = new CountryHandler();
         List<Label> CountryLabelEnduranceList = new List<Label>();
         SoundPlayer SoundEffects;
-        SoundPlayer SoundEffects2;
+        //SoundPlayer SoundEffects2;
         private string dirpath;
 
         HelperClass h = new HelperClass();
@@ -110,6 +110,14 @@ namespace WarGames
             //dirpath = Directory.GetCurrentDirectory().ToString();
             //SoundEffects2 = new SoundPlayer(dirpath + "\\Missile Fire War.wav");
             //SoundEffects2.Play();
+        }
+
+
+        public void WinnerSound()
+        {
+            axWindowsMediaPlayer2.URL = dirpath + "\\FF1XFanfare.wav";
+            axWindowsMediaPlayer2.Ctlcontrols.play();
+
         }
 
         //public void playpSoundEffects()
@@ -199,10 +207,12 @@ namespace WarGames
                     if (countryHandler.CountryList.Count == 1)
                     {
                         CountryLabelEnduranceList[0].Text = "Winner";
+                        
                     }
                     else
                     {
                         CountryLabelEnduranceList[i].Text = countryHandler.CountryList[i].CountryEndurance.ToString();
+                        
                     }
                 }
             }
@@ -221,8 +231,8 @@ namespace WarGames
                 if (countryHandler.CountryList.Count == 1)
                 {
                     lblWinner.Text = ($"{countryHandler.CountryList[0].CountryName} Won the war!!");
+                    WinnerSound();
 
-                    
 
                     lblWinner.Left = (this.ClientSize.Width - lblWinner.Width) / 2;
                     lblWinner.Top = (this.ClientSize.Height - lblWinner.Height - 160 ) ;
@@ -231,18 +241,12 @@ namespace WarGames
                     Graphics g = panel1.CreateGraphics();
                     g.DrawImage(warImage, 425,150);
 
-                    
                     axWindowsMediaPlayer1.Ctlcontrols.stop();
-
-
                     //new ManualResetEvent(false).WaitOne(1000);
                     //EndOfGame();
                 }
-                
-
             }
         }
-
         public void ShowDeath(int i)
         {
             Point nukedPoint;
@@ -299,17 +303,19 @@ namespace WarGames
 
         public void Repaint(object source, EventArgs e)
         {
-            int i = countryHandler.CountryList.Count;
-            int labelL = CountryLabelEnduranceList.Count;
+            //int i = countryHandler.CountryList.Count;
+            //int labelL = CountryLabelEnduranceList.Count;
             var Attkcountry = countryHandler.CountryList[countryHandler.CurrentAttkCountry];
             var Deffcountry = countryHandler.CountryList[countryHandler.CurrentDeffCountry];
 
+            //countryHandler.CountryList[countryHandler.CurrentDeffCountry]);
 
             //get coords from countryhandler
             Point attackingCountryCoordinates = new Point(Attkcountry.CordinateX, Attkcountry.CordinateY);
             Point defendingCountryCoordinates = new Point(Deffcountry.CordinateX, Deffcountry.CordinateY);
             // Gets the curvepoint from helperclass.
             Point curvepoint = h.DrawCurve(attackingCountryCoordinates, defendingCountryCoordinates);
+            
 
 
             // Create points that defines the curve.
@@ -325,7 +331,11 @@ namespace WarGames
             // Draw dashed curve.
             //MissileSound();
             g.DrawCurve(dashPen, curvePoints);
-            
+
+            string WarStatus = (countryHandler.CountryList[countryHandler.CurrentAttkCountry].CountryName + " Attacks " + countryHandler.CountryList[countryHandler.CurrentDeffCountry].CountryName);
+
+            lblOngoingWarStatus.Text = (WarStatus);
+
             Debug.WriteLine(countryHandler.CountryList[countryHandler.CurrentAttkCountry].CountryName +
             "Attacks" + countryHandler.CountryList[countryHandler.CurrentDeffCountry].CountryName);
         }

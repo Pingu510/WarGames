@@ -145,6 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\explosion.gif" />
+    <None Include="Resources\FF1XFanfare.wav" />
     <Content Include="Resources\Missile Fire War.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
