@@ -1,21 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using WarGames.NuclearCountries;
 
 namespace WarGames
 {
     class CountryHandler
     {
-
-        HelperClass h = new HelperClass();
+        //HelperClass h = new HelperClass();
         public delegate void NukeCountryEventHandler(object source, EventArgs args);
         public delegate void DeadCountryEventHandler(object source, IntEventArgs args);
 
@@ -47,13 +39,12 @@ namespace WarGames
 
 
         /// <summary>
-        /// Runs untill all countries are dead.
+        /// 
         /// </summary>
         public void StartWar()
         {            
             if (CountryList.Count > 1)
             {
-                //FIXA - Ska turordningen vara random eller ej?
                 int AttackingCountry = GetRandomNr();
                 int DefendingCountry = GetRandomNr();
 
@@ -89,13 +80,7 @@ namespace WarGames
                 OnDeadCountry();
             }
         }
-
-        public void Winner()
-        {
-            //Debug.WriteLine(CountryList[0].CountryName + " Won The 'Game'");
-            //return CountryList[0].CountryName;
-        }
-
+        
         /// <summary>
         /// Attacks the country and takes away 1 endurance
         /// </summary>
@@ -151,7 +136,6 @@ namespace WarGames
             CountryList.Add(new Sweden());
             CountryList.Add(new UnitedKingdom());
             CountryList.Add(new UnitedStates());
-
         }
     }
 }

@@ -35,6 +35,8 @@
             this.picBoxFront = new System.Windows.Forms.PictureBox();
             this.picN = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.WinnerMediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
+            this.MissileMediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
             this.lblOngoingWarStatus = new System.Windows.Forms.Label();
             this.lblWinner = new System.Windows.Forms.Label();
             this.AmbientWarMediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
@@ -61,14 +63,14 @@
             this.lblChina = new System.Windows.Forms.Label();
             this.lblXNY = new System.Windows.Forms.Label();
             this.AttackTimer = new System.Windows.Forms.Timer(this.components);
-            this.MissileMediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
             ((System.ComponentModel.ISupportInitialize)(this.picY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxFront)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picN)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.WinnerMediaPlayer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MissileMediaPlayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AmbientWarMediaPlayer)).BeginInit();
             this.grpBoxStats.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.MissileMediaPlayer)).BeginInit();
             this.SuspendLayout();
             // 
             // tbxStart
@@ -123,6 +125,7 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.BackgroundImage = global::WarGames.Properties.Resources.MapNight;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Controls.Add(this.WinnerMediaPlayer);
             this.panel1.Controls.Add(this.MissileMediaPlayer);
             this.panel1.Controls.Add(this.lblOngoingWarStatus);
             this.panel1.Controls.Add(this.picBoxFront);
@@ -139,6 +142,26 @@
             this.panel1.Size = new System.Drawing.Size(1366, 768);
             this.panel1.TabIndex = 7;
             this.panel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseClick);
+            // 
+            // WinnerMediaPlayer
+            // 
+            this.WinnerMediaPlayer.Enabled = true;
+            this.WinnerMediaPlayer.Location = new System.Drawing.Point(690, 83);
+            this.WinnerMediaPlayer.Name = "WinnerMediaPlayer";
+            this.WinnerMediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("WinnerMediaPlayer.OcxState")));
+            this.WinnerMediaPlayer.Size = new System.Drawing.Size(141, 93);
+            this.WinnerMediaPlayer.TabIndex = 15;
+            this.WinnerMediaPlayer.Visible = false;
+            // 
+            // MissileMediaPlayer
+            // 
+            this.MissileMediaPlayer.Enabled = true;
+            this.MissileMediaPlayer.Location = new System.Drawing.Point(845, 183);
+            this.MissileMediaPlayer.Name = "MissileMediaPlayer";
+            this.MissileMediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("MissileMediaPlayer.OcxState")));
+            this.MissileMediaPlayer.Size = new System.Drawing.Size(168, 129);
+            this.MissileMediaPlayer.TabIndex = 14;
+            this.MissileMediaPlayer.Visible = false;
             // 
             // lblOngoingWarStatus
             // 
@@ -396,16 +419,6 @@
             this.AttackTimer.Interval = 500;
             this.AttackTimer.Tick += new System.EventHandler(this.AtackTimer_Tick);
             // 
-            // MissileMediaPlayer
-            // 
-            this.MissileMediaPlayer.Enabled = true;
-            this.MissileMediaPlayer.Location = new System.Drawing.Point(845, 183);
-            this.MissileMediaPlayer.Name = "MissileMediaPlayer";
-            this.MissileMediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("MissileMediaPlayer.OcxState")));
-            this.MissileMediaPlayer.Size = new System.Drawing.Size(168, 129);
-            this.MissileMediaPlayer.TabIndex = 14;
-            this.MissileMediaPlayer.Visible = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -430,10 +443,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.picN)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.WinnerMediaPlayer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MissileMediaPlayer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AmbientWarMediaPlayer)).EndInit();
             this.grpBoxStats.ResumeLayout(false);
             this.grpBoxStats.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.MissileMediaPlayer)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -471,6 +485,7 @@
         private System.Windows.Forms.Label lblOngoingWarStatus;
         private System.Windows.Forms.Timer AttackTimer;
         private AxWMPLib.AxWindowsMediaPlayer MissileMediaPlayer;
+        private AxWMPLib.AxWindowsMediaPlayer WinnerMediaPlayer;
     }
 }
 

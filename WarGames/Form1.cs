@@ -1,146 +1,68 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows;
-using System.Timers;
 using System.Threading;
-using WarGames.NuclearCountries;
 using System.Diagnostics;
-using System.Media;
 using System.IO;
 
 namespace WarGames
 {
-
     public partial class Form1 : Form
-    {
-        //int X;
-        //int Y;
-        //coordinates cords;
-
-        //public List<coordinates> coordinatessList = new List<coordinates>();
-        
+    {        
         CountryHandler countryHandler = new CountryHandler();
-        List<Label> CountryLabelEnduranceList = new List<Label>();
-        SoundPlayer SoundEffectMissile;
-        SoundPlayer SoundEffectWinner;
-        private string AmbDirpath;
-        private string WinnerDirpath;
-        private string MissileDirpath;
-
-        
-
         HelperClass h = new HelperClass();
 
+        List<Label> CountryLabelEnduranceList = new List<Label>();
+
+        private string _ambDirpath;
+        private string _winnerDirpath;
+        private string _missileDirpath;
+        
         public Form1()
         {
-            // use countryHandler to acces the list and bombing events etc
-            countryHandler.DeadCountry += CountryDiedUpdateLabel;
-            //countryHandler.CountryNuked += UpdateLabels;
+            // Subscribers to events
+            countryHandler.DeadCountry += CountryUpdateLabel;
             countryHandler.CountryNuked += Repaint;
-
-            //countryHandler.HitCountry += HitAnimation;
-
-
-            //panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-
-            InitializeComponent();
-
-
-            //ThreadStart playerThread = new ThreadStart(MissileSound);
-            //Thread PlayMissileSound = new Thread(playerThread);
-            //PlayMissileSound.Start();
-
-            //ThreadStart playerThread2 = new ThreadStart(AmbientSound);
-            //Thread PlayAmbientSound = new Thread(playerThread2);
-            //PlayAmbientSound.Start();
-
-
+            
+            InitializeComponent();            
         }
 
-        //public void DeathSound()
-        //{
-        //    dirpath = Directory.GetCurrentDirectory().ToString();
-        //    Sound = new SoundPlayer(dirpath + "\\Snow_white.wav");
-        //}
-
-
-        //public  void PlayBGSound(string dirpath)
-        //{
-        //    axWindowsMediaPlayer1.URL = dirpath + "\\War.wav";
-        //    axWindowsMediaPlayer1.Ctlcontrols.play();
-        //    //axMediaPlay
-        //    //MediaPlayer myPlayer = new MediaPlayer();
-        //    //myPlayer.Open(this.dirpath + "\\War.wav");
-        //    //myPlayer.Play();
-        //}
-
-        //Play(Application.StartupPath + "\\Track1.wav");
-        //{
-        //}
-        //Play(Application.StartupPath + "\\Track2.wav");
-
+       
+        /// <summary>
+        /// Background sound
+        /// </summary>
         public void AmbientSound()
         {
-            //new Thread(() => {
-            AmbDirpath = Directory.GetCurrentDirectory().ToString();
-            AmbientWarMediaPlayer.URL = AmbDirpath + "\\War.wav";
+            _ambDirpath = Directory.GetCurrentDirectory().ToString();
+            AmbientWarMediaPlayer.URL = _ambDirpath + "\\War.wav";
             AmbientWarMediaPlayer.settings.volume = 60;
-            AmbientWarMediaPlayer.Ctlcontrols.play();
-
-            //dirpath = Directory.GetCurrentDirectory().ToString();
-            //SoundEffects2 = new SoundPlayer(dirpath + "\\War.wav");
-            //SoundEffects2.PlayLooping();
-            // }).Start();
-
+            AmbientWarMediaPlayer.Ctlcontrols.play();            
         }
 
+        /// <summary>
+        /// Attackmissile sound
+        /// </summary>
         void MissileSound()
         {
-            //new Thread(() => {
-            //axWindowsMediaPlayer2.URL = dirpath + "\\Missle_Launch.wav";
-            //axWindowsMediaPlayer2.Ctlcontrols.play();
-
-            MissileDirpath = Directory.GetCurrentDirectory().ToString();
-            MissileMediaPlayer.URL = MissileDirpath + "\\Missle_Launch.wav";
-            MissileMediaPlayer.Ctlcontrols.play();
-
-            //MissileDirpath = Directory.GetCurrentDirectory().ToString();
-            //SoundEffectMissile = new SoundPlayer(MissileDirpath + "\\Missile Fire War.wav");
-            //SoundEffectMissile.Play();
-            //}).Start();
-
-            //dirpath = Directory.GetCurrentDirectory().ToString();
-            //SoundEffects2 = new SoundPlayer(dirpath + "\\Missile Fire War.wav");
-            //SoundEffects2.Play();
+            _missileDirpath = Directory.GetCurrentDirectory().ToString();
+            MissileMediaPlayer.URL = _missileDirpath + "\\Missle_Launch.wav";
+            MissileMediaPlayer.Ctlcontrols.play();            
         }
 
-
+        /// <summary>
+        /// Winning sound
+        /// </summary>
         public void WinnerSound()
         {
-            WinnerDirpath = Directory.GetCurrentDirectory().ToString();
-            SoundEffectWinner = new SoundPlayer(WinnerDirpath + "\\FFIXFanfare.wav");
-            SoundEffectWinner.Play();
-
-            //WinnerMediaPlayer.URL = dirpath + Properties.Resources.FF1XFanfare;// dirpath + "\\FF1XFanfare.wav";
-            //WinnerMediaPlayer.Ctlcontrols.play();
+            _winnerDirpath = Directory.GetCurrentDirectory().ToString();
+            WinnerMediaPlayer.URL = _winnerDirpath + "\\FFIXFanfare.wav";
+            WinnerMediaPlayer.Ctlcontrols.play();
         }
 
-        //public void playpSoundEffects()
-        //{
-        //    ThreadPool.QueueUserWorkItem(o =>
-        //    {
-        //        SoundEffects.Play();
-        //        Thread.Sleep(10000);
-        //        SoundEffects.Stop();
-        //    });
-        //}
+        /// <summary>
+        /// Adds the countrylabels to countryendurancelist
+        /// </summary>
         private void AddLabelsToList()
         {
             CountryLabelEnduranceList.Add(lblChinaEndurance);
@@ -155,6 +77,9 @@ namespace WarGames
             CountryLabelEnduranceList.Add(lblUnitedStatesEndurance);
         }
 
+        /// <summary>
+        /// Sets startup values on countrylabels to startup endurance 
+        /// </summary>
         private void SetLabelsStartUpText()
         {
             foreach (var i in CountryLabelEnduranceList)
@@ -163,6 +88,9 @@ namespace WarGames
             }
         }
 
+        /// <summary>
+        /// Method starts the game
+        /// </summary>
         private void tbxStart_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Y || e.KeyCode == Keys.N)
@@ -175,7 +103,9 @@ namespace WarGames
 
                     AddLabelsToList();
                     AttackTimer.Enabled = true;
+                    panel1.Controls.Add(picBoxFront);
                     picBoxFront.Visible = false;
+                    panel1.Controls.Add(picY);
                     picY.Visible = false;
                     countryHandler.StartNewGame();
                     AmbientSound();
@@ -184,6 +114,7 @@ namespace WarGames
                 }
                 else if (e.KeyCode == Keys.N)
                 {
+                    panel1.Controls.Add(picN);
                     picN.Visible = true;
                     tbxStart.Visible = false;
                     new ManualResetEvent(false).WaitOne(1500);
@@ -202,29 +133,27 @@ namespace WarGames
             }
         }
 
+        /// <summary>
+        /// Obsolete, gets mouse coordinates in panel1.
+        /// </summary>
         private void panel1_MouseClick(object sender, MouseEventArgs e)
         {
-            // Get mouse location in panel1
-            //lblXNY.Visible = true;
+            lblXNY.Visible = false;
             lblXNY.Text = e.Location.X + ":" + e.Location.Y;
         }
-                
-        public void CountryDiedUpdateLabel(object source, IntEventArgs e)
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void CountryUpdateLabel(object source, IntEventArgs e)
         {
             if (countryHandler.CountryList[e.CountryID].CountryEndurance != 0)
             {
                 for (int i = 0; i < countryHandler.CountryList.Count; i++)
                 {
-                    if (countryHandler.CountryList.Count == 1)
-                    {
-                        CountryLabelEnduranceList[0].Text = "Winner";
-                    }
-                    else
-                    {
-                        CountryLabelEnduranceList[i].Text = countryHandler.CountryList[i].CountryEndurance.ToString();
-                        MissileSound();
-                        HitAnimation(e.CountryID);
-                    }
+                    CountryLabelEnduranceList[i].Text = countryHandler.CountryList[i].CountryEndurance.ToString();
+                    MissileSound();
+                    HitAnimation(e.CountryID);
                 }
             }
             else
@@ -235,16 +164,14 @@ namespace WarGames
                 
                 ShowDeath(e.CountryID);
                 
-                //DeathSound();
                 countryHandler.DeleteCountry(e.CountryID);
 
                 if (countryHandler.CountryList.Count == 1)
                 {
-
+                    AttackTimer.Stop();
                     ShowEndWarText();
                     Winner();
-                    //AmbientWarMediaPlayer1.Ctlcontrols.stop();
-                    //WinnerMediaPlayer.Ctlcontrols.stop();
+                    EndOfGame();
                 }
             }
         }
@@ -260,13 +187,11 @@ namespace WarGames
         public void ShowDeath(int i)
         {
             Point nukedPoint;
-            nukedPoint = new Point(countryHandler.CountryList[i].CordinateX - 45, countryHandler.CountryList[i].CordinateY - 25);
-
+            nukedPoint = new Point(countryHandler.CountryList[i].CordinateX - 45, countryHandler.CountryList[i].CordinateY -100);
             
-
             PictureBox picboxDeath = new PictureBox();
             picboxDeath.Location = nukedPoint;
-            picboxDeath.Width = 50; picboxDeath.Height = 50;
+            picboxDeath.Width = 50; picboxDeath.Height = 80;
 
             picboxDeath.SizeMode = PictureBoxSizeMode.StretchImage;
             picboxDeath.BringToFront();
@@ -287,47 +212,29 @@ namespace WarGames
 
             PictureBox picboxHit = new PictureBox();
             picboxHit.Location = HitPoint;
-            picboxHit.Width =50; picboxHit.Height = 50;
+            picboxHit.Width = 50; picboxHit.Height = 50;
             
             picboxHit.SizeMode = PictureBoxSizeMode.StretchImage;
             picboxHit.SendToBack();
 
             if (countryHandler.CountryList[i].CountryEndurance > 1)
             {
-
                 picboxHit.Image = Properties.Resources.explosion;
                 panel1.Controls.Add(picboxHit);
-
-
             }
             else if (countryHandler.CountryList[i].CountryEndurance == 0)
             {
                 panel1.Controls.Remove(picboxHit);
             }
-
-            //Graphics g = panel1.CreateGraphics();
-
-            //Bitmap MyImage = new Bitmap(Properties.Resources.explosion);
-            //MyImage = new Bitmap(Properties.Resources.explosion);
-
-            //Graphics g = Graphics.FromImage(MyImage);
-            //picboxHit.Image = MyImage;
-
-            //g.DrawImage(MyImage, HitPoint);
-            //Graphics g = panel1.CreateGraphics();
-            //g.DrawImage(deathimage, HitPoint);
         }
 
         public void Winner()
         {
             lblWinner.Text = ($"{countryHandler.CountryList[0].CountryName} Won the war!!");
             lblWinner.Left = (this.ClientSize.Width - lblWinner.Width) / 2;
-            //lblWinner.Top = (this.ClientSize.Height - lblWinner.Height - 160);
+
             AmbientWarMediaPlayer.Ctlcontrols.stop();
-            WinnerSound();
-            
-            //new ManualResetEvent(false).WaitOne(5000);
-            //EndOfGame();
+            WinnerSound();            
         }
 
         public void Repaint(object source, EventArgs e)

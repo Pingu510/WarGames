@@ -73,9 +73,9 @@ namespace WarGames.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream FF1XFanfare1 {
+        internal static System.IO.UnmanagedMemoryStream FFIXFanfare {
             get {
-                return ResourceManager.GetStream("FF1XFanfare1", resourceCulture);
+                return ResourceManager.GetStream("FFIXFanfare", resourceCulture);
             }
         }
         

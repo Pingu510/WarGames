@@ -146,9 +146,7 @@
     <Content Include="Resources\explosion.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\FF1XFanfare.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <None Include="Resources\FFIXFanfare.wav" />
     <Content Include="Resources\Missile Fire War.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
