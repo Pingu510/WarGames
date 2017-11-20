@@ -15,9 +15,9 @@ namespace WarGames
         public event DeadCountryEventHandler DeadCountry;
         
         public int CurrentAttkCountry;
-        public int CurrentDeffCountry;
-   
+        public int CurrentDeffCountry;   
         public int CurrentEndurance;
+
         Random random;
 
         public List<Point> AttackPoint = new List<Point>();
@@ -133,7 +133,7 @@ namespace WarGames
             CountryList.Add(new NorthKorea());
             CountryList.Add(new Pakistan());
             CountryList.Add(new Russia());
-            CountryList.Add(new Sweden());
+            CountryList.Add(new SouthAfrica());
             CountryList.Add(new UnitedKingdom());
             CountryList.Add(new UnitedStates());
         }

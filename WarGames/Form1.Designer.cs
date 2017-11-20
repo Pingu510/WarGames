@@ -43,7 +43,7 @@
             this.grpBoxStats = new System.Windows.Forms.GroupBox();
             this.lblUnitedStatesEndurance = new System.Windows.Forms.Label();
             this.lblUnitedKingdomEndurance = new System.Windows.Forms.Label();
-            this.lblSwedenEndurance = new System.Windows.Forms.Label();
+            this.lblSouthAfricaEndurance = new System.Windows.Forms.Label();
             this.lblRussiaEndurance = new System.Windows.Forms.Label();
             this.lblPakistanEndurance = new System.Windows.Forms.Label();
             this.lblNorthKoreaEndurance = new System.Windows.Forms.Label();
@@ -53,7 +53,7 @@
             this.lblChinaEndurance = new System.Windows.Forms.Label();
             this.lblUnitedStates = new System.Windows.Forms.Label();
             this.lblUnitedKingdom = new System.Windows.Forms.Label();
-            this.lblSweden = new System.Windows.Forms.Label();
+            this.lblSouthAfrica = new System.Windows.Forms.Label();
             this.lblRussia = new System.Windows.Forms.Label();
             this.lblPakistan = new System.Windows.Forms.Label();
             this.lblNorthKorea = new System.Windows.Forms.Label();
@@ -197,7 +197,7 @@
             // 
             this.grpBoxStats.Controls.Add(this.lblUnitedStatesEndurance);
             this.grpBoxStats.Controls.Add(this.lblUnitedKingdomEndurance);
-            this.grpBoxStats.Controls.Add(this.lblSwedenEndurance);
+            this.grpBoxStats.Controls.Add(this.lblSouthAfricaEndurance);
             this.grpBoxStats.Controls.Add(this.lblRussiaEndurance);
             this.grpBoxStats.Controls.Add(this.lblPakistanEndurance);
             this.grpBoxStats.Controls.Add(this.lblNorthKoreaEndurance);
@@ -207,7 +207,7 @@
             this.grpBoxStats.Controls.Add(this.lblChinaEndurance);
             this.grpBoxStats.Controls.Add(this.lblUnitedStates);
             this.grpBoxStats.Controls.Add(this.lblUnitedKingdom);
-            this.grpBoxStats.Controls.Add(this.lblSweden);
+            this.grpBoxStats.Controls.Add(this.lblSouthAfrica);
             this.grpBoxStats.Controls.Add(this.lblRussia);
             this.grpBoxStats.Controls.Add(this.lblPakistan);
             this.grpBoxStats.Controls.Add(this.lblNorthKorea);
@@ -241,14 +241,14 @@
             this.lblUnitedKingdomEndurance.TabIndex = 18;
             this.lblUnitedKingdomEndurance.Text = "0";
             // 
-            // lblSwedenEndurance
+            // lblSouthAfricaEndurance
             // 
-            this.lblSwedenEndurance.AutoSize = true;
-            this.lblSwedenEndurance.Location = new System.Drawing.Point(156, 224);
-            this.lblSwedenEndurance.Name = "lblSwedenEndurance";
-            this.lblSwedenEndurance.Size = new System.Drawing.Size(18, 20);
-            this.lblSwedenEndurance.TabIndex = 17;
-            this.lblSwedenEndurance.Text = "0";
+            this.lblSouthAfricaEndurance.AutoSize = true;
+            this.lblSouthAfricaEndurance.Location = new System.Drawing.Point(156, 224);
+            this.lblSouthAfricaEndurance.Name = "lblSouthAfricaEndurance";
+            this.lblSouthAfricaEndurance.Size = new System.Drawing.Size(18, 20);
+            this.lblSouthAfricaEndurance.TabIndex = 17;
+            this.lblSouthAfricaEndurance.Text = "0";
             // 
             // lblRussiaEndurance
             // 
@@ -331,14 +331,14 @@
             this.lblUnitedKingdom.TabIndex = 8;
             this.lblUnitedKingdom.Text = "UnitedKingdom :";
             // 
-            // lblSweden
+            // lblSouthAfrica
             // 
-            this.lblSweden.AutoSize = true;
-            this.lblSweden.Location = new System.Drawing.Point(7, 224);
-            this.lblSweden.Name = "lblSweden";
-            this.lblSweden.Size = new System.Drawing.Size(75, 20);
-            this.lblSweden.TabIndex = 7;
-            this.lblSweden.Text = "Sweden :";
+            this.lblSouthAfrica.AutoSize = true;
+            this.lblSouthAfrica.Location = new System.Drawing.Point(7, 224);
+            this.lblSouthAfrica.Name = "lblSouthAfrica";
+            this.lblSouthAfrica.Size = new System.Drawing.Size(101, 20);
+            this.lblSouthAfrica.TabIndex = 7;
+            this.lblSouthAfrica.Text = "SouthAfrica :";
             // 
             // lblRussia
             // 
@@ -462,7 +462,7 @@
         private System.Windows.Forms.GroupBox grpBoxStats;
         private System.Windows.Forms.Label lblUnitedStates;
         private System.Windows.Forms.Label lblUnitedKingdom;
-        private System.Windows.Forms.Label lblSweden;
+        private System.Windows.Forms.Label lblSouthAfrica;
         private System.Windows.Forms.Label lblRussia;
         private System.Windows.Forms.Label lblPakistan;
         private System.Windows.Forms.Label lblNorthKorea;
@@ -472,7 +472,7 @@
         private System.Windows.Forms.Label lblChina;
         private System.Windows.Forms.Label lblUnitedStatesEndurance;
         private System.Windows.Forms.Label lblUnitedKingdomEndurance;
-        private System.Windows.Forms.Label lblSwedenEndurance;
+        private System.Windows.Forms.Label lblSouthAfricaEndurance;
         private System.Windows.Forms.Label lblRussiaEndurance;
         private System.Windows.Forms.Label lblPakistanEndurance;
         private System.Windows.Forms.Label lblNorthKoreaEndurance;

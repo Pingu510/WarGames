@@ -76,7 +76,7 @@
     <Compile Include="NuclearCountries\Russia.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="NuclearCountries\Sweden.cs">
+    <Compile Include="NuclearCountries\SouthAfrica.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="NuclearCountries\UnitedKingdom.cs">

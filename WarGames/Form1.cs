@@ -23,12 +23,11 @@ namespace WarGames
         {
             // Subscribers to events
             countryHandler.DeadCountry += CountryUpdateLabel;
-            countryHandler.CountryNuked += Repaint;
+            countryHandler.CountryNuked += DrawCurves;
             
             InitializeComponent();            
         }
-
-       
+        
         /// <summary>
         /// Background sound
         /// </summary>
@@ -58,6 +57,7 @@ namespace WarGames
             _winnerDirpath = Directory.GetCurrentDirectory().ToString();
             WinnerMediaPlayer.URL = _winnerDirpath + "\\FFIXFanfare.wav";
             WinnerMediaPlayer.Ctlcontrols.play();
+            
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace WarGames
             CountryLabelEnduranceList.Add(lblNorthKoreaEndurance);
             CountryLabelEnduranceList.Add(lblPakistanEndurance);
             CountryLabelEnduranceList.Add(lblRussiaEndurance);
-            CountryLabelEnduranceList.Add(lblSwedenEndurance);
+            CountryLabelEnduranceList.Add(lblSouthAfricaEndurance);
             CountryLabelEnduranceList.Add(lblUnitedKingdomEndurance);
             CountryLabelEnduranceList.Add(lblUnitedStatesEndurance);
         }
@@ -138,7 +138,7 @@ namespace WarGames
         /// </summary>
         private void panel1_MouseClick(object sender, MouseEventArgs e)
         {
-            lblXNY.Visible = false;
+            lblXNY.Visible = true;
             lblXNY.Text = e.Location.X + ":" + e.Location.Y;
         }
         
@@ -147,6 +147,7 @@ namespace WarGames
         /// </summary>
         public void CountryUpdateLabel(object source, IntEventArgs e)
         {
+            AttackerText();
             if (countryHandler.CountryList[e.CountryID].CountryEndurance != 0)
             {
                 for (int i = 0; i < countryHandler.CountryList.Count; i++)
@@ -171,11 +172,26 @@ namespace WarGames
                     AttackTimer.Stop();
                     ShowEndWarText();
                     Winner();
-                    EndOfGame();
+                    //EndOfGame();
                 }
             }
         }
 
+        /// <summary>
+        /// Prints who attacks who to a label
+        /// </summary>
+        private void AttackerText()
+        {
+            string WarStatus = (countryHandler.CountryList[countryHandler.CurrentAttkCountry].CountryName
+                + " Attacks " + countryHandler.CountryList[countryHandler.CurrentDeffCountry].CountryName);
+
+            lblOngoingWarStatus.Text = (WarStatus);
+            lblOngoingWarStatus.Left = (this.ClientSize.Width - lblOngoingWarStatus.Width) / 2;
+        }
+
+        /// <summary>
+        /// Display end image
+        /// </summary>
         public void ShowEndWarText()
         {
             Image warImage = Properties.Resources.warImage;
@@ -183,39 +199,39 @@ namespace WarGames
             g.DrawImage(warImage, 545, 230);
         }
         
-
+        /// <summary>
+        /// Displays when country dies
+        /// </summary>
         public void ShowDeath(int i)
         {
             Point nukedPoint;
-            nukedPoint = new Point(countryHandler.CountryList[i].CordinateX - 45, countryHandler.CountryList[i].CordinateY -100);
+            nukedPoint = new Point(countryHandler.CountryList[i].CordinateX - 25, countryHandler.CountryList[i].CordinateY -80);
             
             PictureBox picboxDeath = new PictureBox();
             picboxDeath.Location = nukedPoint;
-            picboxDeath.Width = 50; picboxDeath.Height = 80;
+            picboxDeath.Width = 40; picboxDeath.Height = 50;
 
             picboxDeath.SizeMode = PictureBoxSizeMode.StretchImage;
             picboxDeath.BringToFront();
 
             picboxDeath.Image = Properties.Resources.Skull_smaller;
-            panel1.Controls.Add(picboxDeath);
-
-            //Image deathimage = Properties.Resources.Skull_smaller;
-            
-            //Graphics g = panel1.CreateGraphics();
-            //g.DrawImage(deathimage, nukedPoint);
+            panel1.Controls.Add(picboxDeath);            
         }
 
+        /// <summary>
+        /// Animation to show when a country is hit
+        /// </summary>
         public void HitAnimation(int i)
         {
             Point HitPoint;
-            HitPoint = new Point(countryHandler.CountryList[i].CordinateX - 45, countryHandler.CountryList[i].CordinateY - 25);
+            HitPoint = new Point(countryHandler.CountryList[i].CordinateX - 25, countryHandler.CountryList[i].CordinateY - 25);
 
             PictureBox picboxHit = new PictureBox();
             picboxHit.Location = HitPoint;
-            picboxHit.Width = 50; picboxHit.Height = 50;
+            picboxHit.Width = 30; picboxHit.Height = 30;
             
             picboxHit.SizeMode = PictureBoxSizeMode.StretchImage;
-            picboxHit.SendToBack();
+            //picboxHit.SendToBack();
 
             if (countryHandler.CountryList[i].CountryEndurance > 1)
             {
@@ -228,6 +244,9 @@ namespace WarGames
             }
         }
 
+        /// <summary>
+        /// Text that announces winner
+        /// </summary>
         public void Winner()
         {
             lblWinner.Text = ($"{countryHandler.CountryList[0].CountryName} Won the war!!");
@@ -237,55 +256,47 @@ namespace WarGames
             WinnerSound();            
         }
 
-        public void Repaint(object source, EventArgs e)
+        /// <summary>
+        /// Gets coordinates and drawes curves between them
+        /// </summary>
+        public void DrawCurves(object source, EventArgs e)
         {
-            //int i = countryHandler.CountryList.Count;
-            //int labelL = CountryLabelEnduranceList.Count;
             var Attkcountry = countryHandler.CountryList[countryHandler.CurrentAttkCountry];
             var Deffcountry = countryHandler.CountryList[countryHandler.CurrentDeffCountry];
-
-            //countryHandler.CountryList[countryHandler.CurrentDeffCountry]);
-
+            
             //get coords from countryhandler
             Point attackingCountryCoordinates = new Point(Attkcountry.CordinateX, Attkcountry.CordinateY);
             Point defendingCountryCoordinates = new Point(Deffcountry.CordinateX, Deffcountry.CordinateY);
+
             // Gets the curvepoint from helperclass.
             Point curvepoint = h.DrawCurve(attackingCountryCoordinates, defendingCountryCoordinates);
             
-
-
             // Create points that defines the curve.
             Point[] curvePoints = { attackingCountryCoordinates, curvepoint, defendingCountryCoordinates };
 
-            // Create pen tool
+            // Creates a dashed pen tool
             float[] dashValues = { 4, 1 };
             Pen dashPen = new Pen(Color.Red, 3);
-
             dashPen.DashPattern = dashValues;
             Graphics g = panel1.CreateGraphics();
 
             // Draw dashed curve.
-            //MissileSound();
-            g.DrawCurve(dashPen, curvePoints);
-
-            string WarStatus = (countryHandler.CountryList[countryHandler.CurrentAttkCountry].CountryName + " Attacks " + countryHandler.CountryList[countryHandler.CurrentDeffCountry].CountryName);
-
-            lblOngoingWarStatus.Text = (WarStatus);
-            lblOngoingWarStatus.Left = (this.ClientSize.Width - lblOngoingWarStatus.Width) / 2;
-            
-
-            Debug.WriteLine(countryHandler.CountryList[countryHandler.CurrentAttkCountry].CountryName +
-            "Attacks" + countryHandler.CountryList[countryHandler.CurrentDeffCountry].CountryName);
+            g.DrawCurve(dashPen, curvePoints); 
         }
 
+        /// <summary>
+        /// Timer that controlls the interval and sends the attacks
+        /// </summary>
         private void AtackTimer_Tick(object sender, EventArgs e)
         {
             countryHandler.StartWar();
         }
 
-        private void EndOfGame() // När kriget är slut
+        /// <summary>
+        /// Shuts down the program
+        /// </summary>
+        private void EndOfGame() 
         {
-            // Här ska skrivas vad som händer efter landet som vann.
             new ManualResetEvent(false).WaitOne(5000);
             Application.Exit();
         }

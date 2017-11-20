@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace WarGames.NuclearCountries
 {
-    class Sweden : Country
+    class SouthAfrica : Country
     {
         //const int xCordinate = 615;
         //const int yCordinate = 80;
 
         // Fullscreen
-        const int xCordinate = 742;
-        const int yCordinate = 125;
+        const int xCordinate = 770;
+        const int yCordinate = 575;
 
-        public Sweden() 
-            : base("Sweden", xCordinate, yCordinate)
+        public SouthAfrica() 
+            : base("SouthAfrica", xCordinate, yCordinate)
         { }
     }
 }
