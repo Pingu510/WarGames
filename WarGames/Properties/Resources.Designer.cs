@@ -73,9 +73,9 @@ namespace WarGames.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream FF1XFanfare {
+        internal static System.IO.UnmanagedMemoryStream FF1XFanfare1 {
             get {
-                return ResourceManager.GetStream("FF1XFanfare", resourceCulture);
+                return ResourceManager.GetStream("FF1XFanfare1", resourceCulture);
             }
         }
         
@@ -96,6 +96,15 @@ namespace WarGames.Properties {
             get {
                 object obj = ResourceManager.GetObject("MapNight", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Missile_Fire_War {
+            get {
+                return ResourceManager.GetStream("Missile_Fire_War", resourceCulture);
             }
         }
         

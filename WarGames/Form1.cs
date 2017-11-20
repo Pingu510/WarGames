@@ -28,9 +28,13 @@ namespace WarGames
         
         CountryHandler countryHandler = new CountryHandler();
         List<Label> CountryLabelEnduranceList = new List<Label>();
-        SoundPlayer SoundEffects;
-        //SoundPlayer SoundEffects2;
-        private string dirpath;
+        SoundPlayer SoundEffectMissile;
+        SoundPlayer SoundEffectWinner;
+        private string AmbDirpath;
+        private string WinnerDirpath;
+        private string MissileDirpath;
+
+        
 
         HelperClass h = new HelperClass();
 
@@ -47,18 +51,16 @@ namespace WarGames
             //panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
 
             InitializeComponent();
-            ThreadStart playerThread = new ThreadStart(MissileSound);
-            Thread PlayMissileSound = new Thread(playerThread);
-            PlayMissileSound.Start();
 
 
-            
+            //ThreadStart playerThread = new ThreadStart(MissileSound);
+            //Thread PlayMissileSound = new Thread(playerThread);
+            //PlayMissileSound.Start();
 
+            //ThreadStart playerThread2 = new ThreadStart(AmbientSound);
+            //Thread PlayAmbientSound = new Thread(playerThread2);
+            //PlayAmbientSound.Start();
 
-
-            ThreadStart playerThread2 = new ThreadStart(AmbientSound);
-            Thread PlayAmbientSound = new Thread(playerThread2);
-            PlayAmbientSound.Start();
 
         }
 
@@ -87,8 +89,10 @@ namespace WarGames
         public void AmbientSound()
         {
             //new Thread(() => {
-            axWindowsMediaPlayer1.URL = dirpath + "\\War.wav";
-            axWindowsMediaPlayer1.Ctlcontrols.play();
+            AmbDirpath = Directory.GetCurrentDirectory().ToString();
+            AmbientWarMediaPlayer.URL = AmbDirpath + "\\War.wav";
+            AmbientWarMediaPlayer.settings.volume = 60;
+            AmbientWarMediaPlayer.Ctlcontrols.play();
 
             //dirpath = Directory.GetCurrentDirectory().ToString();
             //SoundEffects2 = new SoundPlayer(dirpath + "\\War.wav");
@@ -103,10 +107,14 @@ namespace WarGames
             //axWindowsMediaPlayer2.URL = dirpath + "\\Missle_Launch.wav";
             //axWindowsMediaPlayer2.Ctlcontrols.play();
 
-            dirpath = Directory.GetCurrentDirectory().ToString();
-            SoundEffects = new SoundPlayer(dirpath + "\\Missile Fire War.wav");
-            SoundEffects.Play();
-        //}).Start();
+            MissileDirpath = Directory.GetCurrentDirectory().ToString();
+            MissileMediaPlayer.URL = MissileDirpath + "\\Missle_Launch.wav";
+            MissileMediaPlayer.Ctlcontrols.play();
+
+            //MissileDirpath = Directory.GetCurrentDirectory().ToString();
+            //SoundEffectMissile = new SoundPlayer(MissileDirpath + "\\Missile Fire War.wav");
+            //SoundEffectMissile.Play();
+            //}).Start();
 
             //dirpath = Directory.GetCurrentDirectory().ToString();
             //SoundEffects2 = new SoundPlayer(dirpath + "\\Missile Fire War.wav");
@@ -116,8 +124,12 @@ namespace WarGames
 
         public void WinnerSound()
         {
-            axWindowsMediaPlayer2.URL = dirpath + "\\FF1XFanfare.wav";
-            axWindowsMediaPlayer2.Ctlcontrols.play();
+            WinnerDirpath = Directory.GetCurrentDirectory().ToString();
+            SoundEffectWinner = new SoundPlayer(WinnerDirpath + "\\FFIXFanfare.wav");
+            SoundEffectWinner.Play();
+
+            //WinnerMediaPlayer.URL = dirpath + Properties.Resources.FF1XFanfare;// dirpath + "\\FF1XFanfare.wav";
+            //WinnerMediaPlayer.Ctlcontrols.play();
         }
 
         //public void playpSoundEffects()
@@ -166,8 +178,6 @@ namespace WarGames
                     picBoxFront.Visible = false;
                     picY.Visible = false;
                     countryHandler.StartNewGame();
-                    //h.playSound();
-                    
                     AmbientSound();
                     tbxStart.Text = null;
 
@@ -195,6 +205,7 @@ namespace WarGames
         private void panel1_MouseClick(object sender, MouseEventArgs e)
         {
             // Get mouse location in panel1
+            //lblXNY.Visible = true;
             lblXNY.Text = e.Location.X + ":" + e.Location.Y;
         }
                 
@@ -211,52 +222,62 @@ namespace WarGames
                     else
                     {
                         CountryLabelEnduranceList[i].Text = countryHandler.CountryList[i].CountryEndurance.ToString();
+                        MissileSound();
                         HitAnimation(e.CountryID);
                     }
                 }
             }
             else
             {
-                CountryLabelEnduranceList[e.CountryID].Text = "Ded";
+                CountryLabelEnduranceList[e.CountryID].Text = "Lost";
                 
                 CountryLabelEnduranceList.RemoveAt(e.CountryID);
+                
                 ShowDeath(e.CountryID);
                 
-                MissileSound();
                 //DeathSound();
                 countryHandler.DeleteCountry(e.CountryID);
 
                 if (countryHandler.CountryList.Count == 1)
                 {
-                    ShowWarText();
-                    lblWinner.Text = ($"{countryHandler.CountryList[0].CountryName} Won the war!!");
-                    lblWinner.Left = (this.ClientSize.Width - lblWinner.Width) / 2;
-                    lblWinner.Top = (this.ClientSize.Height - lblWinner.Height - 160 ) ;
-                    WinnerSound();
-                    axWindowsMediaPlayer1.Ctlcontrols.stop();
-                    new ManualResetEvent(false).WaitOne(5000);
-                    EndOfGame();
+
+                    ShowEndWarText();
+                    Winner();
+                    //AmbientWarMediaPlayer1.Ctlcontrols.stop();
+                    //WinnerMediaPlayer.Ctlcontrols.stop();
                 }
             }
         }
 
-        public void ShowWarText()
+        public void ShowEndWarText()
         {
             Image warImage = Properties.Resources.warImage;
             Graphics g = panel1.CreateGraphics();
-            g.DrawImage(warImage, 425, 150);
+            g.DrawImage(warImage, 545, 230);
         }
-
+        
 
         public void ShowDeath(int i)
         {
             Point nukedPoint;
             nukedPoint = new Point(countryHandler.CountryList[i].CordinateX - 45, countryHandler.CountryList[i].CordinateY - 25);
 
-            Image deathimage = Properties.Resources.Skull_smaller;
             
-            Graphics g = panel1.CreateGraphics();
-            g.DrawImage(deathimage, nukedPoint);
+
+            PictureBox picboxDeath = new PictureBox();
+            picboxDeath.Location = nukedPoint;
+            picboxDeath.Width = 50; picboxDeath.Height = 50;
+
+            picboxDeath.SizeMode = PictureBoxSizeMode.StretchImage;
+            picboxDeath.BringToFront();
+
+            picboxDeath.Image = Properties.Resources.Skull_smaller;
+            panel1.Controls.Add(picboxDeath);
+
+            //Image deathimage = Properties.Resources.Skull_smaller;
+            
+            //Graphics g = panel1.CreateGraphics();
+            //g.DrawImage(deathimage, nukedPoint);
         }
 
         public void HitAnimation(int i)
@@ -266,7 +287,7 @@ namespace WarGames
 
             PictureBox picboxHit = new PictureBox();
             picboxHit.Location = HitPoint;
-            picboxHit.Width =60; picboxHit.Height = 60;
+            picboxHit.Width =50; picboxHit.Height = 50;
             
             picboxHit.SizeMode = PictureBoxSizeMode.StretchImage;
             picboxHit.SendToBack();
@@ -276,6 +297,7 @@ namespace WarGames
 
                 picboxHit.Image = Properties.Resources.explosion;
                 panel1.Controls.Add(picboxHit);
+
 
             }
             else if (countryHandler.CountryList[i].CountryEndurance == 0)
@@ -296,9 +318,17 @@ namespace WarGames
             //g.DrawImage(deathimage, HitPoint);
         }
 
-        
-        
-
+        public void Winner()
+        {
+            lblWinner.Text = ($"{countryHandler.CountryList[0].CountryName} Won the war!!");
+            lblWinner.Left = (this.ClientSize.Width - lblWinner.Width) / 2;
+            //lblWinner.Top = (this.ClientSize.Height - lblWinner.Height - 160);
+            AmbientWarMediaPlayer.Ctlcontrols.stop();
+            WinnerSound();
+            
+            //new ManualResetEvent(false).WaitOne(5000);
+            //EndOfGame();
+        }
 
         public void Repaint(object source, EventArgs e)
         {
@@ -334,54 +364,23 @@ namespace WarGames
             string WarStatus = (countryHandler.CountryList[countryHandler.CurrentAttkCountry].CountryName + " Attacks " + countryHandler.CountryList[countryHandler.CurrentDeffCountry].CountryName);
 
             lblOngoingWarStatus.Text = (WarStatus);
+            lblOngoingWarStatus.Left = (this.ClientSize.Width - lblOngoingWarStatus.Width) / 2;
+            
 
             Debug.WriteLine(countryHandler.CountryList[countryHandler.CurrentAttkCountry].CountryName +
             "Attacks" + countryHandler.CountryList[countryHandler.CurrentDeffCountry].CountryName);
         }
 
-        public Bitmap MyImage; // test bild
-
-        //public void HitAnimation(object source, PointEventArgs e)
-        //{
-            
-        //    var Deffcountry = countryHandler.CountryList[countryHandler.CurrentDeffCountry];
-        //    Point HitPoint = new Point(Deffcountry.CordinateX, Deffcountry.CordinateY);
-
-        //    //countryHandler.AttackPoint.Add(HitPoint);
-
-        //    //PictureBox picboxHit = new PictureBox();
-        //    //picboxHit.Visible = true;
-        //    //picboxHit.BringToFront();
-        //    //picboxHit.Location = HitPoint;
-        //    //picboxHit.Width = 30;
-        //    //picboxHit.Height = 30;
-
-        //    Image HitImage = Properties.Resources.explosion;
-
-        //    Graphics g = panel1.CreateGraphics();
-        //    //MyImage = new Bitmap(Properties.Resources.explosion);
-        //    picboxHit.Image = (Image)MyImage;
-        //    g.DrawImage(HitImage, HitPoint);
-        //}
-
-
-
-
-
-
-
         private void AtackTimer_Tick(object sender, EventArgs e)
         {
             countryHandler.StartWar();
-          
         }
 
         private void EndOfGame() // När kriget är slut
         {
             // Här ska skrivas vad som händer efter landet som vann.
+            new ManualResetEvent(false).WaitOne(5000);
             Application.Exit();
         }
-        
     }
-
 }

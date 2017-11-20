@@ -8,8 +8,13 @@ namespace WarGames.NuclearCountries
 {
     class UnitedStates : Country
     {
-        const int xCordinate = 240;
-        const int yCordinate = 175;
+        //const int xCordinate = 240;
+        //const int yCordinate = 175;
+
+        // Fullscreen
+        const int xCordinate = 302;
+        const int yCordinate = 250;
+
 
         public UnitedStates()
             :base("United States", xCordinate, yCordinate)

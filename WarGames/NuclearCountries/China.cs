@@ -8,9 +8,13 @@ namespace WarGames.NuclearCountries
 {
     class China : Country
     {
-        const int xCordinate = 910;
-        const int yCordinate = 210;
-       
+        //const int xCordinate = 910;
+        //const int yCordinate = 210;
+
+        // Fullscreen
+        const int xCordinate = 1090;
+        const int yCordinate = 290;
+
         public China()
             : base("China", xCordinate, yCordinate)
         { }
