@@ -16,7 +16,7 @@ namespace WarGames.NuclearCountries
         const int yCordinate = 575;
 
         public SouthAfrica() 
-            : base("SouthAfrica", xCordinate, yCordinate)
+            : base("South Africa", xCordinate, yCordinate)
         { }
     }
 }

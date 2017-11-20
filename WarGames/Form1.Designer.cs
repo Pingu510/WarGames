@@ -166,21 +166,21 @@
             // lblOngoingWarStatus
             // 
             this.lblOngoingWarStatus.AutoSize = true;
-            this.lblOngoingWarStatus.Font = new System.Drawing.Font("ArmyStamp", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOngoingWarStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOngoingWarStatus.ForeColor = System.Drawing.Color.White;
             this.lblOngoingWarStatus.Location = new System.Drawing.Point(385, 24);
             this.lblOngoingWarStatus.Name = "lblOngoingWarStatus";
-            this.lblOngoingWarStatus.Size = new System.Drawing.Size(0, 30);
+            this.lblOngoingWarStatus.Size = new System.Drawing.Size(0, 46);
             this.lblOngoingWarStatus.TabIndex = 13;
             // 
             // lblWinner
             // 
             this.lblWinner.AutoSize = true;
-            this.lblWinner.Font = new System.Drawing.Font("ArmyStamp", 40F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWinner.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWinner.ForeColor = System.Drawing.Color.White;
             this.lblWinner.Location = new System.Drawing.Point(297, 394);
             this.lblWinner.Name = "lblWinner";
-            this.lblWinner.Size = new System.Drawing.Size(0, 40);
+            this.lblWinner.Size = new System.Drawing.Size(0, 63);
             this.lblWinner.TabIndex = 11;
             // 
             // AmbientWarMediaPlayer
@@ -407,12 +407,14 @@
             // 
             this.lblXNY.AutoSize = true;
             this.lblXNY.BackColor = System.Drawing.Color.White;
+            this.lblXNY.Enabled = false;
             this.lblXNY.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblXNY.Location = new System.Drawing.Point(28, 24);
             this.lblXNY.Name = "lblXNY";
             this.lblXNY.Size = new System.Drawing.Size(70, 31);
             this.lblXNY.TabIndex = 9;
             this.lblXNY.Text = "///////";
+            this.lblXNY.Visible = false;
             // 
             // AttackTimer
             // 
@@ -430,7 +432,7 @@
             this.Controls.Add(this.panel1);
             this.Cursor = System.Windows.Forms.Cursors.SizeNS;
             this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.ShowIcon = false;
@@ -457,7 +459,6 @@
         private System.Windows.Forms.TextBox tbxStart;
         private System.Windows.Forms.PictureBox picY;
         private System.Windows.Forms.PictureBox picN;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblXNY;
         private System.Windows.Forms.GroupBox grpBoxStats;
         private System.Windows.Forms.Label lblUnitedStates;
@@ -486,6 +487,7 @@
         private System.Windows.Forms.Timer AttackTimer;
         private AxWMPLib.AxWindowsMediaPlayer MissileMediaPlayer;
         private AxWMPLib.AxWindowsMediaPlayer WinnerMediaPlayer;
+        public System.Windows.Forms.Panel panel1;
     }
 }
 

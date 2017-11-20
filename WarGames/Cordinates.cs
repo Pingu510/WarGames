@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace WarGames
 {
-    public class coordinates
+    public class Coordinates
     {
         protected int _cordX { get; set; }
         protected int _cordY { get; set; }
-        public coordinates(int x, int y)
+        public Coordinates(int x, int y)
         {
             _cordX = _cordX;
             _cordY = _cordY;
@@ -26,11 +26,7 @@ namespace WarGames
             return _cordY;
         }
 
-        //public void MouseClicked ()
-        //{
-        //    if (MouseClicked != null)
-        //        MouseClicked(this, new EventArgs());
-        //}
+        
     }
 }
 

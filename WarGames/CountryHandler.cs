@@ -7,10 +7,11 @@ namespace WarGames
 {
     class CountryHandler
     {
-        //HelperClass h = new HelperClass();
+        // Defines how the method should look, reference to a function that looks like it
         public delegate void NukeCountryEventHandler(object source, EventArgs args);
         public delegate void DeadCountryEventHandler(object source, IntEventArgs args);
 
+        // Event based on the eventhandler/delegate
         public event NukeCountryEventHandler CountryNuked;
         public event DeadCountryEventHandler DeadCountry;
         
@@ -34,73 +35,78 @@ namespace WarGames
         public void StartNewGame()
         {
             CreateAllCountriesAnew();
-            StartWar();
+            //StartWar();
         }
-
-
+        
         /// <summary>
-        /// 
+        /// Does the logic of attacking and assigning points
         /// </summary>
         public void StartWar()
         {            
             if (CountryList.Count > 1)
             {
-                int AttackingCountry = GetRandomNr();
-                int DefendingCountry = GetRandomNr();
+                int _attackingCountry = GetRandomNr();
+                int _defendingCountry = GetRandomNr();
 
-                while(AttackingCountry == DefendingCountry)
+                while(_attackingCountry == _defendingCountry)
                 {
-                    if (CountryList.Count > 2)
-                        DefendingCountry = GetRandomNr();
-                    else if (AttackingCountry == 1)
-                        DefendingCountry = 0;
-                    else
-                        DefendingCountry = 1;
+                    //if (CountryList.Count > 2)
+                        _defendingCountry = GetRandomNr();
+                    //else if (AttackingCountry == 1)
+                    //    DefendingCountry = 0;
+                    //else
+                    //    DefendingCountry = 1;
                 }
 
-                CurrentAttkCountry = AttackingCountry;
-                CurrentDeffCountry = DefendingCountry;
-                CurrentAttkCountry.ToString();
+                CurrentAttkCountry = _attackingCountry;
+                CurrentDeffCountry = _defendingCountry;
 
-                NukeCountry(DefendingCountry);
+                NukeCountry(_defendingCountry);
 
-                CurrentEndurance = CountryList[DefendingCountry].CountryEndurance;
+                CurrentEndurance = CountryList[_defendingCountry].CountryEndurance;
 
                 // Checks if the defending Country died.
-                if (CountryList[DefendingCountry].CheckIfCountryIsAlive() == false )
+                if (CountryList[_defendingCountry].CheckIfCountryIsAlive() == false )
                 {
                     // Gives a kill point to the last attacking country
-                    CountryList[AttackingCountry].Kills += 1;
+                    CountryList[_attackingCountry].Kills += 1;
                 }
                 else
                 {
-                    CountryList[AttackingCountry].Assists += 1;
+                    CountryList[_attackingCountry].Assists += 1;
                 }
+
+                // Trigger events
                 OnNukeCountry();
                 OnDeadCountry();
             }
         }
         
         /// <summary>
-        /// Attacks the country and takes away 1 endurance
+        /// Takes away 1 endurance from the country
         /// </summary>
         private void NukeCountry(int DefendingCountry)
         {
-            CountryList[DefendingCountry].CountryEndurance -= 1;
-            
+            CountryList[DefendingCountry].CountryEndurance -= 1;            
         }
 
+        /// <summary>
+        /// Checks if there are any subscribers to the event, then triggers the event
+        /// </summary>
         protected virtual void OnNukeCountry()
         {
             if (CountryNuked != null)
                 CountryNuked(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Checks if there are any subscribers to the event, then triggers the event
+        /// </summary>
         protected virtual void OnDeadCountry()
         {
             if (DeadCountry != null)
             {
-                DeadCountry(this, new IntEventArgs() {CountryID = CurrentDeffCountry });
+                DeadCountry(this, new IntEventArgs() { CountryID = CurrentDeffCountry });
             }
         }
         
@@ -119,8 +125,9 @@ namespace WarGames
         {
             return random.Next(0, CountryList.Count);
         }
+
         /// <summary>
-        /// Creates a new list with all the countries.
+        /// Clears and the adds country objects to Countrylist
         /// </summary>
         private void CreateAllCountriesAnew()
         {

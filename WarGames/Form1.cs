@@ -102,7 +102,6 @@ namespace WarGames
                     new ManualResetEvent(false).WaitOne(1500);
 
                     AddLabelsToList();
-                    AttackTimer.Enabled = true;
                     panel1.Controls.Add(picBoxFront);
                     picBoxFront.Visible = false;
                     panel1.Controls.Add(picY);
@@ -110,6 +109,7 @@ namespace WarGames
                     countryHandler.StartNewGame();
                     AmbientSound();
                     tbxStart.Text = null;
+                    AttackTimer.Enabled = true;
 
                 }
                 else if (e.KeyCode == Keys.N)
@@ -138,16 +138,16 @@ namespace WarGames
         /// </summary>
         private void panel1_MouseClick(object sender, MouseEventArgs e)
         {
-            lblXNY.Visible = true;
             lblXNY.Text = e.Location.X + ":" + e.Location.Y;
         }
         
         /// <summary>
-        /// 
+        /// Updates the countryendurancelabels and what happens upon endurance changes
         /// </summary>
         public void CountryUpdateLabel(object source, IntEventArgs e)
         {
-            AttackerText();
+            AttackerText(); // Displays who the current attacker is
+
             if (countryHandler.CountryList[e.CountryID].CountryEndurance != 0)
             {
                 for (int i = 0; i < countryHandler.CountryList.Count; i++)
@@ -163,19 +163,18 @@ namespace WarGames
                 
                 CountryLabelEnduranceList.RemoveAt(e.CountryID);
                 
-                ShowDeath(e.CountryID);
+                ShowCountryDeath(e.CountryID);
                 
                 countryHandler.DeleteCountry(e.CountryID);
 
+                // If theres only one country left in the list, game over
                 if (countryHandler.CountryList.Count == 1)
-                {
-                    AttackTimer.Stop();
-                    ShowEndWarText();
-                    Winner();
-                    //EndOfGame();
+                {                    
+                    EndOfGame();
                 }
             }
         }
+        
 
         /// <summary>
         /// Prints who attacks who to a label
@@ -184,28 +183,20 @@ namespace WarGames
         {
             string WarStatus = (countryHandler.CountryList[countryHandler.CurrentAttkCountry].CountryName
                 + " Attacks " + countryHandler.CountryList[countryHandler.CurrentDeffCountry].CountryName);
+            Debug.WriteLine(countryHandler.CountryList[countryHandler.CurrentAttkCountry].CountryName
+                + " Attacks " + countryHandler.CountryList[countryHandler.CurrentDeffCountry].CountryName);
 
             lblOngoingWarStatus.Text = (WarStatus);
             lblOngoingWarStatus.Left = (this.ClientSize.Width - lblOngoingWarStatus.Width) / 2;
         }
 
         /// <summary>
-        /// Display end image
-        /// </summary>
-        public void ShowEndWarText()
-        {
-            Image warImage = Properties.Resources.warImage;
-            Graphics g = panel1.CreateGraphics();
-            g.DrawImage(warImage, 545, 230);
-        }
-        
-        /// <summary>
         /// Displays when country dies
         /// </summary>
-        public void ShowDeath(int i)
+        public void ShowCountryDeath(int i)
         {
             Point nukedPoint;
-            nukedPoint = new Point(countryHandler.CountryList[i].CordinateX - 25, countryHandler.CountryList[i].CordinateY -80);
+            nukedPoint = new Point(countryHandler.CountryList[i].CordinateX - 30, countryHandler.CountryList[i].CordinateY -80);
             
             PictureBox picboxDeath = new PictureBox();
             picboxDeath.Location = nukedPoint;
@@ -219,7 +210,7 @@ namespace WarGames
         }
 
         /// <summary>
-        /// Animation to show when a country is hit
+        /// Animation to show when a country has been hit
         /// </summary>
         public void HitAnimation(int i)
         {
@@ -231,7 +222,6 @@ namespace WarGames
             picboxHit.Width = 30; picboxHit.Height = 30;
             
             picboxHit.SizeMode = PictureBoxSizeMode.StretchImage;
-            //picboxHit.SendToBack();
 
             if (countryHandler.CountryList[i].CountryEndurance > 1)
             {
@@ -244,17 +234,6 @@ namespace WarGames
             }
         }
 
-        /// <summary>
-        /// Text that announces winner
-        /// </summary>
-        public void Winner()
-        {
-            lblWinner.Text = ($"{countryHandler.CountryList[0].CountryName} Won the war!!");
-            lblWinner.Left = (this.ClientSize.Width - lblWinner.Width) / 2;
-
-            AmbientWarMediaPlayer.Ctlcontrols.stop();
-            WinnerSound();            
-        }
 
         /// <summary>
         /// Gets coordinates and drawes curves between them
@@ -293,12 +272,38 @@ namespace WarGames
         }
 
         /// <summary>
-        /// Shuts down the program
+        /// Display end image
+        /// </summary>
+        public void ShowEndWarTextImage()
+        {
+            Image warImage = Properties.Resources.warImage;
+            Graphics g = panel1.CreateGraphics();
+            g.DrawImage(warImage, 545, 230);
+        }
+
+        /// <summary>
+        /// Text that announces winner
+        /// </summary>
+        public void WinnerAnnouncement()
+        {
+            lblWinner.Text = ($"{countryHandler.CountryList[0].CountryName} Won the war!!");
+            lblWinner.Left = (panel1.ClientSize.Width - lblWinner.Width) / 2;
+
+            AmbientWarMediaPlayer.Ctlcontrols.stop();
+
+        }
+
+        /// <summary>
+        /// Manages what happens when the game is done
         /// </summary>
         private void EndOfGame() 
         {
-            new ManualResetEvent(false).WaitOne(5000);
-            Application.Exit();
+            AttackTimer.Stop();
+            ShowEndWarTextImage();
+            WinnerAnnouncement();
+            WinnerSound();
+            //new ManualResetEvent(false).WaitOne(5000);
+            //Application.Exit();
         }
     }
 }
