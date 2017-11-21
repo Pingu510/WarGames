@@ -79,9 +79,9 @@
             this.tbxStart.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbxStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxStart.ForeColor = System.Drawing.Color.Transparent;
-            this.tbxStart.Location = new System.Drawing.Point(781, 290);
+            this.tbxStart.Location = new System.Drawing.Point(873, 407);
             this.tbxStart.Name = "tbxStart";
-            this.tbxStart.Size = new System.Drawing.Size(32, 22);
+            this.tbxStart.Size = new System.Drawing.Size(10, 22);
             this.tbxStart.TabIndex = 4;
             this.tbxStart.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxStart_KeyDown);
             // 
@@ -91,9 +91,9 @@
             this.picY.ErrorImage = null;
             this.picY.Image = global::WarGames.Properties.Resources.Y;
             this.picY.InitialImage = null;
-            this.picY.Location = new System.Drawing.Point(781, 274);
+            this.picY.Location = new System.Drawing.Point(873, 391);
             this.picY.Name = "picY";
-            this.picY.Size = new System.Drawing.Size(32, 36);
+            this.picY.Size = new System.Drawing.Size(22, 36);
             this.picY.TabIndex = 5;
             this.picY.TabStop = false;
             this.picY.Visible = false;
@@ -102,7 +102,7 @@
             // 
             this.picBoxFront.BackColor = System.Drawing.Color.Transparent;
             this.picBoxFront.Image = global::WarGames.Properties.Resources.gameText;
-            this.picBoxFront.Location = new System.Drawing.Point(308, 259);
+            this.picBoxFront.Location = new System.Drawing.Point(400, 376);
             this.picBoxFront.Name = "picBoxFront";
             this.picBoxFront.Size = new System.Drawing.Size(458, 61);
             this.picBoxFront.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -113,9 +113,9 @@
             // 
             this.picN.BackColor = System.Drawing.Color.Transparent;
             this.picN.Image = global::WarGames.Properties.Resources.N;
-            this.picN.Location = new System.Drawing.Point(781, 274);
+            this.picN.Location = new System.Drawing.Point(873, 391);
             this.picN.Name = "picN";
-            this.picN.Size = new System.Drawing.Size(32, 36);
+            this.picN.Size = new System.Drawing.Size(22, 36);
             this.picN.TabIndex = 6;
             this.picN.TabStop = false;
             this.picN.Visible = false;
@@ -166,21 +166,21 @@
             // lblOngoingWarStatus
             // 
             this.lblOngoingWarStatus.AutoSize = true;
-            this.lblOngoingWarStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOngoingWarStatus.Font = new System.Drawing.Font("ArmyStamp", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOngoingWarStatus.ForeColor = System.Drawing.Color.White;
             this.lblOngoingWarStatus.Location = new System.Drawing.Point(385, 24);
             this.lblOngoingWarStatus.Name = "lblOngoingWarStatus";
-            this.lblOngoingWarStatus.Size = new System.Drawing.Size(0, 46);
+            this.lblOngoingWarStatus.Size = new System.Drawing.Size(0, 30);
             this.lblOngoingWarStatus.TabIndex = 13;
             // 
             // lblWinner
             // 
             this.lblWinner.AutoSize = true;
-            this.lblWinner.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWinner.Font = new System.Drawing.Font("ArmyStamp", 39.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWinner.ForeColor = System.Drawing.Color.White;
             this.lblWinner.Location = new System.Drawing.Point(297, 394);
             this.lblWinner.Name = "lblWinner";
-            this.lblWinner.Size = new System.Drawing.Size(0, 63);
+            this.lblWinner.Size = new System.Drawing.Size(0, 40);
             this.lblWinner.TabIndex = 11;
             // 
             // AmbientWarMediaPlayer
@@ -216,7 +216,7 @@
             this.grpBoxStats.Controls.Add(this.lblFrance);
             this.grpBoxStats.Controls.Add(this.lblChina);
             this.grpBoxStats.ForeColor = System.Drawing.Color.White;
-            this.grpBoxStats.Location = new System.Drawing.Point(13, 259);
+            this.grpBoxStats.Location = new System.Drawing.Point(12, 335);
             this.grpBoxStats.Name = "grpBoxStats";
             this.grpBoxStats.Size = new System.Drawing.Size(209, 315);
             this.grpBoxStats.TabIndex = 10;

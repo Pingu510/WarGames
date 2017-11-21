@@ -119,7 +119,7 @@ namespace WarGames
         }
 
         /// <summary>
-        /// Skickar tbx ett random tal
+        /// Sends back a renadom to chose who attacks who.
         /// </summary>
         private int GetRandomNr()
         {
